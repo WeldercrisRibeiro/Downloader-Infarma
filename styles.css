@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    
 }
 
 .container {
@@ -19,7 +20,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
-    width: 90%;
+    width: 100%;
     animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -75,7 +76,7 @@ footer {
     padding: 0.1rem;
     text-align: center;
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     color: white;
@@ -104,13 +105,17 @@ footer a:hover {
 }
 
 
-/*@media (max-width: 500px) {
+@media (max-width: 500px) {
     .container {
+        display: flex;
+        flex-direction: column;
+        
         max-width: 90%;
         padding: 20px;
+        align-items: center;
     }
     
     footer {
         padding: 1rem;
     }
-}*/
+}

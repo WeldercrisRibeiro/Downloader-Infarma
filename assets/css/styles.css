@@ -6,7 +6,8 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #2525c7, #1a1a8f);
+    background: linear-gradient(135deg, #1717cf, #02d2f7);
+    
     color: #000;
     display: flex;
     flex-direction: column;
@@ -29,8 +30,13 @@ body {
     margin: 0;
 }
 
+.container h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
 img {
-    width: 50px;
+    width: 80px;
     display: block;
     margin: 0 auto 15px;
 }
@@ -43,9 +49,11 @@ label {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 95%;
     padding: 10px;
     margin-bottom: 15px;
+    
+    
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 16px;
@@ -65,11 +73,14 @@ button {
     padding: 10px;
     cursor: pointer;
     border-radius: 6px;
-    width: 100%;
-    top: 100px;
+    width: 50%;
+    left: 90px;
+    bottom: 40px;
     font-size: 16px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
+    
+    position: relative;
 }
 
 button:hover {

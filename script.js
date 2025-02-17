@@ -6,7 +6,7 @@ function getSelectedFiles() {
 function iniciarDownload() {
     const versao = document.getElementById('versao').value.trim();
     if (!versao) {
-        alert("Por favor, digite a versão.");
+        alert("Por favor, digite a versão!");
         return;
     }
 
@@ -18,7 +18,13 @@ function iniciarDownload() {
         return;
     }
 
-    selectedFiles.forEach(file => {
+    function baixarArquivo(index) {
+        if (index >= selectedFiles.length) {
+            alert("Download concluído!");
+            return;
+        }
+
+        const file = selectedFiles[index];
         const fileUrl = baseUrl + file;
         const a = document.createElement('a');
         a.href = fileUrl;
@@ -26,7 +32,9 @@ function iniciarDownload() {
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
-    });
 
-    alert("Download iniciado para os arquivos selecionados!");
+        setTimeout(() => baixarArquivo(index + 1), 1500); 
+    }
+
+    baixarArquivo(0);
 }

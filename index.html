@@ -4,30 +4,34 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta author="Weldercris Ribeiro">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="/assets/css/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
         <link rel="shortcut icon" type="imagex/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png">
         <title>Infarma Versão</title>
 
     </head>
     <body>
         <div class="container">
-            <img src="assets/varejo.png" alt="">
+            <img src="/assets/img/varejo.png" alt="">
             <h2>Download Versão Infarma Varejo</h2>
             <input type="text" id="versao" placeholder="Digite a versão ex: 2407a">
 
             <h3>Selecione os executáveis:</h3>
-            <label><input type="checkbox" class="file-checkbox" value="VmdRrd.CAB" checked> Varejo</label>
-            <label><input type="checkbox" class="file-checkbox" value="VmdTrm.CAB" checked> Terminal</label>
-            <label><input type="checkbox" class="file-checkbox" value="VmdPdv.CAB" checked> Caixa</label>
-            <label><input type="checkbox" class="file-checkbox" value="VmdRljImp.CAB" checked> VmdRljImp</label>
-            <label><input type="checkbox" class="file-checkbox" value="VmdImp.CAB" checked> VmdImp</label>
-            <label><input type="checkbox" class="file-checkbox" value="VmdSrv.CAB" checked> VmdSrv</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdRrd.CAB" > Varejo</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdTrm.CAB" > Terminal</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdPdv.CAB" > Caixa</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdRljImp.CAB" > VmdRljImp</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdImp.CAB" > VmdImp</label>
+            <label><input type="checkbox" class="file-checkbox" value="VmdSrv.CAB" > VmdSrv</label>
 
+            <p>Para mais detalhes,consulte a documentação da versão aqui <a href="https://infarma-docs-varejo.vercel.app/" target="_blank">Infarma Docs</a></p>
             <br><br>
             <button onclick="iniciarDownload()">Baixar</button>
         </div>
 
-        <script src="script.js"></script>
+        <script src="/assets/js/script.js"></script>
 
         <footer>
             <p>Copyright © 2025 Infarma, with Weldercris. Todos os direitos reservados.</p>

@@ -1,5 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    
+    font-style: bold;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -9,7 +12,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 600px;
     
 }
 
@@ -20,8 +23,10 @@ body {
     border-radius: 25px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
-    width: 90%;
+    width: 400px;
     animation: fadeIn 0.5s ease-in-out;
+    height: 500px;
+    margin: 0;
 }
 
 img {
@@ -57,10 +62,11 @@ button {
     background: #28a745;
     color: white;
     border: none;
-    padding: 12px;
+    padding: 10px;
     cursor: pointer;
     border-radius: 6px;
     width: 100%;
+    top: 100px;
     font-size: 16px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
@@ -73,25 +79,17 @@ button:hover {
 
 footer {
     background-color: #218838;
-    padding: 0.1rem;
-    text-align: center;
+    
+    text-align: top;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     color: white;
+    height: 50px;
 }
 
-footer a {
-    text-decoration: none;
-    color: #CCD595;
-    font-weight: bold;
-    transition: 0.3s ease-in-out;
-}
 
-footer a:hover {
-    color: #fff;
-}
 
 @keyframes fadeIn {
     from {

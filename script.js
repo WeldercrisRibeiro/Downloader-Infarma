@@ -14,7 +14,7 @@ function iniciarDownload() {
     const selectedFiles = getSelectedFiles();
 
     if (selectedFiles.length === 0) {
-        alert("Selecione ao menos um arquivo para baixar.");
+        alert("Selecione ao menos um executável para baixar.");
         return;
     }
 

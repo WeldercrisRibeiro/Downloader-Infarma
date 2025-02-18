@@ -7,7 +7,7 @@ body {
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #1717cf, #02d2f7);
-    
+    background-repeat: no-repeat;
     color: #000;
     display: flex;
     flex-direction: column;
@@ -18,19 +18,24 @@ body {
 }
 
 .container {
-    max-width: 400px;
+    max-width: 900px;
     padding: 40px;
     background: #f8f8f8;
     border-radius: 25px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
-    width: 400px;
+    width: 500px;
     animation: fadeIn 0.5s ease-in-out;
-    height: 500px;
+    height: 400px;
     margin: 0;
 }
 
 .container h2 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.container h3 {
     text-align: center;
     font-weight: bold;
 }
@@ -44,7 +49,8 @@ img {
 label {
     font-weight: bold;
     margin-bottom: 5px;
-    display: block;
+    display: flexbox;
+
     color: #333;
 }
 
@@ -97,7 +103,7 @@ footer {
     bottom: 0;
     left: 0;
     color: white;
-    height: 50px;
+    height: 40px;
 }
 
 

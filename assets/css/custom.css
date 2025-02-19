@@ -26,8 +26,8 @@ body {
     color: white;
     font-weight: bold;
     margin-top: 10px;
-    text-align: left; /* Alinha o texto à esquerda */
-    width: 95%; /* Garante que ocupe toda a largura do contêiner */
+    text-align: left; 
+    width: 95%; 
 }
 
 .l-usuario {
@@ -47,13 +47,13 @@ img {
 }
 
 input {
-    width: 90%; /* Ocupa toda a largura do contêiner */
+    width: 90%; 
     height: 20px;
     padding: 5px;
     margin-top: 5px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    text-align: left; /* Alinha o texto dentro do input à esquerda */
+    text-align: left; 
     font-size: 14px;
 }
 
@@ -73,6 +73,9 @@ input {
 .btn-entrar:hover {
     background: #218838;
 }
+
+
+
 
 p {
     color: white;

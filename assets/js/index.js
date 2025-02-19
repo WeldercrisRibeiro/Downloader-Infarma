@@ -17,8 +17,9 @@ function entrar(){
     }
 }
 
-function sair() {
-    sessionStorage.removeItem("usuarioLogado");
-    window.location.href = 'index.html'; 
-}
+document.getElementById("password").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        entrar(); // Chama a função entrar() ao pressionar Enter
+    }
+});
 

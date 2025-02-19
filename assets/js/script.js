@@ -38,3 +38,17 @@ function iniciarDownload() {
 
     baixarArquivo(0);
 }
+
+function sair() {
+    
+    sessionStorage.removeItem("usuarioLogado");
+    window.location.href = 'index.html'; 
+}
+
+
+
+//document.getElementById("versao").addEventListener("keypress", function(event) {
+//    if (event.key === "Enter") {
+//        iniciarDownload(); 
+//    }
+//}); 

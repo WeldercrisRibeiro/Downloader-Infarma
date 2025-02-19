@@ -107,19 +107,48 @@ button {
     padding: 10px;
     cursor: pointer;
     border-radius: 6px;
-    width: 70%;
-    left: 90px;
+    width: 200px;
+    left: 10px;
     bottom: 40px;
     font-size: 16px;
     font-weight: bold;
     transition: 0.3s ease-in-out;
-    
     position: relative;
+    height: 40px;
+    bottom: 45px;
+
+    
+
 }
 
 button:hover {
     background: #218838;
     transform: scale(1.05);
+}
+
+.btn-sair {
+    max-width: 1000%;
+    background: #a73728;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: 0.3s;
+    width: 200px;
+    height: 40px;
+    bottom: 45px;
+    right: 200px;
+    left: 100px;
+    position: relative;
+    
+    
+    
+}
+
+.btn-sair:hover {
+    background: #a73728;
 }
 
 footer {

@@ -191,3 +191,35 @@ footer {
         padding: 1rem;
     }
 }
+/*
+.chat-button {
+    display: flex;
+    align-items: center;
+    background-color: #171F51; 
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 19px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    
+}
+
+.chat-button:hover {
+    background: #171F51;
+    transform: scale(1.05);
+}
+
+.chat-button svg {
+    width: 20px;
+    height: 20px;
+    fill: white; /* Cor do ícone 
+    margin-right: 8px;
+}
+
+*/

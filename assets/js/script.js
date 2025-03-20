@@ -6,7 +6,7 @@ function getSelectedFiles() {
 function iniciarDownload() {
     const versao = document.getElementById('versao').value.trim();
     if (!versao) {
-        alert("Por favor, digite a versão!");
+        alert("Por favor, insira a versão!");
         return;
     }
 

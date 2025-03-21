@@ -3,8 +3,7 @@ function entrar(){
         { usuario: "admin", senha: "senha" },
         {usuario: "ADMIN", senha: "SENHA"},
         { usuario: "INFARMA", senha: "vlssl" },
-        { usuario: "infarma", senha: "vlssl" },
-        { usuario: "weldercris.ribeiro@infarma.com.br", senha: "@Cris2507" }
+        { usuario: "infarma", senha: "vlssl" }
     ];
     let usuarioDigitado = document.getElementById('usuario').value;
     let senhaDigitada = document.getElementById('password').value;

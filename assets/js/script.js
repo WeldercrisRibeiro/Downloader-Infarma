@@ -22,38 +22,25 @@ function iniciarDownload() {
     }
 
     let index = 0;
-    
+
     function baixarProximoArquivo() {
         if (index >= selectedFiles.length) {
-            alert("Todos os arquivos foram baixados!");
+            alert("Todos os arquivos foram enviados para download!");
             return;
         }
 
         const file = selectedFiles[index];
         const fileUrl = baseUrl + file;
 
-        fetch(fileUrl, { method: 'HEAD' }) // Verifica se o arquivo existe antes de baixar
-            .then(response => {
-                if (!response.ok) {
-                    console.error(`Erro ao baixar: ${fileUrl} - Status: ${response.status}`);
-                    alert(`Erro ao baixar ${file}. Verifique a versão informada.`);
-                } else {
-                    const a = document.createElement('a');
-                    a.href = fileUrl;
-                    a.download = file;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                }
-                index++;
-                setTimeout(baixarProximoArquivo, 500); // Pequena pausa para evitar bloqueios
-            })
-            .catch(error => {
-                console.error(`Erro ao verificar o arquivo ${fileUrl}:`, error);
-                alert(`Erro ao acessar o arquivo: ${file}.`);
-                index++;
-                baixarProximoArquivo();
-            });
+        const a = document.createElement('a');
+        a.href = fileUrl;
+        a.download = file;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        index++;
+        setTimeout(baixarProximoArquivo, 500); // Pausa para evitar bloqueios
     }
 
     baixarProximoArquivo();
@@ -64,9 +51,14 @@ function sair() {
     window.location.href = 'index.html';
 }
 
-// Ativar Enter para iniciar o download
-document.getElementById("versao").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        iniciarDownload();
+// Espera o DOM carregar antes de associar o evento
+document.addEventListener("DOMContentLoaded", () => {
+    const versaoInput = document.getElementById("versao");
+    if (versaoInput) {
+        versaoInput.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                iniciarDownload();
+            }
+        });
     }
 });

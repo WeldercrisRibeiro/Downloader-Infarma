@@ -4,13 +4,16 @@ function getSelectedFiles() {
 }
 
 function iniciarDownload() {
-    const versao = document.getElementById('versao').value.trim();
+    const versaoInput = document.getElementById('versao');
+    const versao = versaoInput.value.trim();
+
     if (!versao) {
         alert("Por favor, insira a versão!");
+        versaoInput.focus();
         return;
     }
 
-    const baseUrl = `https://s3.amazonaws.com/infarma-cv/${versao}/`;
+    const baseUrl = `https://s3.amazonaws.com/infarma-cv/${encodeURIComponent(versao)}/`;
     const selectedFiles = getSelectedFiles();
 
     if (selectedFiles.length === 0) {
@@ -18,37 +21,52 @@ function iniciarDownload() {
         return;
     }
 
-    function baixarArquivo(index) {
+    let index = 0;
+    
+    function baixarProximoArquivo() {
         if (index >= selectedFiles.length) {
-            alert("Download concluído!");
+            alert("Todos os arquivos foram baixados!");
             return;
         }
 
         const file = selectedFiles[index];
         const fileUrl = baseUrl + file;
-        const a = document.createElement('a');
-        a.href = fileUrl;
-        a.download = file;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
 
-        setTimeout(() => baixarArquivo(index + 1), 1500); 
+        fetch(fileUrl, { method: 'HEAD' }) // Verifica se o arquivo existe antes de baixar
+            .then(response => {
+                if (!response.ok) {
+                    console.error(`Erro ao baixar: ${fileUrl} - Status: ${response.status}`);
+                    alert(`Erro ao baixar ${file}. Verifique a versão informada.`);
+                } else {
+                    const a = document.createElement('a');
+                    a.href = fileUrl;
+                    a.download = file;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+                index++;
+                setTimeout(baixarProximoArquivo, 500); // Pequena pausa para evitar bloqueios
+            })
+            .catch(error => {
+                console.error(`Erro ao verificar o arquivo ${fileUrl}:`, error);
+                alert(`Erro ao acessar o arquivo: ${file}.`);
+                index++;
+                baixarProximoArquivo();
+            });
     }
 
-    baixarArquivo(0);
+    baixarProximoArquivo();
 }
 
 function sair() {
-    
     sessionStorage.removeItem("usuarioLogado");
-    window.location.href = 'index.html'; 
+    window.location.href = 'index.html';
 }
 
-
-
-//document.getElementById("versao").addEventListener("keypress", function(event) {
-//    if (event.key === "Enter") {
-//        iniciarDownload(); 
-//    }
-//}); 
+// Ativar Enter para iniciar o download
+document.getElementById("versao").addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        iniciarDownload();
+    }
+});

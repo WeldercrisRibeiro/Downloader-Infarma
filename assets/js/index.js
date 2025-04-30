@@ -1,9 +1,8 @@
 function entrar(){
     let usuarios = [
-        { usuario: "admin", senha: "senha" },
-        {usuario: "ADMIN", senha: "SENHA"},
-        { usuario: "INFARMA", senha: "vlssl" },
-        { usuario: "infarma", senha: "vlssl" }
+        
+        { usuario: "INFARMA", senha: "Infarma@060115" },
+        { usuario: "infarma", senha: "Infarma@060115" }
     ];
     let usuarioDigitado = document.getElementById('usuario').value;
     let senhaDigitada = document.getElementById('password').value;

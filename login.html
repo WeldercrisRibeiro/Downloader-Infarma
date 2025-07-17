@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>FastFarma - Login Conveniada</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d1b3f;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 8px;
+      width: 400px;
+      padding: 40px 30px;
+      text-align: center;
+      height: 540px;
+    }
+
+    .logo {
+      width: 220px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    p.subtext {
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    input::placeholder {
+      color: #aaa;
+    }
+
+    .login-btn {
+      width: 100%;
+      background-color: #2f80ed;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .login-btn:hover {
+      background-color: #256fd1;
+    }
+
+    .forgot {
+      margin-top: 10px;
+      font-size: 13px;
+      text-align: right;
+      color: #2f80ed;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .divider {
+      margin: 25px 0 10px;
+      font-size: 14px;
+      color: #999;
+    }
+
+    .funcionario-btn {
+      width: 100%;
+      background-color: transparent;
+      border: 1px solid white;
+      color: white;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .funcionario-btn:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .bottom-box {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://pages.greatpages.com.br/fastfarma.fastfarma.app.br/1748005826/imagens/desktop/1082006_1_1732981876674b34749c33a232179414.png" alt="FastFarma Logo" class="logo">
+    
+    <h1>Conveniada</h1>
+    <p class="subtext">Acompanhamento de compras conveniada</p>
+
+    <div class="form-group">
+      <label for="cnpj">CNPJ</label>
+      <input type="text" id="cnpj" placeholder="Insira o CNPJ ( apenas números )">
+    </div>
+
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" value="02411901186">
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" value="****">
+    </div>
+
+    <button class="login-btn">Login</button>
+    <a href="#" class="forgot">Esqueci a senha</a>
+
+    <div class="divider">OU</div>
+
+    <div class="bottom-box">
+      <button class="funcionario-btn">Entrar como FUNCIONÁRIO</button>
+    </div>
+  </div>
+</body>
+</html>

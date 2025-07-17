@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta author="Weldercris Ribeiro">
+    <link rel="stylesheet" href="/assets/css/custom.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="imagex/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login">
+        <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" alt="">
+        <h2>Login Infarma Version</h2>
+        <label class="l-usuario">Usuário:</label>
+        <input type="email" placeholder="Digite seu usuário" id="usuario" class="input"> <br>
+
+        <label class="l-usuario">Senha:</label>
+        <input type="password" placeholder="Digite sua senha" id="password"> <br>
+
+        <button class="btn-entrar" onclick="entrar()">Entrar</button>
+
+        <!--<p>Esqueceu a senha? Clique <a href="">aqui!</a></p>-->
+    </div>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

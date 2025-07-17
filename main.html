@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta author="Weldercris Ribeiro" />
-    <link rel="stylesheet" href="/assets/css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      type="imagex/png"
-      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
-    />
-    <title>Infarma Versão</title>
-  </head>
-  <body>
-    <div class="container">
-      <img
-        src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
-        alt=""
-      />
-      <h2>Download Versão Infarma Varejo</h2>
-      <!-- <input type="text" id="versao" placeholder="Digite a versão ex: 2407a" -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Infarma Versão</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            primary: '#003973',
+            infarmaBlue: '#003973',
+          },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-gradient-to-r from-primary to-yellow-100 font-inter min-h-screen flex items-center justify-center px-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-xl text-center">
+    <img src=https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-14 h-14 mx-auto mb-4" />
+    <h2 class="text-2xl font-semibold text-gray-800">Download Versão Infarma Varejo</h2>
+ <!--   <p class="text-sm text-gray-600 mb-6">Escolha abaixo a versão desejada. Caso não encontre, <a href="#" class="text-primary hover:underline">clique aqui</a>.</p>-->
 
-      <p>Escolha abaixo a versão desejada. Caso não encontre, clique aqui</p>
-      <select id="versao" name="versao">
+    <div class="text-left mb-6">
+      <label for="versao" class="block text-sm font-medium text-gray-700 mb-1">Versão</label>
+      <select id="versao" name="versao" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
         <option value="" selected="selected">Selecione uma versão</option>
         <option value="2008a">2008a</option>
 
@@ -100,62 +103,55 @@
 
         <option value="2502b">2502b</option>
       </select>
-
-      <h3>Selecione os executáveis:</h3>
-      <div class="checkbox-container">
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdRrd.CAB" />
-          Varejo</label
-        >
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdTrm.CAB" />
-          Terminal</label
-        >
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdPdv.CAB" />
-          Caixa</label
-        >
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdRljImp.CAB" />
-          VmdRljImp</label
-        >
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdImp.CAB" />
-          VmdImp</label
-        >
-        <label
-          ><input type="checkbox" class="file-checkbox" value="VmdSrv.CAB" />
-          VmdSrv</label
-        >
-      </div>
-
-      <p>
-        Para mais detalhes, consulte a documentação da versão aqui
-        <a href="http://177.44.191.62:3000/" target="_blank">Infarma Docs</a>
-      </p>
-      <br /><br />
-      <button onclick="iniciarDownload()" class="btn-baixar" id="sair">
-        Baixar
-      </button>
-      <button onclick="sair()" class="btn-sair">Sair</button>
+        <!-- adicione mais versões aqui -->
+      </select>
     </div>
 
-    <!-- <button class="chat-button" onclick="window.open('https://www.infarma.com.br', '_blank')">
-            <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1381.68 1358.57">
-                <title>icone_chat</title>
-                <path d="M1314.65,652.56c0-344.52-279.29-623.8-623.81-623.8S67,308,67,652.56c0,178.47,75.07,339.3,195.2,453l-.35.24c275.83,260.23,684.3,292.42,992.82,103.36l-118.46-120C1246.55,976.63,1314.65,822.58,1314.65,652.56ZM932.12,943.32a395.6,395.6,0,0,1-487.56-1.68,25.33,25.33,0,1,1,31.33-39.8,345.09,345.09,0,0,0,425.22,1.43,25.33,25.33,0,1,1,31,40.05Z"></path>
-            </svg>
-            Chat Suporte
-        </button> -->
+    <div class="text-left mb-6">
+      <h3 class="text-sm font-medium text-gray-800 mb-2">Selecione os executáveis:</h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdRrd.CAB" />
+          <span>Varejo</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdTrm.CAB" />
+          <span>Terminal</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdPdv.CAB" />
+          <span>Caixa</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdRljImp.CAB" />
+          <span>VmdRljImp</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdImp.CAB" />
+          <span>VmdImp</span>
+        </label>
+        <label class="flex items-center gap-2">
+          <input type="checkbox" class="file-checkbox" value="VmdSrv.CAB" />
+          <span>VmdSrv</span>
+        </label>
+      </div>
+    </div>
 
-    <script src="/assets/js/script.js"></script>
+    <p class="text-sm text-gray-600 mb-6">
+      Para mais detalhes, consulte a documentação da versão em:
+      <a href="http://177.44.191.62:3000/" target="_blank" class="text-primary hover:underline">Infarma Docs</a>
+    </p>
 
-    <!---->
-    <footer>
-      <p>
-        Copyright © 2025 Infarma, with Weldercris. Todos os direitos reservados.
-      </p>
+    <div class="flex gap-4 justify-center mb-4">
+      <button onclick="iniciarDownload()" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-blue-900 transition">Baixar</button>
+      <button onclick="sair()" class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400 transition">Sair</button>
+    </div>
+
+    <footer class="text-xs text-gray-500 mt-6 text-center">
+      <p>© 2025 Infarma, com Weldercris. Todos os direitos reservados.</p>
     </footer>
-    <!---->
-  </body>
+  </div>
+
+  <script src="/assets/js/script.js"></script>
+</body>
 </html>

@@ -1,3 +1,8 @@
+// Bloqueia acesso se não estiver logado
+if (sessionStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "index.html";
+}
+
 function getSelectedFiles() {
     const checkboxes = document.querySelectorAll('.file-checkbox:checked');
     return Array.from(checkboxes).map(cb => cb.value);
@@ -47,11 +52,10 @@ function iniciarDownload() {
 }
 
 function sair() {
-    sessionStorage.removeItem("usuarioLogado");
+    sessionStorage.removeItem("loggedIn");
     window.location.href = 'index.html';
 }
 
-// Espera o DOM carregar antes de associar o evento
 document.addEventListener("DOMContentLoaded", () => {
     const versaoInput = document.getElementById("versao");
     if (versaoInput) {

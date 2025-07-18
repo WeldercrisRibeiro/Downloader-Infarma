@@ -2,7 +2,10 @@ function entrar(){
     let usuarios = [
         { usuario: "INFARMA", senha: "Infarma@060115" },
         { usuario: "infarma", senha: "Infarma@060115" },
-        { usuario: "suporte@infarma.com.br", senha: "vlssl" }
+        { usuario: "admin", senha: "vlssl" },
+        { usuario: "ADMIN", senha: "vlssl" },
+
+        
     ];
 
     let usuarioDigitado = document.getElementById('usuario').value;

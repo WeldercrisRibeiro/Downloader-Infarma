@@ -1,169 +1,198 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CVA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="shortcut icon" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            inter: ['Inter', 'sans-serif'],
-          },
-          colors: {
-            primary: '#003973',
-            infarmaBlue: '#003973',
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CVA</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#003973",
+              infarmaBlue: "#003973",
+            },
           },
         },
-      },
-    };
-  </script>
-</head>
-<body class="font-inter min-h-screen flex items-center justify-center px-4" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
+      };
+    </script>
+  </head>
+  <body
+    class="font-inter min-h-screen flex items-center justify-center px-4"
+    style="
+      background-image: linear-gradient(
+        to bottom right,
+        #0f345c,
+        #0096b1,
+        #0f345c
+      );
+    "
+  >
+    <div
+      class="bg-white p-9 rounded-2xl shadow-xl w-full max-w-2xl text-center"
+    >
+      <img
+        src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+        alt="Logo Infarma"
+        class="w-14 h-14 mx-auto mb-4"
+      />
+      <h2 class="text-2xl p-2 font-semibold">Download versão</h2>
 
-  
-  <div class="bg-white p-9 rounded-2xl shadow-xl w-full max-w-2xl text-center">
-    <img src=https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-14 h-14 mx-auto mb-4" />
-    <h2 class="text-2xl p-2 font-semibold ">Download versão</h2>
- <!--   <p class="text-sm text-gray-600 mb-6">Escolha abaixo a versão desejada. Caso não encontre, <a href="#" class="text-primary hover:underline">clique aqui</a>.</p>-->
-<div class="text-left mb-6">
-      <!--<label for="versao" class="block text-sm font-medium text-gray-700 mb-1"--> </label>
-      <select id="versao" name="versao" class="w-full px-4 py-2 border rounded-lg">
-        <option value="" selected="selected">Selecione uma versão</option>
-        <option value="2008a">2008a</option>
+      <div class="text-left mb-6">
+        <select
+          id="versao"
+          name="versao"
+          class="w-full px-4 py-2 border rounded-lg"
+        >
+          <option value="" selected="selected">Selecione uma versão</option>
+          <option value="2008a">2008a</option>
+          <option value="2102a">2102a</option>
+          <option value="2202a">2202a</option>
+          <option value="2202aa">2202aa</option>
+          <option value="2202ac">2202ac</option>
+          <option value="2202ad">2202ad</option>
+          <option value="2202ae">2202ae</option>
+          <option value="2202af">2202af</option>
+          <option value="2202ag">2202ag</option>
+          <option value="2205a">2205a</option>
+          <option value="2205aa">2205aa</option>
+          <option value="2205ab">2205ab</option>
+          <option value="2205b">2205b</option>
+          <option value="2205ba">2205ba</option>
+          <option value="2205c">2205c</option>
+          <option value="2208a">2208a</option>
+          <option value="2208ba">2208ba</option>
+          <option value="2208c">2208c</option>
+          <option value="2208ca">2208ca</option>
+          <option value="2208ce">2208ce</option>
+          <option value="2208d">2208d</option>
+          <option value="2208da">2208da</option>
+          <option value="2208db">2208db</option>
+          <option value="2208dc">2208dc</option>
+          <option value="2211a">2211a</option>
+          <option value="2211aa">2211aa</option>
+          <option value="2211b">2211b</option>
+          <option value="2211ba">2211ba</option>
+          <option value="2211bb">2211bb</option>
+          <option value="2211bc">2211bc</option>
+          <option value="2304ac">2304ac</option>
+          <option value="2304b">2304b</option>
+          <option value="2304ba">2304ba</option>
+          <option value="2304bb">2304bb</option>
+          <option value="2304bc">2304bc</option>
+          <option value="2306a">2306a</option>
+          <option value="2306b">2306b</option>
+          <option value="2306ba">2306ba</option>
+          <option value="2308a">2308a</option>
+          <option value="2308aa">2308aa</option>
+          <option value="2308ab">2308ab</option>
+          <option value="2308b">2308b</option>
+          <option value="2308c">2308c</option>
+          <option value="2308ca">2308ca</option>
+          <option value="2308cb">2308cb</option>
+          <option value="2308cd">2308cd</option>
+          <option value="2312a">2312a</option>
+          <option value="2312aa">2312aa</option>
+          <option value="2312b">2312b</option>
+          <option value="2312ba">2312ba</option>
+          <option value="2402a">2402a</option>
+          <option value="2402c">2402c</option>
+          <option value="2402d">2402d</option>
+          <option value="2402e">2402e</option>
+          <option value="2403a">2403a</option>
+          <option value="2403b">2403b</option>
+          <option value="2403c">2403c</option>
+          <option value="2403cc">2403cc</option>
+          <option value="2403cd">2403cd</option>
+          <option value="2403ce">2403ce</option>
+          <option value="2403cf">2403cf</option>
+          <option value="2403cg">2403cg</option>
+          <option value="2403ch">2403ch</option>
+          <option value="2407a">2407a</option>
+          <option value="2407aa">2407aa</option>
+          <option value="2407ab">2407ab</option>
+          <option value="2411a">2411a</option>
+          <option value="2411aa">2411aa</option>
+          <option value="2411ab">2411ab</option>
+          <option value="2411b">2411b</option>
+          <option value="2411ba">2411ba</option>
+          <option value="2411bb">2411bb</option>
+          <option value="2411bc">2411bc</option>
+          <option value="2411bd">2411bd</option>
+          <option value="2411c">2411c</option>
+          <option value="2411ca">2411ca</option>
+          <option value="2502a">2502a</option>
+          <option value="2502aa">2502aa</option>
+          <option value="2502b">2502b</option>
+          <option value="2502bc">2502bc</option>
+          <option value="2502bd">2502bd</option>
+          <option value="2502db">2502db</option>
+          <option value="2502dd">2502dd</option>
 
-        <option value="2011a">2011a</option>
-        <option value="2011b">2011b</option>
+          <!--<option value="manual">Outra (digitar versão)</option>-->
+        </select>
+      </div>
 
-        <option value="2102a">2102a</option>
+      <input
+        type="text"
+        id="versaoManual"
+        placeholder="Digite a versão desejada"
+        class="w-full px-4 py-2 border rounded-lg mt-2 hidden"
+      />
 
-        <option value="2104a">2104a</option>
+      <!-- Lista dinâmica de executáveis -->
+      <div class="text-left mb-6">
+        <h3 class="text-sm font-medium text-gray-800 mb-2 text-center">
+          Selecione os executáveis:
+        </h3>
+        <div
+          id="executaveis"
+          class="grid grid-cols-1 md:grid-cols-3 gap-3 text-left"
+        ></div>
+      </div>
 
-        <option value="2108a">2108a</option>
+      <p class="text-sm text-gray-600 mb-6">
+        Para mais detalhes, consulte a documentação da versão em:
+        <a
+          href="http://177.44.191.62:3001/"
+          target="_blank"
+          class="text-primary hover:underline"
+          >Infarma Docs</a
+        >
+      </p>
 
-        <option value="2108b">2108b</option>
+      <div class="flex justify-between mb-4 w-full max-w-xl mx-auto">
+        <button
+          onclick="iniciarDownload()"
+          class="bg-blue-900 text-white px-6 w-[250px] py-2 rounded-lg hover:bg-blue-800 transition"
+        >
+          Baixar
+        </button>
+        <button
+          onclick="sair()"
+          class="bg-red-700 text-white w-[250px] px-6 py-2 rounded-lg hover:bg-red-600 transition"
+        >
+          Sair
+        </button>
+      </div>
 
-        <option value="2112a">2112a</option>
-
-        <option value="2112b">2112b</option>
-
-        <option value="2202a">2202a</option>
-
-        <option value="2205a">2205a</option>
-
-        <option value="2205b">2205b</option>
-
-        <option value="2205c">2205c</option>
-        <option value="2208a">2208a</option>
-
-        <option value="2208c">2208c</option>
-
-        <option value="2208d">2208d</option>
-
-        <option value="2211a">2211a</option>
-
-        <option value="2211b">2211b</option>
-
-        <option value="2304a">2304a</option>
-
-        <option value="2304b">2304b</option>
-
-        <option value="2306a">2306a</option>
-        <option value="2306b">2306b</option>
-
-        <option value="2308a">2308a</option>
-
-        <option value="2308b">2308b</option>
-        <option value="2308c">2308c</option>
-
-        <option value="2312a">2312a</option>
-
-        <option value="2312b">2312b</option>
-
-        <option value="2402a">2402a</option>
-        <option value="2402b">2402b</option>
-        <option value="2402c">2402c</option>
-        <option value="2402d">2402d</option>
-        <option value="2402e">2402e</option>
-        <option value="2403a">2403a</option>
-        <option value="2403b">2403b</option>
-        <option value="2403c">2403c</option>
-
-        <option value="2407a">2407a</option>
-
-        <option value="2411a">2411a</option>
-        <option value="2411aa">2411aa</option>
-
-        <option value="2411b">2411b</option>
-        <option value="2411c">2411c</option>
-
-        <option value="2502a">2502a</option>
-
-        <option value="2502b">2502b</option>
-        <option value="2502bc">2502bc</option>
-        <option value="2502bd">2502bd</option>
-
-        <option value="2512da">2512da</option>
-        <option value="2502db">2502db</option>
-      </select>
-        <!-- adicione mais versões aqui -->
-      </select>
+      <footer class="text-xs text-gray-500 mt-6 text-center">
+        <p>© 2025 Infarma, com Weldercris. Todos os direitos reservados.</p>
+      </footer>
     </div>
-    <div class="text-left mb-6">
-  <h3 class="text-sm font-medium text-gray-800 mb-2 text-center">Selecione os executáveis:</h3>
-  
-  <div class="flex justify-center">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-left ">
-      <label class="flex items-center gap-4 ">
-        <input type="checkbox" class="file-checkbox" value="VmdRrd.CAB" />
-        <span>Varejo</span>
-      </label>
-      <label class="flex items-center gap-4 px-7" >
-        <input type="checkbox" class="file-checkbox" value="VmdTrm.CAB" />
-        <span>Terminal</span>
-      </label>
-      <label class="flex items-center gap-4  px-10">
-        <input type="checkbox" class="file-checkbox" value="VmdPdv.CAB" />
-        <span>Caixa</span>
-      </label>
-      <label class="flex items-center gap-4 " >
-        <input type="checkbox" class="file-checkbox" value="VmdRljImp.CAB" />
-        <span>VmdRljImp</span>
-      </label>
-      <label class="flex items-center gap-4 px-7">
-        <input type="checkbox" class="file-checkbox" value="VmdImp.CAB" />
-        <span>VmdImp</span>
-      </label>
-      <label class="flex items-center gap-4 px-10">
-        <input type="checkbox" class="file-checkbox" value="VmdSrv.CAB" />
-        <span>VmdSrv</span>
-      </label>
-    </div>
-  </div>
-</div>
 
-
-    <p class="text-sm text-gray-600 mb-6">
-      Para mais detalhes, consulte a documentação da versão em:
-      <a href="http://177.44.191.62:3001/" target="_blank" class="text-primary hover:underline">Infarma Docs</a>
-    </p>
-
-    <div class="flex justify-between mb-4 w-full max-w-xl mx-auto">
-      <button onclick="iniciarDownload()" class="bg-blue-900 text-white px-6 w-[250px] py-2 rounded-lg hover:bg-blue-800 transition">Baixar</button>
-      <button onclick="sair()" class="bg-red-700 text-white w-[250px] px-6 py-2 rounded-lg hover:bg-red-600 transition">Sair</button>
-    </div>
-
-
-
-    <footer class="text-xs text-gray-500 mt-6 text-center">
-      <p>© 2025 Infarma, com Weldercris. Todos os direitos reservados.</p>
-    </footer>
-  </div>
-
-  <script src="/assets/js/script.js"></script>
-</body>
+    <script src="/assets/js/script.js"></script>
+  </body>
 </html>

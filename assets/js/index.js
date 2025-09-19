@@ -1,10 +1,24 @@
 function entrar(){
     let usuarios = [
-        { usuario: "INFARMA", senha: "Infarma@060115" },
-        { usuario: "infarma", senha: "Infarma@060115" },
+       // { usuario: "INFARMA", senha: "Infarma@060115" },
+        //{ usuario: "infarma", senha: "Infarma@060115" },
+        //{ usuario: "Infarma", senha: "Infarma@060115" }, 
+        
         { usuario: "admin", senha: "vlssl" },
         { usuario: "ADMIN", senha: "vlssl" },
+        { usuario: "Admin", senha: "vlssl" },
 
+        { usuario: "WELDER", senha: "@2507" },
+        { usuario: "welder", senha: "@2507" },
+        { usuario: "Welder", senha: "@2507" },
+
+        { usuario: "WLADIMIR", senha: "infarma2015" },
+        { usuario: "wladimir", senha: "infarma2015" },
+        { usuario: "Wladimir", senha: "infarma2015" }, 
+        
+        { usuario: "KELTON", senha: "@Infarma@060115" },
+        { usuario: "KELTON", senha: "@Infarma@060115" },
+        { usuario: "KELTON", senha: "@Infarma@060115" },
         
     ];
 

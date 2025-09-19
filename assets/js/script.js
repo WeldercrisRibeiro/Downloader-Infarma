@@ -3,109 +3,446 @@ if (sessionStorage.getItem("loggedIn") !== "true") {
     window.location.href = "index.html";
 }
 
-// Mapeamento das versões e seus executáveis
+const exe = {
+	Varejo: ["VmdRrd.CAB"],
+	Terminal: ["VmdTrm.CAB"],
+	Caixa: ["VmdPdv.CAB"],
+	InfarmaServiço: ["VmdSrv.CAB"],
+	VmdImp: ["VmdImp.CAB"],
+	VmdRljImp: ["VmdRljImp.CAB"]
+}
+
 const versoes = {
-    "2008a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2102a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2202a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2202aa":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2202ac": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB"],
-	"2202ad":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2202ae":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2202af":["VmdRrd.CAB", "VmdPdv.CAB"],
-	"2202ag":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
+    "2008a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2102a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2202a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2202aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2202ac": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] }
+    ],
+    "2202ad": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2202ae": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2202af": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2202ag": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2205a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2205aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2205ab": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2205b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2205ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2205c": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2208ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208c": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208ca": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2208ce": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208d": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208da": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2208db": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2208dc": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2211a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2211aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2211b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2211ba": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2211bb": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2211bc": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2304ac": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2304b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2304ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2304bb": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2304bc": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2306a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2306b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2306ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2308a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2308aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2308ab": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2308b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2308c": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2308ca": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2308cb": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2308cd": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+    ],
+    "2312a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2312aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2312ab": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2312ac": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2312b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2312ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2312bb": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2312bc": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2312bd": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2312c": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2312ca": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2312cb": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2312cc": [
+       { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+    ],
+    "2402a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] },
+        { modulo: "VMDIMP", arquivo: exe.VmdImp[0] },
+        { modulo: "VMDIMP-LJ", arquivo: exe.VmdRljImp[0] },
+        { modulo: "INFARMA SERVIÇO", arquivo: exe.InfarmaServiço[0] }
+    ],
+    "2402aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2402ab": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2402ac": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2402ad": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2405a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2405aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2405ab": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2405ac": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2408a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2408aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2408ab": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2408ac": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
     
-	"2205a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2205aa":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2205ab":["VmdPdv.CAB"],
-	"2205b":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2205ba":["VmdRrd.CAB"],
-	"2205c":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2208ba":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208c":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208ca":["VmdRrd.CAB"],
-	"2208ce":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208d":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208da":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2208db":["VmdRrd.CAB"],
-	"2208dc":["VmdPdv.CAB"],
-	"2211a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2211aa":["VmdRrd.CAB"],
-	"2211b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2211ba":["VmdTrm.CAB"],
-	"2211bb":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2211bc":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	
-	"2304ac": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2304b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2304ba":["VmdRrd.CAB","VmdTrm.CAB"],
-	"2304bb":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2304bc":["VmdRrd.CAB", "VmdPdv.CAB"],
-	
-	"2306a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2306b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2306ba":["VmdRrd.CAB", "VmdTrm.CAB"],
-	
-	"2308a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2308aa": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2308ab": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2308b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2308c":["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2308ca":["VmdPdv.CAB"],
-	"2308cb":["VmdRrd.CAB","VmdPdv.CAB"],
-	"2308cd":["VmdRrd.CAB"],
-	
-	"2312a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2312aa":["VmdRrd.CAB"],
-	"2312b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2312ba": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	
-	"2402a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	
-	"2402c": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2402d": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2402e": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	
-	"2403a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-    "2403b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403c": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403cc": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403cd": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403ce": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403cf": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2403cg": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2403ch": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	
-	"2407a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2407aa": ["VmdRrd.CAB"],
-	"2407ab": ["VmdRrd.CAB"],
-	
-	"2411a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2411aa": ["VmdRrd.CAB", "VmdImp.CAB"],
-	"2411ab": ["VmdRrd.CAB"],
-	
-	"2411b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2411ba": ["VmdPdv.CAB"],
-	"2411bb": ["VmdTrm.CAB","VmdPdv.CAB"],
-	"2411bc": ["VmdRrd.CAB"],
-	"2411bd": ["VmdRrd.CAB","VmdPdv.CAB"],
-	"2411c": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2411ca": ["VmdPdv.CAB"],
-	
-	
-	"2502a": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2502aa": ["VmdRrd.CAB",  "VmdPdv.CAB"],
-	
-	"2502b": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2502bc": ["VmdPdv.CAB"],
-	"2502bd": ["VmdPdv.CAB"],
-	"2502db": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
-	"2502dd": ["VmdTrm.CAB","VmdPdv.CAB"],  
-	
-	
-	
+    "2502a": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502aa": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2502ab": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2502ac": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502ad": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+    ],
+    "2502b": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502ba": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2502bb": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2502bc": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502bd": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+    ],
+    "2502c": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502ca": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] }
+    ],
+    "2502cb": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2502cc": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502cd": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+    ],
+    "2502d": [
+        { modulo: "VAREJO", arquivo: exe.Varejo[0] },
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    
+    "2502db": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] }
+    ],
+    "2502dc": [
+        { modulo: "CAIXA", arquivo: exe.Caixa[0] }
+    ],
+    "2502dd": [
+        { modulo: "TERMINAL", arquivo: exe.Terminal[0] },
+		{ modulo: "CAIXA", arquivo: exe.Caixa[0] }
+
+    ],
+    "2502de": [
+        
+		{ modulo: "CAIXA", arquivo: exe.Caixa[0] }
+
+    ]
 };
+
+
+	  
+
 
 // Atualiza os executáveis disponíveis conforme a versão
 function atualizarExecutaveis() {
@@ -116,22 +453,23 @@ function atualizarExecutaveis() {
 
     if (!versao || !versoes[versao]) return;
 
-    versoes[versao].forEach(exe => {
-        const label = document.createElement("label");
-        label.className = "flex items-center gap-4";
+    versoes[versao].forEach(item => {
+    const label = document.createElement("label");
+    label.className = "flex items-center gap-4";
 
-        const input = document.createElement("input");
-        input.type = "checkbox";
-        input.value = exe;
-        input.className = "file-checkbox";
+    const input = document.createElement("input");
+    input.type = "checkbox";
+    input.value = item.arquivo; // mantém o arquivo para download
+    input.className = "file-checkbox";
 
-        const span = document.createElement("span");
-        span.textContent = exe.replace(".CAB", ""); // mostra sem .CAB
+    const span = document.createElement("span");
+    span.textContent = item.modulo; // mostra o nome do módulo no front
 
-        label.appendChild(input);
-        label.appendChild(span);
-        container.appendChild(label);
-    });
+    label.appendChild(input);
+    label.appendChild(span);
+    container.appendChild(label);
+});
+
 }
 
 function getSelectedFiles() {

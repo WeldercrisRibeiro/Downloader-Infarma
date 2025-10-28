@@ -40,15 +40,37 @@
       );
     "
   >
-    <div
-      class="bg-white p-9 rounded-2xl shadow-xl w-full max-w-2xl text-center"
-    >
-      <img
-        src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
-        alt="Logo Infarma"
-        class="w-14 h-14 mx-auto mb-4"
-      />
-      <h2 class="text-2xl p-2 font-semibold">Infarma HUB</h2>
+    <div class="bg-white p-9 rounded-2xl shadow-xl w-full max-w-2xl text-center flex flex-col justify-between">
+
+      <div class="w-full mb-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-end">
+  <img
+    src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+    alt="Logo Infarma"
+    class="w-14 h-14 mr-2"
+  />
+  <h2 class="text-2xl font-semibold">Infarma HUB</h2>
+</div>
+
+
+          <!-- Exibição do usuário logado (agora no canto superior direito) -->
+          <div class="text-sm text-gray-600 hidden sm:block mt-4">
+            Bem-vindo,
+             <strong><span id="userNameDisplay" class="font-medium text-primary"
+              >Usuário</span
+            ></strong>
+          </div>
+        </div>
+
+        <!-- versão para telas muito pequenas: exibe a saudação abaixo do título -->
+        <div class="text-sm text-gray-600 mt-3 sm:hidden text-center">
+          Bem-vindo,
+          <strong><span id="userNameDisplay" class="font-medium text-primary"
+              >Usuário</span
+            ></strong>
+        </div>
+      </div>
 
       <div class="text-left mb-6">
         <select
@@ -162,8 +184,8 @@
 
       <!-- Lista dinâmica de executáveis -->
       <div class="text-left mb-6">
-        <h3 class="text-sm font-medium text-gray-800 mb-2 text-center">
-          Selecione os executáveis:
+        <h3 class="text-sm font-medium text-gray-800 mb-2 text-left">
+         <strong>Selecione os executáveis:</strong>
         </h3>
         <div
           id="executaveis"
@@ -195,12 +217,13 @@
           Sair
         </button>
       </div>
+      
+      <footer class="text-xs text-gray-500 mt-4 text-center border-t pt-2">
 
-      <footer class="text-xs text-gray-500 mt-6 text-center">
         <p>
-          © 2025 Infarma, com Weldercris Ribeiro. Todos os direitos reservados.
+          © 2025 Weldercris Ribeiro. Todos os direitos reservados.
         </p>
-        <p>Última atualização feita no dia 28/10/25 12:10</p>
+        <p>Última atualização feita no dia 28/10/25 19:00</p>
       </footer>
     </div>
 

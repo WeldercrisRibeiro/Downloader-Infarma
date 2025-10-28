@@ -9,13 +9,15 @@ function entrar() {
   const senhaDigitada = senhaElem?.value.trim() || "";
 
   // ✅ Torna tudo minúsculo para comparar de forma case-insensitive
-  const usuarioValido = users.some(user =>
+  const matchedUser = users.find(user =>
     user.usuario.toLowerCase() === usuarioDigitado.toLowerCase() &&
     user.senha.toLowerCase() === senhaDigitada.toLowerCase()
   );
 
-  if (usuarioValido) {
+  if (matchedUser) {
+    // marca como logado e grava o nome do usuário para ser exibido na próxima página
     sessionStorage.setItem("loggedIn", "true");
+    sessionStorage.setItem("username", matchedUser.usuario);
     window.location.href = 'main.html';
   } else {
     alert('Usuário ou senha incorretos!');

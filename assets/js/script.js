@@ -142,6 +142,25 @@ function atualizarExecutaveis() {
     });
 }
 
+// Exibe o nome do usuário logado (lê de sessionStorage)
+function exibirUsuarioLogado() {
+  // Seleciona todos os elementos com o ID (nesse caso repetido, então uso querySelectorAll)
+  const elementos = document.querySelectorAll('#userNameDisplay');
+  if (!elementos.length) return;
+
+  const username = sessionStorage.getItem('username');
+  const texto = username ? `${username}!` : 'Usuário!';
+
+  // Atualiza todos os elementos encontrados
+  elementos.forEach(el => {
+    el.textContent = texto;
+  });
+}
+
+// Executa quando a página carregar
+//window.addEventListener('DOMContentLoaded', exibirUsuarioLogado);
+
+
 function getSelectedFiles() {
     const checkboxes = document.querySelectorAll('.file-checkbox:checked');
     return Array.from(checkboxes).map(cb => cb.value);
@@ -191,11 +210,14 @@ function iniciarDownload() {
 }
 
 function sair() {
-    sessionStorage.removeItem("loggedIn");
-    window.location.href = 'index.html';
+	sessionStorage.removeItem("loggedIn");
+	sessionStorage.removeItem("username");
+	window.location.href = 'index.html';
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	// mostra o usuário logado no topo
+	exibirUsuarioLogado();
     const versaoInput = document.getElementById("versao");
     if (versaoInput) {
         versaoInput.addEventListener("keypress", function (event) {

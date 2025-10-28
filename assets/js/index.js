@@ -1,42 +1,34 @@
-function entrar(){
-    let usuarios = [
-       // { usuario: "INFARMA", senha: "Infarma@060115" },
-        //{ usuario: "infarma", senha: "Infarma@060115" },
-        //{ usuario: "Infarma", senha: "Infarma@060115" }, 
-        
-        { usuario: "admin", senha: "vlssl" },
-        { usuario: "ADMIN", senha: "vlssl" },
-        { usuario: "Admin", senha: "vlssl" },
+// assets/js/index.js
+import users from './users.js';
 
-        { usuario: "WELDER", senha: "@2507" },
-        { usuario: "welder", senha: "@2507" },
-        { usuario: "Welder", senha: "@2507" },
+function entrar() {
+  const usuarioElem = document.getElementById('usuario');
+  const senhaElem = document.getElementById('password');
 
-        { usuario: "WLADIMIR", senha: "infarma2015" },
-        { usuario: "wladimir", senha: "infarma2015" },
-        { usuario: "Wladimir", senha: "infarma2015" }, 
-        
-        { usuario: "KELTON", senha: "@Infarma@060115" },
-        { usuario: "KELTON", senha: "@Infarma@060115" },
-        { usuario: "KELTON", senha: "@Infarma@060115" },
-        
-    ];
+  const usuarioDigitado = usuarioElem?.value.trim() || "";
+  const senhaDigitada = senhaElem?.value.trim() || "";
 
-    let usuarioDigitado = document.getElementById('usuario').value;
-    let senhaDigitada = document.getElementById('password').value;
+  // ✅ Torna tudo minúsculo para comparar de forma case-insensitive
+  const usuarioValido = users.some(user =>
+    user.usuario.toLowerCase() === usuarioDigitado.toLowerCase() &&
+    user.senha.toLowerCase() === senhaDigitada.toLowerCase()
+  );
 
-    let usuarioValido = usuarios.some(user => user.usuario === usuarioDigitado && user.senha === senhaDigitada);
-
-    if (usuarioValido) {
-        sessionStorage.setItem("loggedIn", "true"); // ✅ Move aqui
-        window.location.href = 'main.html';
-    } else {
-        alert('Usuário ou senha incorretos!');
-    }
+  if (usuarioValido) {
+    sessionStorage.setItem("loggedIn", "true");
+    window.location.href = 'main.html';
+  } else {
+    alert('Usuário ou senha incorretos!');
+  }
 }
 
-document.getElementById("password").addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        entrar(); 
-    }
-});
+// Permite chamada via onsubmit no HTML
+window.entrar = entrar;
+
+// Enter ativa o login
+const pwdEl = document.getElementById("password");
+if (pwdEl) {
+  pwdEl.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") entrar();
+  });
+}

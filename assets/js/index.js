@@ -2,7 +2,7 @@
 import users from './users.js';
 
 window.onload = function() {
-      alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha!");}
+      alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");}
 
 function entrar() {
   const usuarioElem = document.getElementById('usuario');

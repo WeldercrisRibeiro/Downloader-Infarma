@@ -1,29 +1,32 @@
 // assets/js/index.js
-import users from './users.js';
 
 window.onload = function() {
-      alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");}
+  alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");
+};
 
-function entrar() {
-  const usuarioElem = document.getElementById('usuario');
-  const senhaElem = document.getElementById('password');
+async function entrar() {
+  const usuario = document.getElementById('usuario')?.value.trim() || "";
+  const senha = document.getElementById('password')?.value.trim() || "";
 
-  const usuarioDigitado = usuarioElem?.value.trim() || "";
-  const senhaDigitada = senhaElem?.value.trim() || "";
+  try {
+    const resposta = await fetch('/api/login.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ usuario, senha })
+    });
 
-  // ✅ Torna tudo minúsculo para comparar de forma case-insensitive
-  const matchedUser = users.find(user =>
-    user.usuario.toLowerCase() === usuarioDigitado.toLowerCase() &&
-    user.senha.toLowerCase() === senhaDigitada.toLowerCase()
-  );
+    const dados = await resposta.json();
 
-  if (matchedUser) {
-    // marca como logado e grava o nome do usuário para ser exibido na próxima página
-    sessionStorage.setItem("loggedIn", "true");
-    sessionStorage.setItem("username", matchedUser.usuario);
-    window.location.href = 'main.html';
-  } else {
-    alert('Usuário ou senha incorretos!');
+    if (dados.sucesso) {
+      sessionStorage.setItem("loggedIn", "true");
+      sessionStorage.setItem("username", dados.usuario);
+      window.location.href = 'main.html';
+    } else {
+      alert(dados.mensagem || 'Usuário ou senha incorretos!');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Erro ao validar usuário.');
   }
 }
 

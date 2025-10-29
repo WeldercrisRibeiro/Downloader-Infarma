@@ -1,5 +1,5 @@
 // api/login.js
-import fetch from 'node-fetch'; // npm install node-fetch se necessário
+//import fetch from 'node-fetch'; // npm install node-fetch se necessário
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {

@@ -115,6 +115,14 @@ const versoes = {
 	
 };
 
+const nomesAmigaveis = {
+    "VmdRrd.CAB": "Varejo",
+    "VmdTrm.CAB": "Terminal",
+    "VmdPdv.CAB": "Caixa",
+    "VmdImp.CAB": "Importação Central",
+    "VmdRljImp.CAB": "Importação Loja",
+    "VmdSrv.CAB": "Infarma Serviço"
+};
 // Atualiza os executáveis disponíveis conforme a versão
 function atualizarExecutaveis() {
     const versao = document.getElementById("versao").value;
@@ -134,13 +142,17 @@ function atualizarExecutaveis() {
         input.className = "file-checkbox";
 
         const span = document.createElement("span");
-        span.textContent = exe.replace(".CAB", ""); // mostra sem .CAB
+        // exibe nome amigável, se existir
+        span.textContent = nomesAmigaveis[exe] || exe.replace(".CAB", "");
+        // adiciona tooltip com nome técnico
+        span.title = exe;
 
         label.appendChild(input);
         label.appendChild(span);
         container.appendChild(label);
     });
 }
+
 
 // Exibe o nome do usuário logado (lê de sessionStorage)
 function exibirUsuarioLogado() {

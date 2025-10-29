@@ -102,9 +102,10 @@ const versoes = {
 	"2502e":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
 	"2502ea": ["VmdRrd.CAB"],
 	"2502eb": ["VmdRrd.CAB"],
-	"2502ec":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2502f":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2502fa":  ["VmdTrm.CAB", "VmdPdv.CAB"]
+	"2502ec": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502f": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502fa": ["VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
 	
 	
 };

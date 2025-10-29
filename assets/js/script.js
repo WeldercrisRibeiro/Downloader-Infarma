@@ -110,7 +110,8 @@ const versoes = {
 	"2502eb": ["VmdRrd.CAB"],
 	"2502ec":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
 	"2502f":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
-	"2502fa":  ["VmdTrm.CAB", "VmdPdv.CAB"]
+	"2502fa":  ["VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
 	
 	
 };

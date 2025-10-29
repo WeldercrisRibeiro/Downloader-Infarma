@@ -30,7 +30,7 @@ export default async function handler(req, res) {
         const message = `✅ *Login detectado!*\n👤 Usuário: ${matchedUser.usuario}\n🕒 Hora: ${datetime}\n🌐 IP: ${ip}`;
 
         try {
-          await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+          const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -39,6 +39,9 @@ export default async function handler(req, res) {
               parse_mode: 'Markdown'
             }),
           });
+
+          const data = await response.json();
+          console.log('Resposta do Telegram:', data); // 🔍 log útil
         } catch (error) {
           console.error('Erro ao enviar mensagem para o Telegram:', error);
         }

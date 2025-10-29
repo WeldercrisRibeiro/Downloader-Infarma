@@ -9,7 +9,7 @@ async function entrar() {
   const senha = document.getElementById('password')?.value.trim() || "";
 
   try {
-    const resposta = await fetch('/api/login.js', {
+    const resposta = await fetch('/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, senha })

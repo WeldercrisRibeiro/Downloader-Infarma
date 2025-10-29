@@ -1,7 +1,7 @@
 // Bloqueia acesso se não estiver logado
-if (sessionStorage.getItem("loggedIn") !== "true") {
-    window.location.href = "index.html";
-}
+//if (sessionStorage.getItem("loggedIn") !== "true") {
+    //window.location.href = "index.html";
+//}
 
 // Mapeamento das versões e seus executáveis
 const versoes = {

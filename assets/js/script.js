@@ -213,6 +213,7 @@ function sair() {
 	sessionStorage.removeItem("loggedIn");
 	sessionStorage.removeItem("username");
 	window.location.href = 'index.html';
+	alert("Você saiu!");
 }
 
 document.addEventListener("DOMContentLoaded", () => {

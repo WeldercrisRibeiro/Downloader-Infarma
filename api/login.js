@@ -1,6 +1,4 @@
 // api/login.js
-//import fetch from 'node-fetch'; // npm install node-fetch se necessário
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ sucesso: false, erro: 'Método não permitido' });
@@ -13,35 +11,36 @@ export default async function handler(req, res) {
       return res.status(400).json({ sucesso: false, erro: 'Usuário e senha são obrigatórios' });
     }
 
-    // Usuários vêm de variável de ambiente
     const users = JSON.parse(process.env.USERS_JSON || '[]');
-
     const matchedUser = users.find(
       u =>
         u.usuario.toLowerCase() === usuario.toLowerCase() &&
         u.senha.toLowerCase() === senha.toLowerCase()
     );
 
-    const datetime = new Date().toISOString();
+    const now = new Date();
+    const datetime = now.toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     if (matchedUser) {
-      // Enviar mensagem para o Telegram
       const botToken = process.env.TELEGRAM_BOT_TOKEN;
       const chatId = process.env.TELEGRAM_CHAT_ID;
 
       if (botToken && chatId) {
-        const message = `✅ Login detectado!\nUsuário: ${matchedUser.usuario}\nHora: ${datetime}\nIP: ${ip}`;
+        const message = `✅ *Login detectado!*\n👤 Usuário: ${matchedUser.usuario}\n🕒 Hora: ${datetime}\n🌐 IP: ${ip}`;
 
         try {
           await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ chat_id: chatId, text: message })
+            body: JSON.stringify({
+              chat_id: chatId,
+              text: message,
+              parse_mode: 'Markdown'
+            }),
           });
         } catch (error) {
           console.error('Erro ao enviar mensagem para o Telegram:', error);
-          // Não interrompe a resposta ao cliente
         }
       }
 

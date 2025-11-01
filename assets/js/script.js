@@ -1,7 +1,7 @@
 // Bloqueia acesso se não estiver logado
-if (sessionStorage.getItem("loggedIn") !== "true") {
-    window.location.href = "index.html";
-}
+//if (sessionStorage.getItem("loggedIn") !== "true") {
+    //window.location.href = "index.html";
+//}
 
 // Mapeamento das versões e seus executáveis
 const versoes = {
@@ -108,11 +108,12 @@ const versoes = {
 	"2502e":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdImp.CAB","VmdRljImp.CAB","VmdSrv.CAB"],
 	"2502ea": ["VmdRrd.CAB"],
 	"2502eb": ["VmdRrd.CAB"],
-	"2502ec":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502ec": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
 	"2502f":  ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
 	"2502fa":  ["VmdTrm.CAB", "VmdPdv.CAB"],
 	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
-	
+	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
+	"2502fc": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
 	
 };
 
@@ -125,9 +126,18 @@ const nomesAmigaveis = {
     "VmdSrv.CAB": "Infarma Serviço"
 };
 // Atualiza os executáveis disponíveis conforme a versão
+function toggleInput() {
+  const select = document.getElementById("versao");
+  const input = document.getElementById("versaoCustom");
+  input.classList.toggle("hidden", select.value !== "outro");
+}
+
 function atualizarExecutaveis() {
-    const versao = document.getElementById("versao").value;
-    const container = document.getElementById("executaveis");
+  const select = document.getElementById("versao");
+  const input = document.getElementById("versaoCustom");
+  const versao = select.value === "outro" ? input.value : select.value;
+  console.log("Versão escolhida:", versao);
+  const container = document.getElementById("executaveis");
 
     container.innerHTML = ""; // limpa a lista
 

@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "build": "node gerar-data.js && vercel build"
-  }
-}

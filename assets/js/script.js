@@ -114,6 +114,7 @@ const versoes = {
 	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
 	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
 	"2502fc": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
+	"2502fd": ["VmdPdv.CAB"],
 	
 };
 

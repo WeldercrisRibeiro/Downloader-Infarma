@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   preencherListaVersoes(); // ← monta a lista dinamicamente
   exibirUsuarioLogado();
 
-  const versaoInput = document.getElementById("versao");
+  const versaoInput = document.getElementById("versoes");
   if (versaoInput) {
     versaoInput.addEventListener("keypress", (event) => {
       if (event.key === "Enter") iniciarDownload();

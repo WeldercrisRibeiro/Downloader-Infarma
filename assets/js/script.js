@@ -81,7 +81,7 @@ function getSelectedFiles() {
 }
 
 function iniciarDownload() {
-  const versaoInput = document.getElementById("versoes");
+  const versaoInput = document.getElementById("versao");
   const versao = versaoInput.value.trim();
 
   if (!versao) {

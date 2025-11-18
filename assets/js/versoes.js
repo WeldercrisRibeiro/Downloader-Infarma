@@ -109,7 +109,7 @@
  	"2502fb": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB","VmdSrv.CAB"],
  	"2502fc": ["VmdRrd.CAB", "VmdTrm.CAB", "VmdPdv.CAB"],
  	"2502fd": ["VmdPdv.CAB"],
-	//"2502fe": ["VmdPdv.CAB"],
+	"2502fe": ["VmdTrm.CAB","VmdPdv.CAB"],
 	
  };
 

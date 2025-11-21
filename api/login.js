@@ -1,26 +1,18 @@
-// api/login.js
+// api/login.js (NOVA VERSÃO - API de Log e Telegram)
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ sucesso: false, erro: "Método não permitido" });
   }
 
   try {
-    const { usuario, senha } = req.body || {};
+    // Recebe apenas o nome de usuário (que já foi validado pelo frontend/Supabase)
+    const { usuario } = req.body || {}; 
 
-    if (!usuario || !senha) {
-      return res.status(400).json({ sucesso: false, erro: "Usuário e senha são obrigatórios" });
+    if (!usuario) {
+      return res.status(400).json({ sucesso: false, erro: "Usuário é obrigatório para registro." });
     }
 
-    const users = JSON.parse(process.env.USERS_JSON || "[]");
-    const matchedUser = users.find(
-      (u) =>
-        u.usuario.toLowerCase() === usuario.toLowerCase() &&
-        u.senha.toLowerCase() === senha.toLowerCase()
-    );
-
-    if (!matchedUser) {
-      return res.status(401).json({ sucesso: false, mensagem: "Usuário ou senha incorretos!" });
-    }
+    // --- Lógica de Registro de IP e Telegram ---
 
     // Pega data e IP
     const now = new Date();
@@ -34,7 +26,7 @@ export default async function handler(req, res) {
     if (!botToken || !chatId) {
       console.error("❌ Variáveis TELEGRAM_BOT_TOKEN ou TELEGRAM_CHAT_ID não definidas");
     } else {
-      const message = `🔐 *Novo login detectado!*\n👤 Usuário: ${matchedUser.usuario}\n🕒 Hora: ${datetime}\n🌐 IP: ${ip}`;
+      const message = `✅ *Login Confirmado!*\n👤 Usuário: ${usuario}\n🕒 Hora: ${datetime}\n🌐 IP: ${ip}`;
       const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
       try {
@@ -55,9 +47,11 @@ export default async function handler(req, res) {
       }
     }
 
-    return res.status(200).json({ sucesso: true, usuario: matchedUser.usuario });
+    // Retorno de sucesso (o login principal já ocorreu no frontend)
+    return res.status(200).json({ sucesso: true, mensagem: `Registro de login efetuado para ${usuario}.` });
+
   } catch (error) {
-    console.error("❌ Erro interno:", error);
-    return res.status(500).json({ sucesso: false, erro: "Erro interno no servidor" });
+    console.error("❌ Erro interno na API de Log:", error);
+    return res.status(500).json({ sucesso: false, erro: "Erro interno no servidor de log." });
   }
 }

@@ -130,7 +130,6 @@ function sair() {
   sessionStorage.removeItem("loggedIn");
   sessionStorage.removeItem("username");
   window.location.href = "index.html";
-  alert("Você saiu!");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -148,32 +147,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-async function exibirHorarioDeploy() {
-  const elemento = document.querySelector("#deployTime");
-  if (!elemento) return;
-
-  try {
-    const resposta = await fetch("/api/__vercel_deploy.json");
-    if (!resposta.ok) throw new Error("Falha ao obter horário do deploy");
-
-    const dados = await resposta.json();
-
-    // Converte para horário local (Brasília)
-    const data = new Date(dados.createdAt);
-    const formatado = data.toLocaleString("pt-BR", {
-      timeZone: "America/Sao_Paulo",
-      day: "2-digit",
-      month: "2-digit",
-      year: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-
-    elemento.textContent = `Última atualização feita em ${formatado}`;
-  } catch (e) {
-    console.warn("Erro ao exibir horário do deploy:", e);
-  }
-}
 
 document.addEventListener("DOMContentLoaded", exibirHorarioDeploy);
 

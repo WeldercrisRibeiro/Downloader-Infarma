@@ -83,14 +83,6 @@ async function entrar() {
 // Permite chamada via onsubmit no HTML
 window.entrar = entrar;
 
-// (Restante do código de controle de ENTER e Toggle Password permanece o mesmo)
-const pwdEl = document.getElementById("password");
-if (pwdEl) {
-  pwdEl.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") entrar();
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
     const toggleBtn = document.getElementById("togglePassword");
     const passwordInput = document.getElementById("password");
@@ -99,6 +91,6 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleBtn.addEventListener("click", () => {
       const tipo = passwordInput.type === "password" ? "text" : "password";
       passwordInput.type = tipo;
-      toggleBtn.innerHTML = tipo === "password" ? '👀' : '🔒';
+      toggleBtn.innerHTML = tipo === "password" ? '🔐' : '🔓';
     });
 });

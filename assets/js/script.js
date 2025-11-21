@@ -148,7 +148,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-document.addEventListener("DOMContentLoaded", exibirHorarioDeploy);
-
 window.iniciarDownload = iniciarDownload;
 window.sair = sair;

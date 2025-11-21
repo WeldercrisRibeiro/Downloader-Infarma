@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    { "source": "/main", "destination": "/rotas/main.html" },
+    { "source": "/faq", "destination": "/rotas/faq.html" },
+    { "source": "/sync", "destination": "/rotas/sync.html" },
+    { "source": "/cadastro", "destination": "/rotas/cadastro_clientes.html" }
+  ]
+}

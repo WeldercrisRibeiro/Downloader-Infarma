@@ -1,6 +1,6 @@
 // assets/js/index.js (VERSÃO ATUALIZADA COM SUPABASE E API DE LOG)
 
-import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
+import { SUPABASE_URL, SUPABASE_ANON_KEY, APP_VERSION} from "./config.js";
 
 // Inicializa o cliente Supabase
 const { createClient } = supabase;
@@ -68,7 +68,7 @@ async function entrar() {
       // Não esperamos por esta resposta para não atrasar o login.
       notificarAPIdeLog(matchedUser.usuario); 
       
-      window.location.href = 'main.html';
+      window.location.href = 'rotas/main.html';
 
     } else {
       // Falha na validação do Supabase
@@ -93,4 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordInput.type = tipo;
       toggleBtn.innerHTML = tipo === "password" ? '🔐' : '🔓';
     });
+
+    const footerEl = document.getElementById("versionFooter");
+    if (footerEl) {
+        // Pega o ano atual automaticamente também, pra você não precisar mudar em 2026
+        const anoAtual = new Date().getFullYear(); 
+        footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION}`;
+    }
 });

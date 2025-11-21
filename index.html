@@ -25,6 +25,17 @@
       }
     }
   </script>
+
+  <script>
+  // Verifica se a URL contém a pasta "rotas"
+  if (window.location.pathname.includes('/rotas/')) {
+      // Cria a nova URL removendo a parte "/rotas"
+      const novaURL = window.location.href.replace('/rotas', '');
+      
+      // Substitui a URL na barra de endereços sem recarregar a página
+      window.history.replaceState({}, document.title, novaURL);
+  }
+</script>
 </head>
 <body class="min-h-screen flex items-center justify-center font-inter" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
 
@@ -38,18 +49,10 @@
 
       
 <div class="relative">
-  <input
-    type="password"
-    id="password"
-    placeholder="Digite sua senha"
-    class="w-full px-4 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary pr-10"
-  />
-  <button
-    type="button"
-  id="togglePassword"
-  class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 translate-y-[-11px]"
-  tabindex="-1"
-> 🔐
+  <label for="usuario" type="text" class="block text-sm text-gray-700 mb-1">Senha</label>
+  <input type="password" id="password" placeholder="Digite sua senha" class="w-full px-4 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary pr-10"/>
+  
+  <button type="button" id="togglePassword" class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 translate-y-[-2px]" tabindex="-1"> 🔐
   <i data-lucide="eye" id="iconEye"></i>
   </button>
 </div>
@@ -66,10 +69,8 @@
     <!--p class="text-sm text-gray-600 mt-4">Versão 5.0</p-->
     
 <footer class="text-xs text-gray-700 mt-6 text-center border-t pt-6">
-  <p>
-    © 2025 Weldercris Ribeiro. Versão 25.11.6
-  </p>
-  <p id="deployTime"></p>
+  <p id="versionFooter"></p>
+  
 
 
 

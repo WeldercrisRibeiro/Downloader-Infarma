@@ -28,6 +28,20 @@
         },
       };
     </script>
+
+    <script>
+// Esse script roda assim que a página abre
+  document.addEventListener('DOMContentLoaded', () => {
+      // Se a URL tiver "/rotas/", a gente remove visualmente
+      if (window.location.pathname.includes('/rotas/')) {
+          const urlLimpa = window.location.href.replace('/rotas', '');
+          
+          // O 'replaceState' muda a URL sem recarregar a página
+          window.history.replaceState({}, document.title, urlLimpa);
+      }
+  }); 
+    </script>
+
   </head>
   <body
     class="font-inter min-h-screen flex items-center justify-center px-4"
@@ -148,15 +162,12 @@
       
       <footer class="text-xs text-gray-500 mt-4 text-center border-t pt-2">
 
-        <p>
-          © 2025 Weldercris Ribeiro. Versão 25.11.6
-        </p>
-        <p id="deployTime"></p>
+        <p id="versionFooter">© 2025 Weldercris Ribeiro.</p>
 
       </footer>
     </div>
 
-    <script type="module"  src="assets/js/script.js"></script>
+    <script type="module"  src="../assets/js/script.js"></script>
     <!--script type="module" src="assets/js/script.js"></script-- aqui seria usando o import do versoes.js>
   </body>
 </html>

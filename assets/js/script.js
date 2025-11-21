@@ -1,4 +1,5 @@
 import { versoes, nomesAmigaveis, preencherListaVersoes } from "./versoes.js";
+import { APP_VERSION } from "./config.js";
 
 // Bloqueia acesso se não estiver logado
 if (sessionStorage.getItem("loggedIn") !== "true") {
@@ -85,7 +86,7 @@ function iniciarDownload() {
   const versao = versaoInput.value.trim();
 
   if (!versao) {
-    alert("Por favor, insira a versão!");
+    alert("Insira a versão desejada!");
     versaoInput.focus();
     return;
   }
@@ -145,6 +146,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     versaoInput.addEventListener("change", atualizarExecutaveis);
   }
+
+  const footerEl = document.getElementById("versionFooter");
+    if (footerEl) {
+        const anoAtual = new Date().getFullYear();
+        footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION}`;
+    }
 });
 
 

@@ -152,6 +152,36 @@ document.addEventListener("DOMContentLoaded", () => {
         const anoAtual = new Date().getFullYear();
         footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION}`;
     }
+
+  const mensagens = [
+        'Em breve nova versão 25.03 disponível para download!',
+        '⚠️ Aplicação em fase de testes! Qualquer erro ou bug apresentado reportar de imediado!',
+        'Dúvidas? Sugestões? Entre em contato com o suporte <a target="_blank" href="https://wa.me/5585992664889" class="underline font-bold">clicando aqui</a>.',
+        '🚀 Novos recursos chegando em breve! Fique atento.',
+    ];
+
+    let indiceAtual = 0;
+    const elemento = document.getElementById("barraAvisos");
+
+    if (elemento) {
+        elemento.innerHTML = mensagens[0];
+        setInterval(() => {
+            // A. Primeiro deixa invisível (Fade Out)
+            elemento.classList.remove("opacity-100");
+            elemento.classList.add("opacity-0");
+
+            // B. Espera 500ms (tempo da transição) para trocar o texto
+            setTimeout(() => {
+                indiceAtual = (indiceAtual + 1) % mensagens.length; // Avança para o próximo ou volta ao zero
+                elemento.innerHTML = mensagens[indiceAtual]; // Troca o texto
+
+                // C. Deixa visível novamente (Fade In)
+                elemento.classList.remove("opacity-0");
+                elemento.classList.add("opacity-100");
+            }, 500); 
+
+        }, 5000); // Troca a cada 5000 milissegundos (5 segundos)
+    }
 });
 
 

@@ -6,9 +6,9 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-window.onload = function() {
-  alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");
-};
+//window.onload = function() {
+  //alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");
+//};
 
 /**
  * Envia uma requisição de notificação para a API de Log (antigo login.js)

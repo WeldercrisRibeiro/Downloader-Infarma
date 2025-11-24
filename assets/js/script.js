@@ -154,10 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
   const mensagens = [
-        'Em breve nova versão 25.03 disponível para download!',
-        '⚠️ Aplicação em fase de testes! Qualquer erro ou bug apresentado reportar de imediado!',
+        'Nova versão 25.03 disponível para download!',
         'Dúvidas? Sugestões? Entre em contato com o suporte <a target="_blank" href="https://wa.me/5585992664889" class="underline font-bold">clicando aqui</a>.',
-        '🚀 Novos recursos chegando em breve! Fique atento.',
+        '🚀 Novos recursos chegando ao Infarma Hub em breve! Fique atento.',
     ];
 
     let indiceAtual = 0;

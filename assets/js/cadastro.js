@@ -19,7 +19,7 @@ const inputName = document.getElementById('inputName');
 const inputCnpj = document.getElementById('inputCnpj');
 const inputService = document.getElementById('inputService');
 const inputVarejo = document.getElementById('inputVarejo');
-const inputServico = document.getElementById('inputServico');
+const inputObservation = document.getElementById('inputObservation');
 
 // Variável para armazenar o ID (chave primária) do item em edição (não mais o índice)
 let dataEditId = null; 
@@ -70,7 +70,7 @@ clientForm.addEventListener('submit', async (e) => {
     const cnpj = inputCnpj.value.trim();
     const service = inputService.value;
     const versaoVarejo = inputVarejo.value.trim();
-    const versaoServico = inputServico.value.trim();
+    const observation = inputObservation.value.trim();
 
     if (!name || !cnpj || !service) {
         alert("Preencha Nome, CNPJ e Tipo de Serviço!");
@@ -78,8 +78,7 @@ clientForm.addEventListener('submit', async (e) => {
     }
     
     // Objeto de dados
-    const clientData = { name, cnpj, service, versaoVarejo, versaoServico };
-
+    const clientData = { name, cnpj, service, versaoVarejo, versaoObservation}
     // Verifica unicidade de CNPJ antes de salvar (necessita de índice UNIQUE na tabela)
     if (await cnpjAlreadyExists(cnpj, dataEditId)) {
         alert("CNPJ já cadastrado!");
@@ -154,7 +153,7 @@ window.handleEdit = async (id) => {
     inputCnpj.value = client.cnpj;
     inputService.value = client.service;
     inputVarejo.value = client.versaoVarejo || '';
-    inputServico.value = client.versaoServico || '';
+    inputObservation.value = client.inputObservation || '';
 
     dataEditId = client.id; // Armazena o ID do registro para UPDATE
     openModal();
@@ -190,7 +189,7 @@ const renderTable = (data) => {
         row.insertCell().textContent = client.cnpj;
         row.insertCell().textContent = client.service;
         row.insertCell().textContent = client.versaoVarejo || 'N/A';
-        row.insertCell().textContent = client.versaoServico || 'N/A';
+        row.insertCell().textContent = client.inputObservation || 'N/A';
 
         // Coluna de Ações (Editar)
         const editCell = row.insertCell();
@@ -228,11 +227,13 @@ clientModal.addEventListener('click', (e) => {
     }
 });
 
-window.sair = () => {
-    sessionStorage.removeItem("loggedIn");
-    sessionStorage.removeItem("username");
-    window.location.href = "index.html"; 
-};
+function sair() {
+  sessionStorage.removeItem("loggedIn");
+  sessionStorage.removeItem("username");
+  window.location.href = "index.html";
+}
+
+window.sair = sair;
 
 // Carrega os dados iniciais
 window.onload = loadData;

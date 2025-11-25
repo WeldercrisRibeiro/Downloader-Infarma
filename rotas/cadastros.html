@@ -35,6 +35,16 @@
     </style>
 </head>
 
+<script type="module">
+    import { verificarPermissao } from "../assets/js/auth.js";
+    
+    // Assim que a página carrega, verifica se é admin.
+    // Se não for, o script joga o usuário de volta para o menu.
+    document.addEventListener('DOMContentLoaded', () => {
+        verificarPermissao(['admin']); 
+    });
+</script>
+
 <body class="min-h-screen flex flex-col items-center justify-start font-inter pt-10 px-4">
 
     <div class="bg-white p-6 md:p-9 rounded-2xl shadow-xl w-full max-w-6xl">

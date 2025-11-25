@@ -131,8 +131,8 @@
 
     </div>
 
-    <script type="module">
-        // ATENÇÃO: O caminho agora tem "../" para voltar uma pasta e achar o assets
+<script type="module">
+        // Importa a versão do arquivo de configuração (sobe uma pasta para achar assets)
         import { APP_VERSION } from "../assets/js/config.js";
 
         // Tornamos as funções globais (window) para que o HTML consiga clicar nelas
@@ -143,15 +143,15 @@
         window.sair = function() {
             sessionStorage.removeItem("loggedIn");
             sessionStorage.removeItem("username");
-            // Volta para a pasta raiz onde está o index.html
-            window.location.href = "'rotas/index.html"; 
-            
+            // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
+            window.location.href = "../index.html"; 
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Verificar Login
             if (sessionStorage.getItem("loggedIn") !== "true") {
-                window.location.href = "'rotas/index.html"; 
+                // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
+                window.location.href = "../index.html"; 
                 return;
             }
 
@@ -169,8 +169,8 @@
             const footerEl = document.getElementById("versionFooter");
             if (footerEl) {
                 const anoAtual = new Date().getFullYear();
-                // Usa a variável importada APP_VERSION
-                footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION}`; 
+                // Usa a variável importada APP_VERSION (se não carregar, usa fallback)
+                footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION || 'Carregando...'}`; 
             }
         });
     </script>

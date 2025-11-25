@@ -64,6 +64,9 @@ async function entrar() {
       sessionStorage.setItem("loggedIn", "true");
       sessionStorage.setItem("username", matchedUser.nome_completo || matchedUser.usuario);
       
+      // Se por acaso vier vazio, define como 'operador' por segurança
+      sessionStorage.setItem("role", matchedUser.role || 'operador');
+
       // Chamada ASSÍNCRONA para a API de Log e Telegram. 
       // Não esperamos por esta resposta para não atrasar o login.
       notificarAPIdeLog(matchedUser.usuario); 

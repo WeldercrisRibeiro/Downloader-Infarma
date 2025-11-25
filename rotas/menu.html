@@ -144,13 +144,14 @@
             sessionStorage.removeItem("loggedIn");
             sessionStorage.removeItem("username");
             // Volta para a pasta raiz onde está o index.html
-            window.location.href = "../index.html"; 
+            window.location.href = "'rotas/index.html"; 
+            
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             // 1. Verificar Login
             if (sessionStorage.getItem("loggedIn") !== "true") {
-                window.location.href = "../index.html";
+                window.location.href = "'rotas/index.html"; 
                 return;
             }
 

@@ -7,6 +7,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -26,26 +27,22 @@
     </script>
 
     <style>
-        /* Fundo Degradê do seu projeto */
         body {
             background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
         }
-        /* Estilo do Container Principal (Arredondamento e Sombra) */
         .app-window {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-            /* Cor de fundo levemente clara como na imagem original */
             background-color: #fcfcfc; 
         }
-        /* Estilo dos Botões - Baseado no estilo de botão 'plano' do Qt original */
         .link-button {
             transition: all 0.15s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Sombra sutil */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1); 
             background-color: white;
-            color: #4b5563; /* Texto cinza escuro */
-            border: 1px solid #d1d5db; /* Borda leve */
-            font-weight: 600; /* Font-bold */
+            color: #4b5563; 
+            border: 1px solid #d1d5db; 
+            font-weight: 600; 
         }
         .link-button:hover {
             box-shadow: 0 2px 4px rgba(0,0,0,0.15);
@@ -59,20 +56,24 @@
 
     <div class="app-window p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-2xl">
         
-        <div class="flex items-end justify-start mb-8 border-b pb-6">
-            <img
-                src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
-                alt="Logo Infarma"
-                class="w-14 h-14 mr-2" 
-            />
-            <h2 class="text-2xl font-semibold text-gray-800">Infarma HUB - Repositório para Downloads</h2>
-           
-           
+        <div class="flex items-center justify-between mb-8 border-b pb-6">
+            <div class="flex items-end">
+                <img
+                    src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+                    alt="Logo Infarma"
+                    class="w-14 h-14 mr-2" 
+                />
+                <h2 class="text-2xl font-semibold text-gray-800">Infarma HUB</h2>
+            </div>
+            
+            <a href="menu.html" class="flex items-center text-gray-600 hover:text-primary transition-colors font-medium">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
+            </a>
         </div>
 
         <div class="text-center">
             <h1 class="text-xl md:text-2xl font-semibold text-gray-800 mb-8">
-                
+               Selecione o Recurso para Abrir:
             </h1>
 
             <div class="space-y-4">
@@ -84,7 +85,7 @@
                         SCHEMAS
                     </button>
                     <button id="btn-drivers" class="link-button py-3 px-4 rounded-lg uppercase text-xs sm:text-sm">
-                        DRIVERS IMPRESSORAS
+                        DRIVERS IMP
                     </button>
                 </div>
                 
@@ -93,14 +94,11 @@
                         APIHUB
                     </button>
                     <button id="btn-ped" class="link-button py-3 px-4 rounded-lg uppercase text-xs sm:text-sm">
-                        PAINEL DE PEDIDOS
+                        PAINEL DE PED
                     </button>
                     <button id="btn-instalador" class="link-button py-3 px-4 rounded-lg uppercase text-xs sm:text-sm">
-                        INSTALADOR VAREJO
+                        INSTALADOR
                     </button>
-                    <!-- <button id="btn-docs" class="link-button py-3 px-4 rounded-lg uppercase text-xs sm:text-sm">
-                        Documentos de Versão
-                    </button> -->
                 </div>
             </div>
         </div>
@@ -108,29 +106,30 @@
     </div>
 
     <script>
-        // 1. Defina os links para cada botão
+        // Verificação simples de login
+        if (sessionStorage.getItem("loggedIn") !== "true") {
+            window.location.href = "index.html";
+        }
+
         const links = {
-            // *** SUBSTITUA ESTES LINKS PELAS SUAS URLs CORRETAS ***
             'btn-sql': 'https://mega.nz/file/SqBj2Iyb#pzJIxGyJwDrXcYwAWs3Q-K7x1weIvoPHxJ-GliEu4MM',
             'btn-schemas': 'https://mega.nz/file/mjYXBIjR#-1_CTchCGf2D2EBAgunNC51sNHzBZxVn-_wnI3-voLw',
             'btn-drivers': 'https://mega.nz/folder/SvRlkajT#xBTIhCUMrL6Ffg3WnFSuWw',
             'btn-apihub': 'https://github.com/WeldercrisRibeiro/instalador-apihub/releases/latest',
             'btn-ped': 'https://github.com/WeldercrisRibeiro/InfarmaHub/releases/download/painel.25.3.1/Infarma.Painel.de.Pedidos-Windows-25.3.1-Setup.exe',
-            'btn-instalador': 'https://seu-link-para-instalador.com.br'
+            'btn-instalador': '#' 
         };
 
-        // 2. Função para abrir o link
         function openLink(linkId) {
             const url = links[linkId];
             if (url && url !== '#' && url.startsWith('http')) { 
                 window.open(url, '_blank'); 
             } else {
-                console.error('Link não encontrado ou não configurado para o ID:', linkId);
-                alert('O link para este recurso ainda não foi configurado!');
+                console.error('Link não configurado:', linkId);
+                alert('Recurso indisponível no momento.');
             }
         }
 
-        // 3. Adiciona os event listeners aos botões
         document.addEventListener('DOMContentLoaded', () => {
             const buttonIds = Object.keys(links);
             buttonIds.forEach(id => {

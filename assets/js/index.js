@@ -68,7 +68,7 @@ async function entrar() {
       // Não esperamos por esta resposta para não atrasar o login.
       notificarAPIdeLog(matchedUser.usuario); 
       
-      window.location.href = 'rotas/main.html';
+      window.location.href = 'rotas/menu.html';
 
     } else {
       // Falha na validação do Supabase

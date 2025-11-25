@@ -7,9 +7,7 @@
     <title>Cadastro de Empresas - Infarma HUB</title>
     <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -29,28 +27,11 @@
     </script>
 
     <style>
-        /* Estilo para garantir a cor de fundo do seu projeto */
-        body {
-            background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);
-        }
-        /* Estilos para o Modal */
-        .modal {
-            display: none;
-        }
-        .modal.open {
-            display: flex;
-        }
-        /* Estilo da tabela para que o cabeçalho fique fixo */
-        .table-container {
-            max-height: calc(100vh - 250px);
-            overflow-y: auto;
-        }
-        .table-container thead {
-            position: sticky;
-            top: 0;
-            background-color: white;
-            z-index: 10;
-        }
+        body { background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c); }
+        .modal { display: none; }
+        .modal.open { display: flex; }
+        .table-container { max-height: calc(100vh - 250px); overflow-y: auto; }
+        .table-container thead { position: sticky; top: 0; background-color: white; z-index: 10; }
     </style>
 </head>
 
@@ -63,7 +44,15 @@
                 <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-10 h-10 mr-2" />
                 <h2 class="text-xl md:text-2xl font-semibold text-gray-800">Infarma Hub - Clientes PIT</h2>
             </div>
-            <button id="logoutBtn"  onclick="sair()" class="bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition text-sm">Sair</button>
+            
+            <div class="flex space-x-2">
+                <a href="menu.html" class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition text-sm flex items-center font-semibold">
+                    <i class="fas fa-arrow-left mr-2"></i> Voltar
+                </a>
+                <button id="logoutBtn" onclick="sair()" class="bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition text-sm font-semibold">
+                    Sair
+                </button>
+            </div>
         </div>
 
         <button id="newClientBtn" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition-colors font-semibold mb-6">
@@ -83,8 +72,7 @@
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider w-1/12"></th>
                     </tr>
                 </thead>
-                <tbody id="dataBody" class="bg-white divide-y divide-gray-200">
-                    </tbody>
+                <tbody id="dataBody" class="bg-white divide-y divide-gray-200"></tbody>
             </table>
         </div>
 
@@ -97,20 +85,19 @@
     <div id="clientModal" class="modal fixed inset-0 z-50 bg-black bg-opacity-50 items-center justify-center">
         <div class="bg-white p-8 rounded-lg shadow-2xl w-full max-w-lg mx-4">
             <h3 class="text-xl font-semibold mb-4 border-b pb-2">Cadastro de Empresas</h3>
-            
             <form id="clientForm">
                 <div class="space-y-4">
                     <div>
                         <label for="inputName" class="block text-sm font-medium text-gray-700">Nome</label>
-                        <input type="text" id="inputName" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary" />
+                        <input type="text" id="inputName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" />
                     </div>
                     <div>
                         <label for="inputCnpj" class="block text-sm font-medium text-gray-700">CNPJ</label>
-                        <input type="text" id="inputCnpj" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary" />
+                        <input type="text" id="inputCnpj" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" />
                     </div>
                     <div>
                         <label for="inputService" class="block text-sm font-medium text-gray-700">Tipo de Serviço</label>
-                        <select id="inputService" required class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary bg-white">
+                        <select id="inputService" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2 bg-white">
                             <option value="">Selecione o Serviço</option>
                             <option value="Financeiro">InGestor</option>
                             <option value="Saúde">Armazenador</option>
@@ -122,14 +109,13 @@
                     </div>
                     <div>
                         <label for="inputVarejo" class="block text-sm font-medium text-gray-700">Versão Varejo</label>
-                        <input type="text" id="inputVarejo" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary" />
+                        <input type="text" id="inputVarejo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" />
                     </div>
                     <div>
                         <label for="inputServico" class="block text-sm font-medium text-gray-700">Versão Serviço</label>
-                        <input type="text" id="inputServico" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-primary focus:border-primary" />
+                        <input type="text" id="inputServico" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm p-2" />
                     </div>
                 </div>
-
                 <div class="mt-6 flex justify-start space-x-3">
                     <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 font-semibold transition">SALVAR</button>
                     <button type="button" id="closeModalBtn" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 font-semibold transition">CANCELAR</button>
@@ -139,9 +125,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> 
-    
-    <script type="module" src="/assets/js/config.js"></script> 
-    
-    <script type="module" src="/assets/js/cadastro.js"></script> 
+    <script type="module" src="../assets/js/config.js"></script> 
+    <script type="module" src="../assets/js/cadastro.js"></script> 
 </body>
 </html>

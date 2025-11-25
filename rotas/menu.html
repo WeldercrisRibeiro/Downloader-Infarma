@@ -5,19 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu - Infarma HUB</title>
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -40,183 +30,132 @@
 
     <style>
       body {
-        background-image: linear-gradient(
-          to bottom right,
-          #0f345c,
-          #0096b1,
-          #0f345c
-        );
-        font-family: "Inter", sans-serif;
-        min-height: 100vh;
+        background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);
       }
-
-      .app-window {
-        background-color: #ffffff;
-        border-radius: 1rem;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-          0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      }
-
-      /* Estilo dos Botões do Menu */
       .menu-btn {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem 1.5rem; /* Aumentei um pouco o padding para ficar igual à foto */
-        border-radius: 0.75rem;
-        transition: all 0.2s ease-in-out;
-        border: 1px solid #e5e7eb;
-        background-color: #f8fafc;
-        color: #003973;
-        font-weight: 600;
-        height: 100%;
-        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
-
       .menu-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        background-color: #ffffff;
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px -5px rgba(0, 57, 115, 0.15);
         border-color: #003973;
       }
-
-      .menu-icon {
-        font-size: 2.5rem; /* Ícone um pouco maior */
-        margin-bottom: 1rem;
-        color: #003973;
+      .menu-btn:active {
+        transform: translateY(-1px);
       }
     </style>
   </head>
 
-  <body class="flex items-center justify-center p-4">
-    <div class="app-window p-8 md:p-12 w-full max-w-4xl">
-      <div
-        class="flex flex-col md:flex-row items-center justify-between border-b border-gray-200 pb-6 mb-8 gap-4"
-      >
+  <body class="flex items-center justify-center p-4 min-h-screen font-inter">
+    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-2xl w-full max-w-5xl relative overflow-hidden">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between border-b border-gray-100 pb-6 mb-10 gap-4">
         <div class="flex items-center self-start md:self-auto">
-          <img
-            src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
-            alt="Logo Infarma"
-            class="w-10 h-10 mr-3"
-          />
-          <h2 class="text-2xl font-bold text-gray-800 tracking-tight">
-            Infarma HUB
-          </h2>
+          <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-12 h-12 mr-4" />
+          <div>
+              <h2 class="text-2xl font-bold text-gray-800 tracking-tight leading-tight">Infarma HUB</h2>
+              <p class="text-xs text-gray-500 font-medium uppercase tracking-wider">Painel de Controle</p>
+          </div>
         </div>
 
-        <div class="text-sm text-gray-600 font-medium">
-          Bem-vindo,
-          <span id="userNameDisplay" class="text-primary font-bold"
-            >Usuário!</span
-          >
+        <div class="bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
+          <span class="text-sm text-gray-600 font-medium">
+            Olá, <span id="userNameDisplay" class="text-primary font-bold">Usuário</span>
+          </span>
         </div>
       </div>
 
       <div class="text-center">
-        <h1 class="text-xl font-bold text-gray-800 mb-2">Painel de Controle</h1>
-        <p class="text-gray-500 mb-10 text-sm">
-          Selecione o módulo que deseja acessar:
-        </p>
+        <h1 class="text-xl md:text-2xl font-bold text-gray-800 mb-2">O que você deseja fazer hoje?</h1>
+        <p class="text-gray-500 mb-10 text-sm">Selecione um módulo abaixo para continuar</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          <button onclick="navegarPara('main.html')" class="menu-btn group">
-            <i
-              class="fa-solid fa-download menu-icon group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-lg">Baixar Versões</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          
+          <button onclick="navegarPara('main.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-download text-2xl text-primary"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Baixar Versões</span>
+            <span class="text-xs text-gray-400 mt-2">Downloads e Updates</span>
           </button>
 
-          <button
-            onclick="navegarPara('cadastros.html')"
-            class="menu-btn group"
-          >
-            <i
-              class="fa-solid fa-users menu-icon group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-lg">Cadastros de Clientes</span>
+          <button onclick="navegarPara('cadastros.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-users text-2xl text-primary"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Clientes</span>
+            <span class="text-xs text-gray-400 mt-2">Gerenciar Cadastros</span>
           </button>
 
-          <button onclick="navegarPara('apps.html')" class="menu-btn group">
-            <i
-              class="fa-solid fa-rocket menu-icon group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-lg">Apps & Links</span>
+          <button onclick="navegarPara('apps.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-rocket text-2xl text-primary"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Apps & Links</span>
+            <span class="text-xs text-gray-400 mt-2">Ferramentas Rápidas</span>
           </button>
 
-          <button
-            onclick="navegarPara('configuracoes.html')"
-            class="menu-btn group"
-            data-allowed-roles="admin"
-          >
-            <i
-              class="fa-solid fa-gear menu-icon group-hover:scale-110 transition-transform"
-            ></i>
-            <span class="text-lg">Configurações</span>
+          <button onclick="navegarPara('docs.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-book-open text-2xl text-primary"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Documentação</span>
+            <span class="text-xs text-gray-400 mt-2">FAQ e Tutoriais</span>
           </button>
-        </div>
 
-        <div class="flex justify-center">
-          <button
-            onclick="sair()"
-            class="bg-infarmaRed hover:bg-red-700 text-white font-bold py-2.5 px-12 rounded-lg transition duration-200 ease-in-out shadow-md"
-          >
-            Sair
+          <button onclick="navegarPara('configuracoes.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full" data-allowed-roles="admin">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-gear text-2xl text-gray-600 group-hover:text-primary"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Configurações</span>
+            <span class="text-xs text-gray-400 mt-2">Usuários e Permissões</span>
           </button>
         </div>
+
+        <button onclick="sair()" class="bg-white border-2 border-red-100 text-red-500 hover:bg-red-50 hover:border-red-200 hover:text-red-700 font-bold py-3 px-10 rounded-xl transition-all duration-200 flex items-center mx-auto gap-2">
+            <i class="fa-solid fa-right-from-bracket"></i> Sair do Sistema
+        </button>
       </div>
 
-      <footer
-        class="text-xs text-gray-400 mt-10 text-center border-t border-gray-100 pt-6"
-      >
+      <footer class="text-xs text-gray-400 mt-12 text-center border-t border-gray-100 pt-6">
         <p id="versionFooter">© 2025 Weldercris Ribeiro.</p>
       </footer>
     </div>
 
     <script type="module">
-      // Importa a versão do arquivo de configuração (sobe uma pasta para achar assets)
-      import { APP_VERSION } from "../assets/js/config.js";
+        import { APP_VERSION } from "../assets/js/config.js";
+        // Importante: importar o controle de permissão para esconder o botão de config
+        import { configurarInterface } from "../assets/js/auth.js"; 
 
-      // Tornamos as funções globais (window) para que o HTML consiga clicar nelas
-      window.navegarPara = function (url) {
-        window.location.href = url;
-      };
+        window.navegarPara = (url) => window.location.href = url;
+        window.sair = () => {
+            sessionStorage.clear();
+            window.location.href = "../index.html";
+        };
 
-      window.sair = function () {
-        sessionStorage.removeItem("loggedIn");
-        sessionStorage.removeItem("username");
-        // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
-        window.location.href = "../index.html";
-      };
+        document.addEventListener("DOMContentLoaded", () => {
+            if (sessionStorage.getItem("loggedIn") !== "true") {
+                window.location.href = "../index.html";
+                return;
+            }
 
-      document.addEventListener("DOMContentLoaded", () => {
-        // 1. Verificar Login
-        if (sessionStorage.getItem("loggedIn") !== "true") {
-          // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
-          window.location.href = "../index.html";
-          return;
-        }
+            // Exibir Nome
+            const username = sessionStorage.getItem("username");
+            const displayEl = document.getElementById("userNameDisplay");
+            if (displayEl && username) {
+                displayEl.textContent = username.replace(/['"]+/g, "");
+            }
 
-        // 2. Exibir Nome do Usuário
-        const username = sessionStorage.getItem("username");
-        const displayEl = document.getElementById("userNameDisplay");
+            // Atualizar Versão
+            const footerEl = document.getElementById("versionFooter");
+            if (footerEl) {
+                const ano = new Date().getFullYear();
+                footerEl.innerHTML = `© ${ano} Weldercris Ribeiro. Versão ${APP_VERSION || "..."}`;
+            }
 
-        if (displayEl && username) {
-          // Remove as aspas caso venha com elas e adiciona a exclamação no final
-          const cleanName = username.replace(/['"]+/g, "");
-          displayEl.textContent = `${cleanName}!`;
-        }
-
-        // 3. Atualizar Rodapé com a Versão do config.js
-        const footerEl = document.getElementById("versionFooter");
-        if (footerEl) {
-          const anoAtual = new Date().getFullYear();
-          // Usa a variável importada APP_VERSION (se não carregar, usa fallback)
-          footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${
-            APP_VERSION || "Carregando..."
-          }`;
-        }
-      });
+            // Aplicar Permissões (Esconder botão Config)
+            configurarInterface();
+        });
     </script>
   </body>
 </html>

@@ -43,7 +43,7 @@ const loadUsers = async () => {
     const { data: users, error } = await supabaseClient
         .from(TABLE_NAME)
         .select('*')
-        .order('id', { ascending: true });
+        .order('role', { ascending: true });
 
     if (error) {
         console.error('Erro ao buscar usuários:', error);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HUB Varejo</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,72 +18,62 @@
         },
       };
     </script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          if (window.location.pathname.includes('/rotas/')) {
-              const urlLimpa = window.location.href.replace('/rotas', '');
-              window.history.replaceState({}, document.title, urlLimpa);
-          }
-      }); 
-    </script>
-</head>
+    
+    </head>
 
-<body class="font-inter min-h-screen flex items-center justify-center px-4" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
+<body class="font-inter min-h-screen flex items-center justify-center px-4 py-12" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
 
-    <div id="barraAvisos" class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-center py-2 px-4 shadow-md fixed top-0 left-0 z-50 transition-opacity duration-500 opacity-100"></div>
+    <div id="barraAvisos" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-bold text-center py-2 px-4 shadow-md fixed top-0 left-0 z-50 transition-opacity duration-500 opacity-100"></div>
 
-    <div class="mt-10"></div>
+    <div class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-2xl text-center flex flex-col relative mt-8">
 
-    <div class="bg-white p-9 rounded-2xl shadow-xl w-full max-w-2xl text-center flex flex-col justify-between">
-
-        <div class="w-full mb-4">
-            <div class="flex items-center justify-between">
-                <div class="flex items-end">
-                    <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-14 h-14 mr-2" />
-                    <h2 class="text-2xl font-semibold">Infarma HUB</h2>
-                </div>
-
-                <div class="text-right">
-                    <div class="text-sm text-gray-600 hidden sm:block mb-2">
-                        Bem-vindo, <strong><span id="userNameDisplay" class="font-medium text-primary">Usuário</span></strong>
-                    </div>
-                    <!-- <a href="rotas/menu.html" class="inline-flex items-center text-sm font-semibold text-gray-500 hover:text-primary transition-colors">
-                        <i class="fa-solid fa-grid-2 mr-1"></i> Menu Principal <i class="fa-solid fa-arrow-right ml-1"></i>
-                    </a> -->
+        <div class="flex flex-col sm:flex-row items-center justify-between mb-8 border-b border-gray-100 pb-6 gap-4">
+            <div class="flex items-center">
+                <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-12 h-12 mr-3" />
+                <div class="text-left">
+                    <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Infarma HUB</h2>
+                    <p class="text-xs text-gray-500 font-medium uppercase">Central de Downloads</p>
                 </div>
             </div>
 
-            <div class="text-sm text-gray-600 mt-3 sm:hidden text-center">
-                Bem-vindo, <strong><span id="userNameDisplayMobile" class="font-medium text-primary">Usuário</span></strong>
+            <a href="menu.html" class="flex items-center text-gray-500 hover:text-primary transition-colors font-semibold bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
+            </a>
+        </div>
+
+        <div id="aviso" class="bg-amber-50 border-l-4 border-amber-400 text-amber-800 p-4 rounded-r-lg mb-8 text-left shadow-sm flex items-start">
+             <i class="fa-solid fa-circle-info mt-1 mr-3 text-amber-500"></i>
+             <div>
+                <strong class="block font-bold">Aviso Importante:</strong>
+                <p class="text-sm mt-1">Nova versão <strong>2503a</strong> disponível. Atualize para obter melhorias.</p>
+             </div>
+        </div>
+
+        <div class="text-left mb-6">
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Qual versão deseja baixar?</label>
+            <div class="relative">
+                <i class="fa-solid fa-code-branch absolute left-3 top-3.5 text-gray-400"></i>
+                <input list="versoes" id="versao" name="versao" class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" placeholder="Selecione ou digite (ex: 2503a)" />
+                <datalist id="versoes"></datalist>
             </div>
         </div>
+        <input type="text" id="versaoManual" placeholder="Digite a versão manualmente" class="w-full px-4 py-3 border border-gray-300 rounded-lg mt-2 hidden focus:ring-primary outline-none" />
 
-        <div id="aviso" class="bg-yellow-50 border border-yellow-300 text-yellow-800 px-4 py-3 rounded-lg mb-6 text-left shadow-sm">
-            <strong class="block font-semibold">📢 Aviso Importante:</strong>
-            <p class="text-sm mt-1">Nova versão <strong>2503a</strong> disponível para download. Atualize o sistema para obter as últimas melhorias.</p>
+        <div class="text-left mb-8 bg-gray-50 p-6 rounded-xl border border-gray-100">
+            <h3 class="text-sm font-bold text-gray-800 mb-4 flex items-center">
+                <i class="fa-solid fa-cubes text-primary mr-2"></i> Executáveis Disponíveis:
+            </h3>
+            <div id="executaveis" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-left">
+                </div>
         </div>
 
-        <div class="text-left mb-6">
-            <input list="versoes" id="versao" name="versao" class="w-full px-4 py-2 border rounded-lg" placeholder="Selecione ou digite uma versão" />
-            <datalist id="versoes"></datalist>
-        </div>
-        <input type="text" id="versaoManual" placeholder="Digite a versão desejada" class="w-full px-4 py-2 border rounded-lg mt-2 hidden" />
-
-        <div class="text-left mb-6">
-            <h3 class="text-sm font-medium text-gray-800 mb-2 text-left"><strong>Selecione os executáveis:</strong></h3>
-            <div id="executaveis" class="grid grid-cols-1 md:grid-cols-3 gap-3 text-left"></div>
-        </div>
-
-        <div class="flex justify-between mb-4 w-full max-w-xl mx-auto gap-4">
-            <button onclick="iniciarDownload()" class="flex-1 bg-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition font-semibold">
-                Baixar
+        <div class="flex flex-col sm:flex-row gap-4 mb-4">
+            <button onclick="iniciarDownload()" class="flex-1 bg-primary text-white px-6 py-3.5 rounded-lg hover:bg-blue-900 transition-all font-bold shadow-md hover:shadow-lg flex items-center justify-center">
+                <i class="fa-solid fa-cloud-arrow-down mr-2"></i> Baixar Arquivos
             </button>
-            <button onclick="sair()" class="flex-1 bg-red-700 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition font-semibold">
-                Sair
-            </button>
-        </div>
+            </div>
       
-        <footer class="text-xs text-gray-500 mt-4 text-center border-t pt-2">
+        <footer class="text-xs text-gray-400 mt-4 text-center border-t border-gray-100 pt-4">
             <p id="versionFooter">© 2025 Weldercris Ribeiro.</p>
         </footer>
     </div>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentação - Infarma HUB</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#003973', infarmaBlue: '#003973' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c); }
+        /* Transição suave para o acordeão */
+        .faq-answer {
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+        }
+        .faq-answer.open {
+            max-height: 500px; /* Valor arbitrário alto suficiente */
+            opacity: 1;
+            margin-top: 1rem;
+        }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-btn[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+    </style>
+</head>
+
+<body class="min-h-screen flex items-center justify-center font-inter p-4">
+
+    <div class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col">
+        
+        <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-6">
+            <div class="flex items-center">
+                <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-12 h-12 mr-4" />
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Infarma HUB</h2>
+                    <p class="text-xs text-gray-500 font-medium uppercase">Base de Conhecimento</p>
+                </div>
+            </div>
+            
+            <a href="menu.html" class="flex items-center text-gray-500 hover:text-primary transition-colors font-semibold bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
+            </a>
+        </div>
+
+        <div class="flex-1 overflow-y-auto pr-2 custom-scroll">
+            
+            <div class="text-center mb-8">
+                <h1 class="text-xl font-bold text-gray-800 mb-2">Perguntas Frequentes (FAQ)</h1>
+                <p class="text-gray-500 text-sm">Encontre respostas rápidas para as dúvidas mais comuns.</p>
+            </div>
+
+            <div class="space-y-4">
+                
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-700 flex items-center gap-3">
+                            <i class="fa-solid fa-circle-question text-primary"></i>
+                            Como faço login no sistema?
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
+                        <div class="pb-5">
+                            Acesse na área de trabalho um dos executáveis <strong>Varejo</strong>, <strong>Terminal</strong> ou <strong>Caixa</strong> e informe o login cadastrado previamente no sistema. Caso não tenha acesso, contate o administrador.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-700 flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-primary"></i>
+                            Posso alterar meu e-mail de cadastro?
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
+                        <div class="pb-5">
+                            Sim. Para alterar seu e-mail, navegue até <strong>Configurações > Conta > Alterar e-mail</strong>. Lembre-se que você precisará confirmar o novo endereço através do link enviado.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border border-gray-200 rounded-xl overflow-hidden">
+                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
+                        <span class="font-semibold text-gray-700 flex items-center gap-3">
+                            <i class="fa-solid fa-key text-primary"></i>
+                            Esqueci minha senha, e agora?
+                        </span>
+                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
+                    </button>
+                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
+                        <div class="pb-5">
+                            Entre em contato com o suporte técnico ou solicite ao administrador do sistema (usuário Admin) para redefinir sua senha através do painel de <strong>Configurações > Usuários</strong>.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="mt-10 bg-blue-50 rounded-xl p-6 text-center border border-blue-100">
+                <h3 class="font-bold text-primary mb-2">Ainda precisa de ajuda?</h3>
+                <p class="text-sm text-gray-600 mb-4">Nossa equipe de suporte está pronta para te atender.</p>
+                <a href="https://wa.me/5585992664889" target="_blank" class="inline-flex items-center justify-center px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-blue-900 transition-colors shadow-sm">
+                    <i class="fa-brands fa-whatsapp mr-2"></i> Falar com Suporte
+                </a>
+            </div>
+
+        </div>
+        
+        <footer class="text-xs text-gray-400 mt-6 text-center border-t border-gray-100 pt-4">
+            <p id="versionFooter">Carregando versão...</p>
+        </footer>
+
+    </div>
+
+    <script type="module">
+        import { APP_VERSION } from "../assets/js/config.js";
+
+        // 1. Verificação de Login
+        if (sessionStorage.getItem("loggedIn") !== "true") {
+            window.location.href = "../index.html";
+        }
+
+        // 2. Lógica do Acordeão (FAQ)
+        window.toggleFaq = function(button) {
+            const answer = button.nextElementSibling;
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+            // Fecha todos outros (opcional, remova se quiser permitir múltiplos abertos)
+            document.querySelectorAll('.faq-answer').forEach(el => {
+                el.classList.remove('open');
+                el.previousElementSibling.setAttribute("aria-expanded", "false");
+                el.style.borderTopColor = "transparent";
+            });
+
+            if (!isExpanded) {
+                answer.classList.add('open');
+                button.setAttribute("aria-expanded", "true");
+                answer.style.borderTopColor = "#e5e7eb"; // Adiciona borda ao abrir
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // 3. Atualiza Versão no Rodapé
+            const footerEl = document.getElementById("versionFooter");
+            if (footerEl) {
+                const ano = new Date().getFullYear();
+                footerEl.innerHTML = `© ${ano} Weldercris Ribeiro. Versão ${APP_VERSION || "..."}`;
+            }
+        });
+    </script>
+</body>
+</html>

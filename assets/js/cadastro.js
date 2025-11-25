@@ -177,39 +177,48 @@ window.handleRemove = async (id, name) => {
 };
 
 // Renderiza a tabela
+// Renderiza a tabela
 const renderTable = (data) => {
     dataBody.innerHTML = ''; 
 
     data.forEach((client) => {
-        const row = dataBody.insertRow();
-        row.className = 'hover:bg-gray-100 cursor-pointer transition-colors';
+        const row = document.createElement('tr');
+        // Adicionei 'border-b' para separar as linhas sutilmente
+        row.className = 'hover:bg-gray-50 border-b border-gray-100 transition-colors text-sm text-gray-700';
 
-        // Colunas de dados
-        row.insertCell().textContent = client.name;
-        row.insertCell().textContent = client.cnpj;
-        row.insertCell().textContent = client.service;
-        row.insertCell().textContent = client.versaoVarejo || 'N/A';
-        row.insertCell().textContent = client.inputObservation || 'N/A';
-
-        // Coluna de Ações (Editar)
-        const editCell = row.insertCell();
-        editCell.className = 'px-6 py-4 whitespace-nowrap text-sm font-medium';
-        // Passa o ID para a função de edição
-        editCell.innerHTML = `
-            <button onclick="handleEdit(${client.id})" class="text-primary hover:text-blue-900 transition-colors">
-                <i class="fas fa-edit"></i>
-            </button>
+        // AQUI ESTAVA O ERRO: Faltavam as classes px-6 e py-4 nas <td>
+        row.innerHTML = `
+            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
+                ${client.name}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                ${client.cnpj}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
+                    ${client.service}
+                </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+                ${client.versaoVarejo || '-'}
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-gray-500">
+                ${client.inputObservation || '-'}
+            </td>
+            
+            <td class="px-4 py-4 whitespace-nowrap text-center">
+                <button onclick="handleEdit(${client.id})" class="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded hover:bg-blue-50" title="Editar">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </td>
+            
+            <td class="px-4 py-4 whitespace-nowrap text-center">
+                <button onclick="handleRemove(${client.id}, '${client.name}')" class="text-red-500 hover:text-red-700 transition-colors p-2 rounded hover:bg-red-50" title="Excluir">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
         `;
-
-        // Coluna de Ações (Remover)
-        const removeCell = row.insertCell();
-        removeCell.className = 'px-6 py-4 whitespace-nowrap text-sm font-medium';
-        // Passa o ID e o Nome para a função de remoção
-        removeCell.innerHTML = `
-            <button onclick="handleRemove(${client.id}, '${client.name}')" class="text-red-600 hover:text-red-800 transition-colors">
-                <i class="fas fa-trash-alt"></i>
-            </button>
-        `;
+        dataBody.appendChild(row);
     });
 };
 

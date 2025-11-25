@@ -6,9 +6,9 @@
   <meta author="Weldercris Ribeiro" />
   <title>Login Infarma Hub</title>
   <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
@@ -19,78 +19,63 @@
             inter: ['Inter', 'sans-serif']
           },
           colors: {
-            primary: '#003973'
+            primary: '#003973',
+            infarmaBlue: '#003973'
           }
         }
       }
     }
   </script>
-
   <script>
-  // Verifica se a URL contém a pasta "rotas"
+  // Script para limpar URL
   if (window.location.pathname.includes('/rotas/')) {
-      // Cria a nova URL removendo a parte "/rotas"
       const novaURL = window.location.href.replace('/rotas', '');
-      
-      // Substitui a URL na barra de endereços sem recarregar a página
       window.history.replaceState({}, document.title, novaURL);
   }
-</script>
+  </script>
 </head>
-<body class="min-h-screen flex items-center justify-center font-inter" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
+<body class="min-h-screen flex items-center justify-center font-inter p-4" style="background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);">
 
-  <div class="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md text-center">
-    <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-16 mx-auto mb-4" />
-    <h2 class="text-2xl font-semibold text-gray-800 mb-6"></h2>
+  <div class="bg-white p-10 rounded-2xl shadow-2xl w-full max-w-md text-center transform transition-all hover:scale-[1.01] duration-300">
+    <div class="mb-8">
+        <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-16 h-16 mx-auto mb-4" />
+        <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Infarma HUB</h2>
+        <p class="text-sm text-gray-500 mt-1">Faça login para continuar</p>
+    </div>
 
-    <form onsubmit="entrar(); return false;" class="text-left">
-  <label for="usuario" type="text" class="block text-sm text-gray-700 mb-1">Usuário</label>
-  <input type="text" id="usuario" placeholder="Digite seu usuário" class="w-full px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" />
-
+    <form onsubmit="entrar(); return false;" class="text-left space-y-5">
+      <div>
+          <label for="usuario" class="block text-sm font-semibold text-gray-700 mb-1">Usuário</label>
+          <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                  <i class="fa-solid fa-user"></i>
+              </span>
+              <input type="text" id="usuario" placeholder="Digite seu usuário" class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all" />
+          </div>
+      </div>
       
-<div class="relative">
-  <label for="usuario" type="text" class="block text-sm text-gray-700 mb-1">Senha</label>
-  <input type="password" id="password" placeholder="Digite sua senha" class="w-full px-4 py-2 mb-6 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary pr-10"/>
-  
-  <button type="button" id="togglePassword" class="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700 translate-y-[-2px]" tabindex="-1"> 🔐
-  <i data-lucide="eye" id="iconEye"></i>
-  </button>
-</div>
+      <div>
+          <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">Senha</label>
+          <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                  <i class="fa-solid fa-lock"></i>
+              </span>
+              <input type="password" id="password" placeholder="Digite sua senha" class="w-full pl-10 pr-10 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"/>
+              
+              <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-primary transition-colors cursor-pointer focus:outline-none">
+                  🔐
+              </button>
+          </div>
+      </div>
 
-<!-- <div class="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-center py-2 px-4 shadow-md fixed top-0 left-0 z-50">
-   Aplicação em fase de testes! Qualquer erro ou bug apresentado reportar de imediado! <a href=""></a>
-</div> -->
-
-
-      <button type="submit" class="w-full bg-primary text-white py-2 rounded-lg hover:bg-blue-900 transition-colors font-semibold">Entrar</button>
+      <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-blue-900 transition-all font-bold shadow-md hover:shadow-lg transform active:scale-95 mt-2">
+          Entrar no Sistema
+      </button>
     </form>
-
-    <!--p class="text-sm text-gray-600 mt-4">Esqueceu a senha? <a href="https://mail.google.com/mail/?view=cm&fs=1&to=weldercris.ribeiro@infarma.com.br&su=Alteração%20de%20Senha%20CVA%20Infarma%20Varejo&body=Olá,%0D%0A%0D%0AGostaria%20de%20solicitar%20a%20alteração%20da%20minha%20senha%20no%20sistema%20CVA%20Infarma%20Varejo.%0D%0APor%20favor,%20me%20retornem%20com%20as%20instruções.%0D%0A%0D%0AObrigado,%0D%0A[Seu%20Nome]" target="_blank">Clique aqui!</a></p-->
-    <!--p class="text-sm text-gray-600 mt-4">Versão 5.0</p-->
     
-<footer class="text-xs text-gray-700 mt-6 text-center border-t pt-6">
-  <p id="versionFooter"></p>
-  
-
-
-
-  <!-- Inserir redes sociais se necessário 
-  <div class="flex justify-center items-center gap-4 mt-4">
-    
-    <a href="SEU_LINK_DO_LINKEDIN_AQUI" target="_blank" title="LinkedIn" class="text-gray-400 hover:text-[#0077b5] transition-colors transform hover:scale-110">
-      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-      </svg>
-    </a>
-
-    <a href="SEU_LINK_DO_GITHUB_AQUI" target="_blank" title="GitHub" class="text-gray-400 hover:text-black transition-colors transform hover:scale-110">
-      <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.419-1.305.763-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
-      </svg>
-    </a>
-
-  </div> -->
-</footer>
+    <footer class="text-xs text-gray-400 mt-8 text-center border-t border-gray-100 pt-6">
+      <p id="versionFooter">Carregando versão...</p>
+    </footer>
   </div>
 
   <script type="module" src="assets/js/index.js"></script>

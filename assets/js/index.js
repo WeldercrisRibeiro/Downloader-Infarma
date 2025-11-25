@@ -1,4 +1,4 @@
-// assets/js/index.js (VERSÃO ATUALIZADA COM SUPABASE E API DE LOG)
+// assets/js/index.js (VERSÃO ATUALIZADA COM AUDITORIA)
 
 import { SUPABASE_URL, SUPABASE_ANON_KEY, APP_VERSION } from "./config.js";
 
@@ -6,30 +6,20 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY, APP_VERSION } from "./config.js";
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-//window.onload = function() {
-//alert("Bem-vindo! Devido a uma atualização, entre em contato com Welder para gerar uma nova senha! Se já tiver gerado, desconsiderar mensagem!");
-//};
-
 /**
- * Envia uma requisição de notificação para a API de Log (antigo login.js)
- * @param {string} usuario - O nome de usuário validado.
+ * Envia uma requisição de notificação para a API de Log (antigo login.js/Telegram)
  */
 async function notificarAPIdeLog(usuario) {
   try {
-    // Envia requisição para a sua API de Log na Vercel (seu antigo endpoint /api/login)
     const resposta = await fetch("/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      // Envia APENAS o nome de usuário (a senha não é necessária, pois a validação já ocorreu)
       body: JSON.stringify({ usuario: usuario }),
     });
 
     const dados = await resposta.json();
     if (!dados.sucesso) {
-      console.warn(
-        "Falha ao registrar login na API de Log/Telegram:",
-        dados.mensagem
-      );
+      console.warn("Falha ao registrar login na API externa:", dados.mensagem);
     }
   } catch (err) {
     console.error("Erro ao comunicar com a API de Log:", err);
@@ -47,12 +37,11 @@ async function entrar() {
 
   try {
     // ------------------------------------
-    // PASSO 1: VALIDAÇÃO DE CREDENCIAIS (SUPABASE)
+    // PASSO 1: VALIDAÇÃO DE CREDENCIAIS
     // ------------------------------------
     const { data: matchedUsers, error } = await supabaseClient
       .from("users")
-      // CORREÇÃO ABAIXO: Adicionamos ", role" na lista
-      .select("usuario, nome_completo, role")
+      .select("usuario, nome_completo, role") // Traz o role para permissões
       .ilike("usuario", usuario)
       .ilike("senha", senha)
       .limit(1);
@@ -62,24 +51,38 @@ async function entrar() {
 
     if (matchedUser) {
       // ------------------------------------
-      // PASSO 2: LOGIN BEM-SUCEDIDO E NOTIFICAÇÃO
+      // PASSO 2: LOGIN BEM-SUCEDIDO
       // ------------------------------------
       sessionStorage.setItem("loggedIn", "true");
       sessionStorage.setItem(
         "username",
         matchedUser.nome_completo || matchedUser.usuario
       );
-
-      // Se por acaso vier vazio, define como 'operador' por segurança
+      // Salva o cargo (se vier vazio, assume operador)
       sessionStorage.setItem("role", matchedUser.role || "operador");
 
-      // Chamada ASSÍNCRONA para a API de Log e Telegram.
-      // Não esperamos por esta resposta para não atrasar o login.
+      // ---------------------------------------------------------
+      // NOVO: GRAVAR LOG DE AUDITORIA NO SUPABASE
+      // ---------------------------------------------------------
+      try {
+          await supabaseClient.from('system_logs').insert([{
+              usuario: matchedUser.usuario,
+              acao: 'LOGIN',
+              detalhes: 'Acesso realizado via Web'
+          }]);
+      } catch (logErr) {
+          // Apenas loga o erro no console para não travar o login do usuário
+          console.error("Erro ao salvar log de auditoria:", logErr); 
+      }
+      // ---------------------------------------------------------
+
+      // Notifica API externa/Telegram (Legado)
       notificarAPIdeLog(matchedUser.usuario);
 
+      // Redireciona
       window.location.href = "rotas/menu.html";
+      
     } else {
-      // Falha na validação do Supabase
       alert("Usuário ou senha incorretos! Verifique suas credenciais.");
     }
   } catch (err) {
@@ -94,17 +97,17 @@ window.entrar = entrar;
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("togglePassword");
   const passwordInput = document.getElementById("password");
-  if (!toggleBtn || !passwordInput) return;
-
-  toggleBtn.addEventListener("click", () => {
-    const tipo = passwordInput.type === "password" ? "text" : "password";
-    passwordInput.type = tipo;
-    toggleBtn.innerHTML = tipo === "password" ? "🔐" : "🔓";
-  });
+  
+  if (toggleBtn && passwordInput) {
+    toggleBtn.addEventListener("click", () => {
+        const tipo = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = tipo;
+        toggleBtn.innerHTML = tipo === "password" ? "🔐" : "🔓";
+    });
+  }
 
   const footerEl = document.getElementById("versionFooter");
   if (footerEl) {
-    // Pega o ano atual automaticamente também, pra você não precisar mudar em 2026
     const anoAtual = new Date().getFullYear();
     footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION}`;
   }

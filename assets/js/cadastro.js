@@ -231,7 +231,7 @@ clientModal.addEventListener('click', (e) => {
 window.sair = () => {
     sessionStorage.removeItem("loggedIn");
     sessionStorage.removeItem("username");
-    window.location.href = "rotas/index.html"; 
+    window.location.href = "index.html"; 
 };
 
 // Carrega os dados iniciais

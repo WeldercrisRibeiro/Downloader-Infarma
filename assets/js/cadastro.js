@@ -227,13 +227,6 @@ clientModal.addEventListener('click', (e) => {
     }
 });
 
-function sair() {
-  sessionStorage.removeItem("loggedIn");
-  sessionStorage.removeItem("username");
-  window.location.href = "index.html";
-}
-
-window.sair = sair;
 
 // Carrega os dados iniciais
 window.onload = loadData;

@@ -1,178 +1,222 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Menu - Infarma HUB</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        inter: ['Inter', 'sans-serif']
-                    },
-                    colors: {
-                        primary: '#003973', 
-                        infarmaBlue: '#003973',
-                        infarmaRed: '#DC2626',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#003973",
+              infarmaBlue: "#003973",
+              infarmaRed: "#DC2626",
+            },
+          },
+        },
+      };
     </script>
 
     <style>
-        body {
-            background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c);
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-        }
-        
-        .app-window {
-            background-color: #ffffff;
-            border-radius: 1rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
+      body {
+        background-image: linear-gradient(
+          to bottom right,
+          #0f345c,
+          #0096b1,
+          #0f345c
+        );
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+      }
 
-        /* Estilo dos Botões do Menu */
-        .menu-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem 1.5rem; /* Aumentei um pouco o padding para ficar igual à foto */
-            border-radius: 0.75rem;
-            transition: all 0.2s ease-in-out;
-            border: 1px solid #e5e7eb;
-            background-color: #f8fafc;
-            color: #003973;
-            font-weight: 600;
-            height: 100%;
-            cursor: pointer;
-        }
-        
-        .menu-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            border-color: #003973;
-        }
+      .app-window {
+        background-color: #ffffff;
+        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
 
-        .menu-icon {
-            font-size: 2.5rem; /* Ícone um pouco maior */
-            margin-bottom: 1rem;
-            color: #003973;
-        }
+      /* Estilo dos Botões do Menu */
+      .menu-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem; /* Aumentei um pouco o padding para ficar igual à foto */
+        border-radius: 0.75rem;
+        transition: all 0.2s ease-in-out;
+        border: 1px solid #e5e7eb;
+        background-color: #f8fafc;
+        color: #003973;
+        font-weight: 600;
+        height: 100%;
+        cursor: pointer;
+      }
+
+      .menu-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        border-color: #003973;
+      }
+
+      .menu-icon {
+        font-size: 2.5rem; /* Ícone um pouco maior */
+        margin-bottom: 1rem;
+        color: #003973;
+      }
     </style>
-</head>
+  </head>
 
-<body class="flex items-center justify-center p-4">
-
+  <body class="flex items-center justify-center p-4">
     <div class="app-window p-8 md:p-12 w-full max-w-4xl">
-        
-        <div class="flex flex-col md:flex-row items-center justify-between border-b border-gray-200 pb-6 mb-8 gap-4">
-            
-            <div class="flex items-center self-start md:self-auto">
-                <img
-                    src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
-                    alt="Logo Infarma"
-                    class="w-10 h-10 mr-3" 
-                />
-                <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Infarma HUB</h2>
-            </div>
-
-            <div class="text-sm text-gray-600 font-medium">
-                Bem-vindo, <span id="userNameDisplay" class="text-primary font-bold">Usuário!</span>
-            </div>
+      <div
+        class="flex flex-col md:flex-row items-center justify-between border-b border-gray-200 pb-6 mb-8 gap-4"
+      >
+        <div class="flex items-center self-start md:self-auto">
+          <img
+            src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+            alt="Logo Infarma"
+            class="w-10 h-10 mr-3"
+          />
+          <h2 class="text-2xl font-bold text-gray-800 tracking-tight">
+            Infarma HUB
+          </h2>
         </div>
 
-        <div class="text-center">
-            
-            <h1 class="text-xl font-bold text-gray-800 mb-2">Painel de Controle</h1>
-            <p class="text-gray-500 mb-10 text-sm">Selecione o módulo que deseja acessar:</p>
+        <div class="text-sm text-gray-600 font-medium">
+          Bem-vindo,
+          <span id="userNameDisplay" class="text-primary font-bold"
+            >Usuário!</span
+          >
+        </div>
+      </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                
-                <button onclick="navegarPara('main.html')" class="menu-btn group">
-                    <i class="fa-solid fa-download menu-icon group-hover:scale-110 transition-transform"></i>
-                    <span class="text-lg">Baixar Versões</span>
-                </button>
+      <div class="text-center">
+        <h1 class="text-xl font-bold text-gray-800 mb-2">Painel de Controle</h1>
+        <p class="text-gray-500 mb-10 text-sm">
+          Selecione o módulo que deseja acessar:
+        </p>
 
-                <button onclick="navegarPara('cadastros.html')" class="menu-btn group">
-                    <i class="fa-solid fa-users menu-icon group-hover:scale-110 transition-transform"></i>
-                    <span class="text-lg">Cadastros de Clientes</span>
-                </button>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          <button onclick="navegarPara('main.html')" class="menu-btn group">
+            <i
+              class="fa-solid fa-download menu-icon group-hover:scale-110 transition-transform"
+            ></i>
+            <span class="text-lg">Baixar Versões</span>
+          </button>
 
-                <button onclick="navegarPara('apps.html')" class="menu-btn group">
-                    <i class="fa-solid fa-rocket menu-icon group-hover:scale-110 transition-transform"></i>
-                    <span class="text-lg">Apps & Links</span>
-                </button>
+          <button
+            onclick="navegarPara('cadastros.html')"
+            class="menu-btn group"
+          >
+            <i
+              class="fa-solid fa-users menu-icon group-hover:scale-110 transition-transform"
+            ></i>
+            <span class="text-lg">Cadastros de Clientes</span>
+          </button>
 
-            </div>
+          <button onclick="navegarPara('apps.html')" class="menu-btn group">
+            <i
+              class="fa-solid fa-rocket menu-icon group-hover:scale-110 transition-transform"
+            ></i>
+            <span class="text-lg">Apps & Links</span>
+          </button>
 
-            <div class="flex justify-center">
-                <button onclick="sair()" class="bg-infarmaRed hover:bg-red-700 text-white font-bold py-2.5 px-12 rounded-lg transition duration-200 ease-in-out shadow-md">
-                    Sair
-                </button>
-            </div>
-
+          <button
+            onclick="navegarPara('configuracoes.html')"
+            class="menu-btn group"
+            data-allowed-roles="admin"
+          >
+            <i
+              class="fa-solid fa-gear menu-icon group-hover:scale-110 transition-transform"
+            ></i>
+            <span class="text-lg">Configurações</span>
+          </button>
         </div>
 
-        <footer class="text-xs text-gray-400 mt-10 text-center border-t border-gray-100 pt-6">
-            <p id="versionFooter">© 2025 Weldercris Ribeiro.</p>
-        </footer>
+        <div class="flex justify-center">
+          <button
+            onclick="sair()"
+            class="bg-infarmaRed hover:bg-red-700 text-white font-bold py-2.5 px-12 rounded-lg transition duration-200 ease-in-out shadow-md"
+          >
+            Sair
+          </button>
+        </div>
+      </div>
 
+      <footer
+        class="text-xs text-gray-400 mt-10 text-center border-t border-gray-100 pt-6"
+      >
+        <p id="versionFooter">© 2025 Weldercris Ribeiro.</p>
+      </footer>
     </div>
 
-<script type="module">
-        // Importa a versão do arquivo de configuração (sobe uma pasta para achar assets)
-        import { APP_VERSION } from "../assets/js/config.js";
+    <script type="module">
+      // Importa a versão do arquivo de configuração (sobe uma pasta para achar assets)
+      import { APP_VERSION } from "../assets/js/config.js";
 
-        // Tornamos as funções globais (window) para que o HTML consiga clicar nelas
-        window.navegarPara = function(url) {
-            window.location.href = url;
+      // Tornamos as funções globais (window) para que o HTML consiga clicar nelas
+      window.navegarPara = function (url) {
+        window.location.href = url;
+      };
+
+      window.sair = function () {
+        sessionStorage.removeItem("loggedIn");
+        sessionStorage.removeItem("username");
+        // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
+        window.location.href = "../index.html";
+      };
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Verificar Login
+        if (sessionStorage.getItem("loggedIn") !== "true") {
+          // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
+          window.location.href = "../index.html";
+          return;
         }
 
-        window.sair = function() {
-            sessionStorage.removeItem("loggedIn");
-            sessionStorage.removeItem("username");
-            // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
-            window.location.href = "../index.html"; 
+        // 2. Exibir Nome do Usuário
+        const username = sessionStorage.getItem("username");
+        const displayEl = document.getElementById("userNameDisplay");
+
+        if (displayEl && username) {
+          // Remove as aspas caso venha com elas e adiciona a exclamação no final
+          const cleanName = username.replace(/['"]+/g, "");
+          displayEl.textContent = `${cleanName}!`;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Verificar Login
-            if (sessionStorage.getItem("loggedIn") !== "true") {
-                // CORREÇÃO: Remove as aspas extras e usa "../" para voltar à raiz
-                window.location.href = "../index.html"; 
-                return;
-            }
-
-            // 2. Exibir Nome do Usuário
-            const username = sessionStorage.getItem("username");
-            const displayEl = document.getElementById("userNameDisplay");
-            
-            if (displayEl && username) {
-                // Remove as aspas caso venha com elas e adiciona a exclamação no final
-                const cleanName = username.replace(/['"]+/g, '');
-                displayEl.textContent = `${cleanName}!`;
-            }
-
-            // 3. Atualizar Rodapé com a Versão do config.js
-            const footerEl = document.getElementById("versionFooter");
-            if (footerEl) {
-                const anoAtual = new Date().getFullYear();
-                // Usa a variável importada APP_VERSION (se não carregar, usa fallback)
-                footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${APP_VERSION || 'Carregando...'}`; 
-            }
-        });
+        // 3. Atualizar Rodapé com a Versão do config.js
+        const footerEl = document.getElementById("versionFooter");
+        if (footerEl) {
+          const anoAtual = new Date().getFullYear();
+          // Usa a variável importada APP_VERSION (se não carregar, usa fallback)
+          footerEl.innerHTML = `© ${anoAtual} Weldercris Ribeiro. Versão ${
+            APP_VERSION || "Carregando..."
+          }`;
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

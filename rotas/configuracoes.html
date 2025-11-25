@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configurações de Usuários - Infarma HUB</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: { primary: '#003973', infarmaBlue: '#003973', infarmaRed: '#DC2626' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c); }
+        .modal { display: none; }
+        .modal.open { display: flex; }
+        /* Tabela com scroll */
+        .table-container { max-height: calc(100vh - 300px); overflow-y: auto; }
+        .table-container thead { position: sticky; top: 0; background-color: white; z-index: 10; }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-start font-inter pt-10 px-4">
+
+    <div class="bg-white p-6 md:p-9 rounded-2xl shadow-xl w-full max-w-5xl">
+        
+        <div class="flex items-center justify-between mb-8 border-b pb-4">
+            <div class="flex items-end">
+                <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-10 h-10 mr-2" />
+                <h2 class="text-xl md:text-2xl font-semibold text-gray-800">Gerenciar Usuários</h2>
+            </div>
+            
+            <a href="menu.html" class="flex items-center text-gray-600 hover:text-primary transition-colors font-medium">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Menu
+            </a>
+        </div>
+
+        <button id="newUserBtn" class="bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-blue-900 transition-colors font-semibold mb-6 shadow-md flex items-center">
+            <i class="fas fa-user-plus mr-2"></i> NOVO USUÁRIO
+        </button>
+
+        <div class="table-container shadow-md rounded-lg overflow-x-auto border border-gray-100">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Nome Completo</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Usuário (Login)</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Cargo (Role)</th>
+                        <th class="px-6 py-3 text-left text-xs font-bold text-gray-600 uppercase tracking-wider">Senha</th>
+                        <th class="px-6 py-3 text-center text-xs font-bold text-gray-600 uppercase tracking-wider">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="usersBody" class="bg-white divide-y divide-gray-200">
+                    </tbody>
+            </table>
+        </div>
+
+        <footer class="text-xs text-gray-500 mt-6 text-center border-t pt-4">
+            <p>© 2025 Weldercris Ribeiro. Área Restrita.</p>
+        </footer>
+
+    </div>
+
+    <div id="userModal" class="modal fixed inset-0 z-50 bg-black bg-opacity-60 items-center justify-center backdrop-blur-sm">
+        <div class="bg-white p-8 rounded-xl shadow-2xl w-full max-w-md mx-4 transform transition-all">
+            <h3 class="text-xl font-bold mb-6 border-b pb-2 text-primary" id="modalTitle">Novo Usuário</h3>
+            
+            <form id="userForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Nome Completo</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-user absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" id="inputNome" required class="pl-10 block w-full border border-gray-300 rounded-lg shadow-sm p-2.5 focus:ring-primary focus:border-primary transition" placeholder="Ex: João Silva" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Usuário de Acesso</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-at absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" id="inputUsuario" required class="pl-10 block w-full border border-gray-300 rounded-lg shadow-sm p-2.5 focus:ring-primary focus:border-primary transition" placeholder="Ex: joao.silva" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Senha</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-lock absolute left-3 top-3 text-gray-400"></i>
+                            <input type="text" id="inputSenha" required class="pl-10 block w-full border border-gray-300 rounded-lg shadow-sm p-2.5 focus:ring-primary focus:border-primary transition" placeholder="Digite a senha" />
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">* Visível para o admin gerenciar.</p>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Cargo / Permissão</label>
+                        <div class="relative">
+                            <i class="fa-solid fa-id-badge absolute left-3 top-3 text-gray-400"></i>
+                            <select id="inputRole" required class="pl-10 block w-full border border-gray-300 rounded-lg shadow-sm p-2.5 focus:ring-primary focus:border-primary bg-white">
+                                <option value="operador">Operador (Acesso Padrão)</option>
+                                <option value="admin">Admin (Acesso Total)</option>
+                                <option value="gerente">Gerente</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex justify-end space-x-3">
+                    <button type="button" id="closeModalBtn" class="bg-gray-200 text-gray-700 px-5 py-2.5 rounded-lg hover:bg-gray-300 font-semibold transition">Cancelar</button>
+                    <button type="submit" class="bg-primary text-white px-5 py-2.5 rounded-lg hover:bg-blue-800 font-semibold transition shadow-lg">Salvar Usuário</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module">
+        import { verificarPermissao } from "../assets/js/auth.js";
+        // Bloqueia se não for admin
+        document.addEventListener('DOMContentLoaded', () => verificarPermissao(['admin']));
+    </script>
+    
+    <script type="module" src="../assets/js/usuarios.js"></script> 
+</body>
+</html>

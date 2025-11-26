@@ -1,7 +1,8 @@
 // assets/js/docs-list.js
 
 export const listaDocumentos = [
-        // --- GERAL ---
+
+            // --- GERAL ---
     // {
     //     id: 'geral_01',
     //     categoria: 'Geral',
@@ -9,14 +10,32 @@ export const listaDocumentos = [
     //     arquivo: 'faq.md', // Arquivo na raiz do docs
     //     descricao: 'Dúvidas comuns.'
     // }
+// --- DOCS VERSÃO ---
+    {
+        id: 'doc_01',
+        categoria: 'Documentos de Versões',
+        titulo: 'Versão 25.03a - Suporte',
+        tipo: 'pdf', // <--- DEFINE COMO MARKDOWN
+        arquivo: 'versoes/25.03a/pdfs/25.03a_Suporte.pdf', 
+        //descricao: 'Como dar entrada via XML.'
+    },
 
+        {
+        id: 'doc_02',
+        categoria: 'Documentos de Versões',
+        titulo: 'Versão 25.03a - Clientes',
+        tipo: 'pdf', // <--- DEFINE COMO MARKDOWN
+        arquivo: 'versoes/25.03a/pdfs/25.03a_Clientes.pdf', 
+        //descricao: 'Como dar entrada via XML.'
+    },
 
     // --- MÓDULO ESTOQUE ---
     {
         id: 'est_01',
-        categoria: 'Módulo Estoque', // <--- Nova propriedade
+        categoria: 'Módulo Estoque',
         titulo: 'Entrada de Nota Fiscal',
-        arquivo: 'estoque/manual_entradaNFe.md', // Arquivo dentro de subpasta
+        tipo: 'md', // <--- DEFINE COMO MARKDOWN
+        arquivo: 'estoque/manual_entradaNFe.md', 
         descricao: 'Como dar entrada via XML.'
     },
 
@@ -25,27 +44,19 @@ export const listaDocumentos = [
         id: 'vnd_01',
         categoria: 'Módulo Vendas',
         titulo: 'Política de Vendas',
+        tipo: 'md',
         arquivo: 'vendas/politica_venda.md',
         descricao: 'Regras de descontos e prazos.'
     },
 
 
-    // --- MÓDULO SNGPC ---
+        // --- MÓDULO FINANCEIRO ---
     {
-        id: 'sng_01',
-        categoria: 'Módulo SNGPC',
-        titulo: 'Introdução SNGPC',
-        arquivo: 'sngpc/sngpc.md',
-        descricao: 'Introdução ao SNGPC.'
+        id: 'fin_01',
+        categoria: 'Módulo Financeiro',
+        titulo: 'Manual Tesouraria - Cadastro Básico',
+        tipo: 'pdf',
+        arquivo: 'financeiro/pdfs/tesouraria_cadastro_basico.pdf',
+        //descricao: 'Regras de descontos e prazos.'
     },
-    {
-        id: 'sng_02',
-        categoria: 'Módulo SNGPC',
-        titulo: 'Rotina SNGPC',
-        arquivo: 'sngpc/rotina-sngpc.md',
-        descricao: 'Rotina Geral do SNGPC.'
-    },
-
-
-
 ];

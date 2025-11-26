@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -80,7 +79,7 @@
                     <i class="fa-solid fa-circle-notch fa-spin text-3xl text-primary"></i>
                 </div>
 
-                <div id="markdownContent" class="markdown-body">
+                <div id="markdownContent" class="markdown-body h-full">
                     <div class="text-center mt-20 text-gray-400">
                         <i class="fa-solid fa-book-open text-6xl mb-4 opacity-20"></i>
                         <h2 class="text-xl font-semibold">Selecione um documento</h2>
@@ -110,10 +109,10 @@
 
         // 1. Verificação de Segurança
         if (sessionStorage.getItem("loggedIn") !== "true") {
-            window.location.href = "../index.html";
+            // window.location.href = "../index.html"; // Descomente em produção
         }
 
-        // 2. Renderiza o Menu (Minimizado por Padrão)
+        // 2. Renderiza o Menu
         function renderMenu() {
             docListContainer.innerHTML = '';
             
@@ -133,49 +132,48 @@
             // Cria HTML dos grupos
             for (const [nomeCategoria, docs] of Object.entries(grupos)) {
                 
-                // Container do Grupo
                 const groupDiv = document.createElement('div');
                 groupDiv.className = "mb-2 border-b border-gray-50 pb-2";
 
-                // Botão do Cabeçalho (Módulo)
                 const headerBtn = document.createElement('button');
                 headerBtn.className = "flex items-center justify-between w-full text-left text-xs font-bold text-gray-500 uppercase tracking-wider py-3 px-2 hover:bg-gray-50 rounded transition-colors select-none";
                 
-                // Ícone começa girado (-90deg)
                 headerBtn.innerHTML = `
                     <span class="text-primary">${nomeCategoria}</span>
                     <i class="fa-solid fa-chevron-down text-gray-300 transition-transform duration-300" style="transform: rotate(-90deg)"></i>
                 `;
 
-                // Container dos Itens (Começa oculto)
                 const itemsContainer = document.createElement('div');
                 itemsContainer.className = "space-y-1 pl-1 transition-all duration-300 hidden"; 
 
-                // Cria botões dos documentos
                 docs.forEach(doc => {
                     const btn = document.createElement('button');
                     btn.className = `w-full text-left p-2 rounded-lg hover:bg-blue-50 text-sm text-gray-600 hover:text-primary transition-colors flex flex-col group border border-transparent hover:border-blue-100`;
                     
+                    // Ícone dinâmico: PDF ou Texto
+                    const icone = (doc.tipo === 'pdf') ? 'fa-file-pdf' : 'fa-file-lines';
+
                     btn.innerHTML = `
                         <span class="font-medium flex items-center">
-                            <i class="fa-regular fa-file-lines mr-3 text-xs text-gray-400 group-hover:text-primary"></i>
+                            <i class="fa-regular ${icone} mr-3 text-xs text-gray-400 group-hover:text-primary"></i>
                             ${doc.titulo}
                         </span>
                         ${doc.descricao ? `<span class="text-[10px] text-gray-400 mt-0.5 ml-6 truncate opacity-80">${doc.descricao}</span>` : ''}
                     `;
                     
-                    btn.onclick = () => loadDocument(doc.arquivo, btn);
+                    // Passa o objeto inteiro 'doc' para a função
+                    btn.onclick = () => loadDocument(doc, btn);
                     itemsContainer.appendChild(btn);
                 });
 
-                // Lógica de Abrir/Fechar
+                // Accordion
                 headerBtn.onclick = () => {
                     const icon = headerBtn.querySelector('i');
                     if (itemsContainer.classList.contains('hidden')) {
-                        itemsContainer.classList.remove('hidden'); // Abre
+                        itemsContainer.classList.remove('hidden');
                         icon.style.transform = "rotate(0deg)";
                     } else {
-                        itemsContainer.classList.add('hidden'); // Fecha
+                        itemsContainer.classList.add('hidden');
                         icon.style.transform = "rotate(-90deg)";
                     }
                 };
@@ -186,9 +184,9 @@
             }
         }
 
-        // 3. Carrega o Documento
-        async function loadDocument(filename, activeBtn) {
-            // Remove seleção anterior (exceto cabeçalhos)
+        // 3. Carrega o Documento (Lógica Mista PDF / MD)
+        async function loadDocument(doc, activeBtn) {
+            // Remove seleção anterior
             const botoes = docListContainer.querySelectorAll('button');
             botoes.forEach(b => {
                 if(!b.querySelector('i.fa-chevron-down')) {
@@ -197,20 +195,42 @@
             });
             if(activeBtn) activeBtn.classList.add('bg-blue-50', 'border-blue-100');
 
-            // UI Loading
-            markdownContent.classList.add('opacity-50');
+            // Reset UI
             loadingIndicator.classList.remove('hidden');
             errorMessage.classList.add('hidden');
+            markdownContent.innerHTML = '';
 
+            // --- CASO 1: É PDF / Link Externo ---
+            if (doc.tipo === 'pdf') {
+                loadingIndicator.classList.add('hidden');
+
+                // Verifica se é link externo (começa com http) ou arquivo local na pasta docs
+                const sourceUrl = doc.arquivo.startsWith('http') ? doc.arquivo : `../docs/${doc.arquivo}`;
+
+                markdownContent.innerHTML = `
+                    <div class="flex flex-col h-full w-full min-h-[600px]">
+                        <div class="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100 flex items-center justify-between">
+                            <div class="text-sm text-blue-800 font-medium">
+                                <i class="fa-solid fa-circle-info mr-2"></i>
+                                Para salvar o documento, clique com no botão baixar"
+                            </div>
+                            
+                        </div>
+                        <iframe src="${sourceUrl}" class="w-full flex-1 rounded-lg border border-gray-200 bg-gray-50" style="min-height: 600px;"></iframe>
+                    </div>
+                `;
+                return;
+            }
+
+            // --- CASO 2: É Markdown (Padrão) ---
+            markdownContent.classList.add('opacity-50');
             try {
-                // Fetch busca em ../docs/
-                const response = await fetch(`../docs/${filename}`);
+                // Busca arquivo local na pasta docs/
+                const response = await fetch(`../docs/${doc.arquivo}`);
                 
                 if (!response.ok) throw new Error(`Erro ${response.status}: Arquivo não encontrado`);
 
                 const text = await response.text();
-                
-                // Converte MD -> HTML
                 const html = marked.parse(text);
                 markdownContent.innerHTML = html;
                 
@@ -218,18 +238,16 @@
                 console.error("Erro:", error);
                 markdownContent.innerHTML = '';
                 errorMessage.classList.remove('hidden');
-                errorDetail.textContent = `Tentamos abrir: docs/${filename}`;
+                errorDetail.textContent = `Tentamos abrir: docs/${doc.arquivo}`;
             } finally {
                 markdownContent.classList.remove('opacity-50');
                 loadingIndicator.classList.add('hidden');
             }
         }
-
         
         document.addEventListener('DOMContentLoaded', () => {
             const footerEl = document.getElementById("versionFooter");
             if (footerEl) footerEl.textContent = `v${APP_VERSION || "..."}`;
-            
             renderMenu();
         });
     </script>

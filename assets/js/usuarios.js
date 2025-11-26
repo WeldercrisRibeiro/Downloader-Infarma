@@ -126,10 +126,22 @@ const renderTable = (users) => {
         const tr = document.createElement('tr');
         tr.className = "hover:bg-gray-50 transition-colors";
         
-        // Badge de Role (Estilo visual)
-        let roleClass = user.role === 'admin' 
-            ? 'bg-purple-100 text-purple-800' 
-            : 'bg-blue-100 text-blue-800';
+        // --- ATUALIZAÇÃO DE CORES AQUI ---
+        let roleClass = '';
+        
+        // Normaliza para minúsculo para evitar erros de digitação
+        const role = (user.role || 'operador').toLowerCase();
+
+        if (role === 'ti' || role === 'master') {
+            // Master/TI: Roxo (Exclusivo)
+            roleClass = 'bg-purple-100 text-purple-800 border border-purple-200';
+        } else if (role === 'admin') {
+            // Admin: Azul
+            roleClass = 'bg-blue-100 text-blue-800 border border-blue-200';
+        } else {
+            // Operador/Outros: Cinza (Normal)
+            roleClass = 'bg-gray-100 text-gray-800 border border-gray-200';
+        }
         
         tr.innerHTML = `
             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${user.nome_completo || '-'}</td>

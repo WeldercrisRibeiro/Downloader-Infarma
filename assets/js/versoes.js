@@ -147,3 +147,10 @@ export function preencherListaVersoes() {
       datalist.appendChild(opt);
     });
 }
+
+// versoes.js (Adicione isso ao código existente)
+
+export const versoesSync = [
+    "9.31a",
+    // Adicione futuras versões aqui, ex: "9.32a"
+];

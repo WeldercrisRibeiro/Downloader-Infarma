@@ -73,10 +73,18 @@
           
           <button onclick="navegarPara('main.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
             <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                <i class="fa-solid fa-download text-2xl text-primary"></i>
+                <i class="fa-solid fa-cloud-arrow-down text-2xl text-primary"></i>
             </div>
             <span class="text-lg font-bold text-gray-700 group-hover:text-primary transition-colors">Baixar Versões</span>
-            <span class="text-xs text-gray-400 mt-2">Downloads e Updates</span>
+            <span class="text-xs text-gray-400 mt-2">Downloads Versões Licença</span>
+          </button>
+
+          <button onclick="navegarPara('sync.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
+            <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <i class="fa-solid fa-rotate text-2xl text-green-600"></i>
+            </div>
+            <span class="text-lg font-bold text-gray-700 group-hover:text-green-700 transition-colors">Infarma Sync</span>
+            <span class="text-xs text-gray-400 mt-2">Download Versões Sync</span>
           </button>
 
           <button onclick="navegarPara('cadastros.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full">
@@ -103,7 +111,7 @@
             <span class="text-xs text-gray-400 mt-2">FAQ e Tutoriais</span>
           </button>
 
-          <button onclick="navegarPara('configuracoes.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full" data-allowed-roles="admin">
+          <button onclick="navegarPara('usuarios.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full" data-allowed-roles="admin">
             <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <i class="fa-solid fa-gear text-2xl text-gray-600 group-hover:text-primary"></i>
             </div>
@@ -111,7 +119,7 @@
             <span class="text-xs text-gray-400 mt-2">Usuários e Permissões</span>
           </button>
 
-          <button onclick="navegarPara('auditoria.html')" class="menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full" data-allowed-roles="ti">
+          <button onclick="navegarPara('auditoria.html')" class="hidden menu-btn group flex flex-col items-center justify-center p-8 bg-gray-50 border border-gray-200 rounded-xl h-full" data-allowed-roles="ti">
             <div class="w-16 h-16 bg-white rounded-full shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                 <i class="fa-solid fa-shield-halved text-2xl text-gray-600 group-hover:text-primary"></i>
             </div>

@@ -155,8 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const mensagens = [
         'Nova versão 25.03 disponível para download!',
-        'Dúvidas? Sugestões? Entre em contato com o suporte <a target="_blank" href="https://wa.me/5585992664889" class="underline font-bold">clicando aqui</a>.',
-        '🚀 Novos recursos chegando ao Infarma Hub em breve! Fique atento.',
+        
     ];
 
     let indiceAtual = 0;

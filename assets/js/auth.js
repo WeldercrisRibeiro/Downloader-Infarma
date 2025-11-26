@@ -4,9 +4,8 @@
 // Quem tem nível 3 (ti) pode ver coisas de nível 2 (admin) e 1 (operador)
 const niveisDeAcesso = {
     'operador': 1,
-    'gerente': 2,
-    'admin': 3,
-    'ti': 99 // Nível máximo (Welder)
+    'admin': 2,
+    'master': 99 // Nível máximo
 };
 
 export function verificarPermissao(cargosPermitidos) {
@@ -14,7 +13,7 @@ export function verificarPermissao(cargosPermitidos) {
     const nivelUsuario = niveisDeAcesso[roleUsuario] || 0;
 
     // Verifica se algum dos cargos permitidos é igual ou inferior ao meu nível
-    // Ex: Se o botão pede 'admin' (3) e eu sou 'ti' (99), 99 >= 3, então eu passo.
+    // Ex: Se o botão pede 'admin' (3) e eu sou 'master' (99), 99 >= 3, então eu passo.
     const temAcesso = cargosPermitidos.some(cargoNecessario => {
         const nivelNecessario = niveisDeAcesso[cargoNecessario] || 999;
         return nivelUsuario >= nivelNecessario;

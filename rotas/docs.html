@@ -8,6 +8,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
@@ -23,147 +26,211 @@
 
     <style>
         body { background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c); }
-        /* Transição suave para o acordeão */
-        .faq-answer {
-            transition: all 0.3s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-        }
-        .faq-answer.open {
-            max-height: 500px; /* Valor arbitrário alto suficiente */
-            opacity: 1;
-            margin-top: 1rem;
-        }
-        .faq-icon { transition: transform 0.3s ease; }
-        .faq-btn[aria-expanded="true"] .faq-icon { transform: rotate(180deg); }
+        
+        /* --- ESTILOS DO MARKDOWN --- */
+        .markdown-body h1 { font-size: 1.8rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+        .markdown-body h2 { font-size: 1.5rem; font-weight: 600; color: #374151; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+        .markdown-body h3 { font-size: 1.25rem; font-weight: 600; color: #4b5563; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+        .markdown-body p { margin-bottom: 1rem; line-height: 1.6; color: #4b5563; }
+        .markdown-body ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .markdown-body ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .markdown-body strong { font-weight: 700; color: #111827; }
+        .markdown-body blockquote { border-left: 4px solid #003973; background-color: #f3f4f6; padding: 0.5rem 1rem; margin-bottom: 1rem; font-style: italic; }
+        .markdown-body code { background-color: #f3f4f6; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.9em; color: #dc2626; }
+        .markdown-body pre { background-color: #1f2937; color: #f9fafb; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; margin-bottom: 1rem; }
+        .markdown-body img { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin: 1rem 0; }
+        .markdown-body a { color: #003973; text-decoration: underline; }
+        
+        /* Scroll customizado */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #999; }
     </style>
 </head>
 
 <body class="min-h-screen flex items-center justify-center font-inter p-4">
 
-    <div class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-4xl h-[90vh] flex flex-col">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col md:flex-row overflow-hidden">
         
-        <div class="flex items-center justify-between mb-6 border-b border-gray-100 pb-6">
-            <div class="flex items-center">
-                <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo Infarma" class="w-12 h-12 mr-4" />
-                <div>
-                    <h2 class="text-2xl font-bold text-gray-800 tracking-tight">Infarma HUB</h2>
-                    <p class="text-xs text-gray-500 font-medium uppercase">Base de Conhecimento</p>
+        <div class="w-full md:w-1/3 bg-gray-50 border-r border-gray-200 flex flex-col">
+            <div class="p-6 border-b border-gray-200 bg-white">
+                <div class="flex items-center mb-4">
+                    <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo" class="w-8 h-8 mr-3" />
+                    <h2 class="text-xl font-bold text-gray-800">Docs HUB</h2>
                 </div>
-            </div>
-            
-            <a href="menu.html" class="flex items-center text-gray-500 hover:text-primary transition-colors font-semibold bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm">
-                <i class="fa-solid fa-arrow-left mr-2"></i> Voltar
-            </a>
-        </div>
-
-        <div class="flex-1 overflow-y-auto pr-2 custom-scroll">
-            
-            <div class="text-center mb-8">
-                <h1 class="text-xl font-bold text-gray-800 mb-2">Perguntas Frequentes (FAQ)</h1>
-                <p class="text-gray-500 text-sm">Encontre respostas rápidas para as dúvidas mais comuns.</p>
-            </div>
-
-            <div class="space-y-4">
-                
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-700 flex items-center gap-3">
-                            <i class="fa-solid fa-circle-question text-primary"></i>
-                            Como faço login no sistema?
-                        </span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
-                    </button>
-                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
-                        <div class="pb-5">
-                            Acesse na área de trabalho um dos executáveis <strong>Varejo</strong>, <strong>Terminal</strong> ou <strong>Caixa</strong> e informe o login cadastrado previamente no sistema. Caso não tenha acesso, contate o administrador.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-700 flex items-center gap-3">
-                            <i class="fa-solid fa-envelope text-primary"></i>
-                            Posso alterar meu e-mail de cadastro?
-                        </span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
-                    </button>
-                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
-                        <div class="pb-5">
-                            Sim. Para alterar seu e-mail, navegue até <strong>Configurações > Conta > Alterar e-mail</strong>. Lembre-se que você precisará confirmar o novo endereço através do link enviado.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border border-gray-200 rounded-xl overflow-hidden">
-                    <button class="faq-btn w-full flex items-center justify-between p-5 bg-gray-50 hover:bg-white transition-colors text-left focus:outline-none" onclick="toggleFaq(this)">
-                        <span class="font-semibold text-gray-700 flex items-center gap-3">
-                            <i class="fa-solid fa-key text-primary"></i>
-                            Esqueci minha senha, e agora?
-                        </span>
-                        <i class="fa-solid fa-chevron-down text-gray-400 faq-icon"></i>
-                    </button>
-                    <div class="faq-answer px-5 bg-white text-gray-600 text-sm leading-relaxed border-t border-transparent">
-                        <div class="pb-5">
-                            Entre em contato com o suporte técnico ou solicite ao administrador do sistema (usuário Admin) para redefinir sua senha através do painel de <strong>Configurações > Usuários</strong>.
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="mt-10 bg-blue-50 rounded-xl p-6 text-center border border-blue-100">
-                <h3 class="font-bold text-primary mb-2">Ainda precisa de ajuda?</h3>
-                <p class="text-sm text-gray-600 mb-4">Nossa equipe de suporte está pronta para te atender.</p>
-                <a href="https://wa.me/5585992664889" target="_blank" class="inline-flex items-center justify-center px-6 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-blue-900 transition-colors shadow-sm">
-                    <i class="fa-brands fa-whatsapp mr-2"></i> Falar com Suporte
+                <a href="menu.html" class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-medium">
+                    <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Menu
                 </a>
             </div>
+            
+            <div class="flex-1 overflow-y-auto custom-scroll p-4" id="docListContainer">
+                <p class="text-gray-400 text-center text-sm mt-4">Carregando índice...</p>
+            </div>
 
+            <div class="p-4 border-t border-gray-200 text-center text-xs text-gray-400">
+                <span id="versionFooter">v...</span>
+            </div>
         </div>
-        
-        <footer class="text-xs text-gray-400 mt-6 text-center border-t border-gray-100 pt-4">
-            <p id="versionFooter">Carregando versão...</p>
-        </footer>
 
+        <div class="w-full md:w-2/3 flex flex-col bg-white">
+            <div class="flex-1 overflow-y-auto custom-scroll p-8 md:p-12 relative">
+                
+                <div id="loadingIndicator" class="hidden absolute inset-0 bg-white/80 flex items-center justify-center z-10">
+                    <i class="fa-solid fa-circle-notch fa-spin text-3xl text-primary"></i>
+                </div>
+
+                <div id="markdownContent" class="markdown-body">
+                    <div class="text-center mt-20 text-gray-400">
+                        <i class="fa-solid fa-book-open text-6xl mb-4 opacity-20"></i>
+                        <h2 class="text-xl font-semibold">Selecione um documento</h2>
+                        <p class="text-sm">Navegue pelo menu à esquerda para ler a documentação.</p>
+                    </div>
+                </div>
+
+                <div id="errorMessage" class="hidden text-center mt-10 p-6 bg-red-50 rounded-xl border border-red-100 text-red-600">
+                    <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
+                    <p>Não foi possível carregar este documento.</p>
+                    <p class="text-xs mt-2 text-red-400" id="errorDetail">Verifique se o arquivo existe.</p>
+                </div>
+
+            </div>
+        </div>
     </div>
 
     <script type="module">
         import { APP_VERSION } from "../assets/js/config.js";
+        import { listaDocumentos } from "../assets/js/docs-list.js";
 
-        // 1. Verificação de Login
+        const docListContainer = document.getElementById('docListContainer');
+        const markdownContent = document.getElementById('markdownContent');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorDetail = document.getElementById('errorDetail');
+
+        // 1. Verificação de Segurança
         if (sessionStorage.getItem("loggedIn") !== "true") {
             window.location.href = "../index.html";
         }
 
-        // 2. Lógica do Acordeão (FAQ)
-        window.toggleFaq = function(button) {
-            const answer = button.nextElementSibling;
-            const isExpanded = button.getAttribute("aria-expanded") === "true";
+        // 2. Renderiza o Menu (Minimizado por Padrão)
+        function renderMenu() {
+            docListContainer.innerHTML = '';
+            
+            if (!listaDocumentos || listaDocumentos.length === 0) {
+                docListContainer.innerHTML = '<p class="text-gray-400 text-center text-sm p-4">Nenhum documento encontrado.</p>';
+                return;
+            }
 
-            // Fecha todos outros (opcional, remova se quiser permitir múltiplos abertos)
-            document.querySelectorAll('.faq-answer').forEach(el => {
-                el.classList.remove('open');
-                el.previousElementSibling.setAttribute("aria-expanded", "false");
-                el.style.borderTopColor = "transparent";
+            // Agrupa por categoria
+            const grupos = {};
+            listaDocumentos.forEach(doc => {
+                const cat = doc.categoria || 'Geral';
+                if (!grupos[cat]) grupos[cat] = [];
+                grupos[cat].push(doc);
             });
 
-            if (!isExpanded) {
-                answer.classList.add('open');
-                button.setAttribute("aria-expanded", "true");
-                answer.style.borderTopColor = "#e5e7eb"; // Adiciona borda ao abrir
-            }
-        };
+            // Cria HTML dos grupos
+            for (const [nomeCategoria, docs] of Object.entries(grupos)) {
+                
+                // Container do Grupo
+                const groupDiv = document.createElement('div');
+                groupDiv.className = "mb-2 border-b border-gray-50 pb-2";
 
-        document.addEventListener('DOMContentLoaded', () => {
-            // 3. Atualiza Versão no Rodapé
-            const footerEl = document.getElementById("versionFooter");
-            if (footerEl) {
-                const ano = new Date().getFullYear();
-                footerEl.innerHTML = `© ${ano} Weldercris Ribeiro. Versão ${APP_VERSION || "..."}`;
+                // Botão do Cabeçalho (Módulo)
+                const headerBtn = document.createElement('button');
+                headerBtn.className = "flex items-center justify-between w-full text-left text-xs font-bold text-gray-500 uppercase tracking-wider py-3 px-2 hover:bg-gray-50 rounded transition-colors select-none";
+                
+                // Ícone começa girado (-90deg)
+                headerBtn.innerHTML = `
+                    <span class="text-primary">${nomeCategoria}</span>
+                    <i class="fa-solid fa-chevron-down text-gray-300 transition-transform duration-300" style="transform: rotate(-90deg)"></i>
+                `;
+
+                // Container dos Itens (Começa oculto)
+                const itemsContainer = document.createElement('div');
+                itemsContainer.className = "space-y-1 pl-1 transition-all duration-300 hidden"; 
+
+                // Cria botões dos documentos
+                docs.forEach(doc => {
+                    const btn = document.createElement('button');
+                    btn.className = `w-full text-left p-2 rounded-lg hover:bg-blue-50 text-sm text-gray-600 hover:text-primary transition-colors flex flex-col group border border-transparent hover:border-blue-100`;
+                    
+                    btn.innerHTML = `
+                        <span class="font-medium flex items-center">
+                            <i class="fa-regular fa-file-lines mr-3 text-xs text-gray-400 group-hover:text-primary"></i>
+                            ${doc.titulo}
+                        </span>
+                        ${doc.descricao ? `<span class="text-[10px] text-gray-400 mt-0.5 ml-6 truncate opacity-80">${doc.descricao}</span>` : ''}
+                    `;
+                    
+                    btn.onclick = () => loadDocument(doc.arquivo, btn);
+                    itemsContainer.appendChild(btn);
+                });
+
+                // Lógica de Abrir/Fechar
+                headerBtn.onclick = () => {
+                    const icon = headerBtn.querySelector('i');
+                    if (itemsContainer.classList.contains('hidden')) {
+                        itemsContainer.classList.remove('hidden'); // Abre
+                        icon.style.transform = "rotate(0deg)";
+                    } else {
+                        itemsContainer.classList.add('hidden'); // Fecha
+                        icon.style.transform = "rotate(-90deg)";
+                    }
+                };
+
+                groupDiv.appendChild(headerBtn);
+                groupDiv.appendChild(itemsContainer);
+                docListContainer.appendChild(groupDiv);
             }
+        }
+
+        // 3. Carrega o Documento
+        async function loadDocument(filename, activeBtn) {
+            // Remove seleção anterior (exceto cabeçalhos)
+            const botoes = docListContainer.querySelectorAll('button');
+            botoes.forEach(b => {
+                if(!b.querySelector('i.fa-chevron-down')) {
+                    b.classList.remove('bg-blue-50', 'border-blue-100');
+                }
+            });
+            if(activeBtn) activeBtn.classList.add('bg-blue-50', 'border-blue-100');
+
+            // UI Loading
+            markdownContent.classList.add('opacity-50');
+            loadingIndicator.classList.remove('hidden');
+            errorMessage.classList.add('hidden');
+
+            try {
+                // Fetch busca em ../docs/
+                const response = await fetch(`../docs/${filename}`);
+                
+                if (!response.ok) throw new Error(`Erro ${response.status}: Arquivo não encontrado`);
+
+                const text = await response.text();
+                
+                // Converte MD -> HTML
+                const html = marked.parse(text);
+                markdownContent.innerHTML = html;
+                
+            } catch (error) {
+                console.error("Erro:", error);
+                markdownContent.innerHTML = '';
+                errorMessage.classList.remove('hidden');
+                errorDetail.textContent = `Tentamos abrir: docs/${filename}`;
+            } finally {
+                markdownContent.classList.remove('opacity-50');
+                loadingIndicator.classList.add('hidden');
+            }
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const footerEl = document.getElementById("versionFooter");
+            if (footerEl) footerEl.textContent = `v${APP_VERSION || "..."}`;
+            
+            renderMenu();
         });
     </script>
 </body>

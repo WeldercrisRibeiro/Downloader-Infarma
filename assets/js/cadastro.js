@@ -1,68 +1,51 @@
-// assets/js/cadastro.js
-
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from "./config.js";
 
-// Inicializa o cliente Supabase
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 const TABLE_NAME = 'empresas';
 
-// Constantes para elementos do DOM
+// Elementos
 const newClientBtn = document.getElementById('newClientBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const clientModal = document.getElementById('clientModal');
 const clientForm = document.getElementById('clientForm');
 const dataBody = document.getElementById('dataBody');
 
-// Campos do formulário
+// Inputs
 const inputName = document.getElementById('inputName');
 const inputCnpj = document.getElementById('inputCnpj');
 const inputService = document.getElementById('inputService');
 const inputVarejo = document.getElementById('inputVarejo');
 const inputObservation = document.getElementById('inputObservation');
 
-// Variável para armazenar o ID (chave primária) do item em edição (não mais o índice)
 let dataEditId = null; 
 
-// Bloqueia acesso se não estiver logado (Importante para segurança)
 if (sessionStorage.getItem("loggedIn") !== "true") {
-  window.location.href = "index.html";
+  window.location.href = "../index.html";
 }
 
-
-// Função para abrir o modal
 const openModal = () => clientModal.classList.add('open');
-
-// Função para fechar o modal e resetar o formulário/ID
 const closeModal = () => {
     clientModal.classList.remove('open');
     clientForm.reset();
     dataEditId = null;
 };
 
-// -----------------------------------------------------
-// FUNÇÕES CRUD COM SUPABASE
-// -----------------------------------------------------
-
-// 1. Carrega os dados do Supabase
+// 1. Carregar
 const loadData = async () => {
-    // Ordena por nome (ascending)
     const { data: empresas, error } = await supabaseClient
         .from(TABLE_NAME)
         .select('*')
         .order('name', { ascending: true });
 
     if (error) {
-        console.error('Erro ao carregar dados:', error);
-        alert('Falha ao carregar dados do banco de dados.');
+        console.error('Erro Supabase:', error);
         return;
     }
-    
-    // Renderiza a tabela com os dados do Supabase
     renderTable(empresas); 
 };
 
-// 2. Salva (Cria/Atualiza) no Supabase
+// 2. Salvar
 clientForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -70,176 +53,107 @@ clientForm.addEventListener('submit', async (e) => {
     const cnpj = inputCnpj.value.trim();
     const service = inputService.value;
     const versaoVarejo = inputVarejo.value.trim();
-    const observation = inputObservation.value.trim();
+    const observationValue = inputObservation.value.trim(); 
 
     if (!name || !cnpj || !service) {
-        alert("Preencha Nome, CNPJ e Tipo de Serviço!");
+        alert("Preencha os campos obrigatórios!");
         return;
     }
     
-    // Objeto de dados
-    const clientData = { name, cnpj, service, versaoVarejo, versaoObservation}
-    // Verifica unicidade de CNPJ antes de salvar (necessita de índice UNIQUE na tabela)
-    if (await cnpjAlreadyExists(cnpj, dataEditId)) {
+    // --- CORREÇÃO AQUI ---
+    // O lado ESQUERDO deve ser o nome EXATO da coluna no Banco de Dados
+    // Se no seu banco for 'versao_servico', mude 'observacao' para 'versao_servico'
+    const clientData = { 
+        name: name, 
+        cnpj: cnpj, 
+        service: service, 
+        versaoVarejo: versaoVarejo, 
+        observacao: observationValue // <--- Mudei de inputObservation para observacao
+    };
+
+    if (!dataEditId && await cnpjAlreadyExists(cnpj)) {
         alert("CNPJ já cadastrado!");
         return;
     }
 
     let error = null;
 
-    if (dataEditId) {
-        // EDIÇÃO (UPDATE)
-        const result = await supabaseClient
-            .from(TABLE_NAME)
-            .update(clientData)
-            .eq('id', dataEditId);
-        error = result.error;
+    try {
+        if (dataEditId) {
+            const res = await supabaseClient.from(TABLE_NAME).update(clientData).eq('id', dataEditId);
+            error = res.error;
+        } else {
+            const res = await supabaseClient.from(TABLE_NAME).insert([clientData]);
+            error = res.error;
+        }
 
-    } else {
-        // NOVO CADASTRO (INSERT)
-        const result = await supabaseClient
-            .from(TABLE_NAME)
-            .insert([clientData]);
-        error = result.error;
-    }
+        if (error) throw error;
 
-    if (error) {
-        console.error('Erro ao salvar/atualizar:', error);
-        alert('Erro ao salvar no banco de dados. Verifique o console.');
-    } else {
         closeModal();
-        loadData(); // Recarrega os dados após a operação
+        loadData();
+
+    } catch (err) {
+        console.error('Erro no processo:', err);
+        alert('Erro ao salvar: ' + err.message);
     }
 });
 
-// 3. Verifica se o CNPJ já existe no banco de dados
-const cnpjAlreadyExists = async (cnpj, ignoreId) => {
-    let query = supabaseClient
-        .from(TABLE_NAME)
-        .select('id', { count: 'exact' })
-        .eq('cnpj', cnpj);
-        
-    // Se estiver editando, exclui o registro atual da verificação
-    if (ignoreId) {
-        query = query.neq('id', ignoreId);
-    }
-    
-    const { count, error } = await query;
-
-    if (error) {
-        console.error('Erro de verificação de CNPJ:', error);
-        return true; // Assume erro como CNPJ existente por segurança
-    }
-
-    return count > 0;
+const cnpjAlreadyExists = async (cnpj) => {
+    const { data } = await supabaseClient.from(TABLE_NAME).select('id').eq('cnpj', cnpj);
+    return data && data.length > 0;
 };
 
-// Ação de Editar (busca dados por ID)
+// Editar
 window.handleEdit = async (id) => {
-    const { data: client, error } = await supabaseClient
-        .from(TABLE_NAME)
-        .select('*')
-        .eq('id', id)
-        .single();
-        
-    if (error || !client) {
-        console.error('Erro ao buscar registro para edição:', error);
-        alert('Falha ao carregar dados para edição.');
-        return;
-    }
+    const { data, error } = await supabaseClient.from(TABLE_NAME).select('*').eq('id', id).single();
+    if (error) return alert('Erro ao buscar dados.');
     
-    // Preenche o modal com os dados
-    inputName.value = client.name;
-    inputCnpj.value = client.cnpj;
-    inputService.value = client.service;
-    inputVarejo.value = client.versaoVarejo || '';
-    inputObservation.value = client.inputObservation || '';
+    inputName.value = data.name || '';
+    inputCnpj.value = data.cnpj || '';
+    inputService.value = data.service || '';
+    inputVarejo.value = data.versaoVarejo || '';
+    
+    // --- CORREÇÃO AQUI ---
+    inputObservation.value = data.observacao || ''; // Mudei para data.observacao
 
-    dataEditId = client.id; // Armazena o ID do registro para UPDATE
+    dataEditId = data.id; 
     openModal();
 };
 
-// Ação de Remover
+// Remover
 window.handleRemove = async (id, name) => {
-    if (confirm(`Tem certeza que deseja remover a empresa ${name}? Esta ação é irreversível.`)) {
-        const { error } = await supabaseClient
-            .from(TABLE_NAME)
-            .delete()
-            .eq('id', id);
-
-        if (error) {
-            console.error('Erro ao remover registro:', error);
-            alert('Falha ao remover o registro.');
-        } else {
-            loadData(); // Recarrega a tabela
-        }
+    if (confirm(`Remover "${name}"?`)) {
+        const { error } = await supabaseClient.from(TABLE_NAME).delete().eq('id', id);
+        if (error) alert('Erro ao remover.');
+        else loadData();
     }
 };
 
-// Renderiza a tabela
-// Renderiza a tabela
+// Renderizar
 const renderTable = (data) => {
     dataBody.innerHTML = ''; 
-
     data.forEach((client) => {
         const row = document.createElement('tr');
-        // Adicionei 'border-b' para separar as linhas sutilmente
-        row.className = 'hover:bg-gray-50 border-b border-gray-100 transition-colors text-sm text-gray-700';
-
-        // AQUI ESTAVA O ERRO: Faltavam as classes px-6 e py-4 nas <td>
+        row.className = 'border-b border-gray-100 hover:bg-gray-50 transition-colors text-sm text-gray-700';
+        
+        // --- CORREÇÃO AQUI TAMBÉM ---
+        // Usando client.observacao
         row.innerHTML = `
-            <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-900">
-                ${client.name}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                ${client.cnpj}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                <span class="px-2 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-100">
-                    ${client.service}
-                </span>
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-                ${client.versaoVarejo || '-'}
-            </td>
-            <td class="px-6 py-4 whitespace-nowrap text-gray-500">
-                ${client.inputObservation || '-'}
-            </td>
-            
-            <td class="px-4 py-4 whitespace-nowrap text-center">
-                <button onclick="handleEdit(${client.id})" class="text-blue-600 hover:text-blue-800 transition-colors p-2 rounded hover:bg-blue-50" title="Editar">
-                    <i class="fas fa-edit"></i>
-                </button>
-            </td>
-            
-            <td class="px-4 py-4 whitespace-nowrap text-center">
-                <button onclick="handleRemove(${client.id}, '${client.name}')" class="text-red-500 hover:text-red-700 transition-colors p-2 rounded hover:bg-red-50" title="Excluir">
-                    <i class="fas fa-trash-alt"></i>
-                </button>
-            </td>
+            <td class="px-6 py-4 font-medium text-gray-900">${client.name}</td>
+            <td class="px-6 py-4">${client.cnpj}</td>
+            <td class="px-6 py-4">${client.service}</td>
+            <td class="px-6 py-4">${client.versaoVarejo || '-'}</td>
+            <td class="px-6 py-4 text-gray-500">${client.observacao || '-'}</td> 
+            <td class="px-4 py-4 text-center"><button onclick="handleEdit(${client.id})" class="text-blue-600 hover:bg-blue-50 p-2 rounded"><i class="fas fa-edit"></i></button></td>
+            <td class="px-4 py-4 text-center"><button onclick="handleRemove(${client.id}, '${client.name}')" class="text-red-500 hover:bg-red-50 p-2 rounded"><i class="fas fa-trash-alt"></i></button></td>
         `;
         dataBody.appendChild(row);
     });
 };
 
-// --- Event Listeners ---
-newClientBtn.addEventListener('click', () => {
-    clientForm.reset(); // Garante que o form esteja limpo
-    dataEditId = null;  // Garante que é um novo cadastro
-    openModal();
-});
-closeModalBtn.addEventListener('click', closeModal);
+// Event Listeners
+newClientBtn.addEventListener('click', () => { clientForm.reset(); dataEditId = null; openModal(); });
+if(closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+if(clientModal) clientModal.addEventListener('click', (e) => { if (e.target === clientModal) closeModal(); });
 
-clientModal.addEventListener('click', (e) => {
-    if (e.target.id === 'clientModal') {
-        closeModal();
-    }
-});
-
-
-// Carrega os dados iniciais
 window.onload = loadData;
-
-// Expõe as funções globais necessárias para o HTML
-window.handleEdit = window.handleEdit;
-window.handleRemove = window.handleRemove;

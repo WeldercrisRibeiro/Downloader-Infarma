@@ -4,4 +4,6 @@
 .env.test.local
 .env
 .env*.local
-.txt*
+.txt*´
+.pdf*
+.exe*

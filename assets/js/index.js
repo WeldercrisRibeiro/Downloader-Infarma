@@ -65,14 +65,16 @@ async function entrar() {
       // NOVO: GRAVAR LOG DE AUDITORIA NO SUPABASE
       // ---------------------------------------------------------
       try {
-          await supabaseClient.from('system_logs').insert([{
-              usuario: matchedUser.usuario,
-              acao: 'LOGIN',
-              detalhes: 'Acesso realizado via Web'
-          }]);
+        await supabaseClient.from("system_logs").insert([
+          {
+            usuario: matchedUser.usuario,
+            acao: "LOGIN",
+            detalhes: "Acesso realizado via Web",
+          },
+        ]);
       } catch (logErr) {
-          // Apenas loga o erro no console para não travar o login do usuário
-          console.error("Erro ao salvar log de auditoria:", logErr); 
+        // Apenas loga o erro no console para não travar o login do usuário
+        console.error("Erro ao salvar log de auditoria:", logErr);
       }
       // ---------------------------------------------------------
 
@@ -80,8 +82,7 @@ async function entrar() {
       notificarAPIdeLog(matchedUser.usuario);
 
       // Redireciona
-      window.location.href = "rotas/menu.html";
-      
+      window.location.href = "routes/menu.html";
     } else {
       alert("Usuário ou senha incorretos! Verifique suas credenciais.");
     }
@@ -97,12 +98,12 @@ window.entrar = entrar;
 document.addEventListener("DOMContentLoaded", () => {
   const toggleBtn = document.getElementById("togglePassword");
   const passwordInput = document.getElementById("password");
-  
+
   if (toggleBtn && passwordInput) {
     toggleBtn.addEventListener("click", () => {
-        const tipo = passwordInput.type === "password" ? "text" : "password";
-        passwordInput.type = tipo;
-        toggleBtn.innerHTML = tipo === "password" ? "🔐" : "🔓";
+      const tipo = passwordInput.type === "password" ? "text" : "password";
+      passwordInput.type = tipo;
+      toggleBtn.innerHTML = tipo === "password" ? "🔐" : "🔓";
     });
   }
 

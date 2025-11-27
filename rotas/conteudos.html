@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursos - Infarma HUB</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { inter: ["Inter", "sans-serif"] },
+            colors: { primary: "#003973", infarmaBlue: "#003973" },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Estilo de fundo do seu HTML base */
+      body {
+        background-image: linear-gradient(
+          to bottom right,
+          #0f345c,
+          #0096b1,
+          #0f345c
+        );
+      }
+      .tab-link.active {
+        color: #003973;
+        border-bottom-color: #003973;
+        font-weight: 600;
+      }
+      .curso-card {
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+      .curso-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      /* Classe utilitária para desabilitar cards */
+      .temporarily-disabled {
+        pointer-events: none;
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      /* Classe para esconder módulos de conteúdo */
+      .tab-content {
+        display: none;
+      }
+      /* Classe para mostrar o módulo ativo */
+      .tab-content.active {
+        display: block;
+      }
+    </style>
+  </head>
+
+  <body
+    class="font-inter min-h-screen flex items-center justify-center px-4 py-12"
+  >
+    <div
+      class="bg-white p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-5xl text-center flex flex-col relative mt-8"
+    >
+      <div
+        class="flex flex-col sm:flex-row items-center justify-between mb-8 border-b border-gray-100 pb-6 gap-4 w-full"
+      >
+        <div class="flex items-center">
+          <img
+            src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+            alt="Logo Infarma"
+            class="w-12 h-12 mr-3"
+          />
+          <div class="text-left">
+            <h2 class="text-2xl font-bold text-gray-800 tracking-tight">
+              Infarma HUB - Conteúdos
+            </h2>
+            <p class="text-xs text-gray-500 font-medium uppercase">
+              MÓDULOS VAREJO
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 self-end sm:self-auto">
+          <div class="bg-blue-50 px-4 py-2 rounded-full border border-blue-100">
+            <span class="text-sm text-gray-600 font-medium">
+              Olá,
+              <span id="userNameDisplay" class="text-primary font-bold"
+                >Usuário</span
+              >
+            </span>
+          </div>
+
+          <a
+            href="menu.html"
+            class="flex items-center text-gray-500 hover:text-primary transition-colors font-semibold bg-gray-50 hover:bg-gray-100 px-4 py-2 rounded-lg text-sm"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Menu
+          </a>
+        </div>
+      </div>
+
+      <div class="mb-8 overflow-x-auto">
+        <div
+          class="flex justify-start md:justify-center border-b border-gray-200 min-w-max"
+          id="tabs-nav"
+        ></div>
+      </div>
+
+      <div id="tabs-content" class="text-left">
+        <div id="vendas" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: PDV
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a
+              href="https://youtube.com/playlist?list=PLMaFaRuclunoDrfeQek3ExfDDQjyAL8fM&si=87gh3m6wZPwcCvLe"
+              target="_blank"
+              class="curso-card block bg-white border border-gray-200 rounded-xl overflow-hidden shadow-md transition-all duration-300"
+            >
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span
+                    class="text-xs font-bold text-white bg-green-500 px-3 py-1 rounded-full uppercase"
+                    >PDV</span
+                  >
+                </div>
+                <h4 class="text-md font-bold text-gray-800 mb-2">PDV</h4>
+                <p class="text-sm text-gray-500">
+                  Aprenda a realizar vendas, trocas e sangrias de forma
+                  eficiente e entre outras rotinas
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-3 text-center text-sm font-semibold text-primary border-t border-gray-100 hover:bg-primary hover:text-white transition-colors"
+              >
+                Acessar <i class="fa-solid fa-arrow-right ml-2"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="financeiro" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: FINANCEIRO
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a
+              href="https://youtube.com/playlist?list=PLMaFaRuclunpXcHAriouh9oL9PdrLbchU&si=JnH6PAZqO48zs6dX"
+              target="_blank"
+              class="curso-card block bg-white border border-gray-200 rounded-xl overflow-hidden shadow-md transition-all duration-300"
+            >
+              <div class="p-5">
+                <div class="flex items-center justify-between mb-3">
+                  <span
+                    class="text-xs font-bold text-white bg-blue-500 px-3 py-1 rounded-full uppercase"
+                    >InGestor</span
+                  >
+                </div>
+                <h4 class="text-md font-bold text-gray-800 mb-2">
+                  Treinamento InGestor
+                </h4>
+                <p class="text-sm text-gray-500">
+                  Como instalar e utilizar o InGestor para controle financeiro.
+                </p>
+              </div>
+              <div
+                class="bg-gray-50 p-3 text-center text-sm font-semibold text-primary border-t border-gray-100 hover:bg-primary hover:text-white transition-colors"
+              >
+                Acessar <i class="fa-solid fa-arrow-right ml-2"></i>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <div id="estoque" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: ESTOQUE
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-gray-500 col-span-full">
+              Nenhum curso disponível para <strong>ESTOQUE</strong> no momento.
+              Volte em breve!
+            </p>
+          </div>
+        </div>
+
+        <div id="compras" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: COMPRAS
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-gray-500 col-span-full">
+              Nenhum curso disponível para <strong>COMPRAS</strong> no momento.
+              Volte em breve!
+            </p>
+          </div>
+        </div>
+
+        <div id="fiscal" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: FISCAL
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-gray-500 col-span-full">
+              Nenhum curso disponível para <strong>FISCAL</strong> no momento.
+              Volte em breve!
+            </p>
+          </div>
+        </div>
+
+        <div id="sngpc" class="tab-content">
+          <h3 class="text-lg font-bold text-gray-800 mb-6">
+            Cursos Disponíveis: SNGPC
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <p class="text-gray-500 col-span-full">
+              Nenhum curso disponível para <strong>SNGPC</strong> no momento.
+              Volte em breve!
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <footer
+        class="text-xs text-gray-400 mt-8 text-center border-t border-gray-100 pt-4"
+      >
+        <p>© 2025 Weldercris Ribeiro.</p>
+      </footer>
+    </div>
+
+    <script>
+      // Mapeamento dos módulos e seus nomes de exibição
+      const MODULOS = {
+        vendas: "VENDAS",
+        financeiro: "FINANCEIRO",
+        estoque: "ESTOQUE",
+        compras: "COMPRAS",
+        fiscal: "FISCAL",
+        sngpc: "SNGPC",
+      };
+
+      // 🎯 AQUI VOCÊ DEFINE A ORDEM DAS ABAS
+      // Para colocar ESTOQUE na frente, basta movê-lo para o início do array.
+      const MODULO_ORDEM = [
+        "estoque",
+        "vendas",
+        "financeiro",
+        "compras",
+        "fiscal",
+        "sngpc",
+      ];
+
+      // Função para troca de abas (mantida)
+      function changeTab(clickedTab) {
+        // 1. Remove 'active' de todas as abas
+        document.querySelectorAll(".tab-link").forEach((tab) => {
+          tab.classList.remove("active");
+          tab.classList.remove("border-primary");
+          tab.classList.add("border-transparent");
+        });
+
+        // 2. Adiciona 'active' à aba clicada
+        clickedTab.classList.add("active");
+        clickedTab.classList.add("border-primary");
+        clickedTab.classList.remove("border-transparent");
+
+        // 3. Pega o alvo (ID do conteúdo)
+        const targetId = clickedTab.getAttribute("data-target");
+
+        // 4. Esconde todo o conteúdo
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          content.classList.remove("active");
+        });
+
+        // 5. Mostra o conteúdo alvo
+        document.getElementById(targetId).classList.add("active");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. Verificação de autenticação
+        if (sessionStorage.getItem("loggedIn") !== "true") {
+          window.location.href = "../index.html";
+          return;
+        }
+
+        // 2. Exibir Nome do Usuário
+        const username = sessionStorage.getItem("username");
+        const displayEl = document.getElementById("userNameDisplay");
+        if (displayEl && username) {
+          displayEl.textContent = username.replace(/['"]+/g, "");
+        }
+
+        // 3. GERAR AS ABAS NA ORDEM DEFINIDA
+        const tabsNav = document.getElementById("tabs-nav");
+        let firstTabLink = null;
+
+        MODULO_ORDEM.forEach((id) => {
+          const tabName = MODULOS[id];
+          if (tabName) {
+            const link = document.createElement("a");
+            link.href = "#";
+            link.setAttribute("data-target", id);
+            link.className =
+              "tab-link px-4 py-3 text-sm text-gray-600 border-b-2 border-transparent transition-colors hover:text-primary";
+            link.textContent = tabName;
+            link.onclick = (e) => {
+              e.preventDefault(); // Impede o scroll
+              changeTab(link);
+            };
+
+            tabsNav.appendChild(link);
+
+            if (!firstTabLink) {
+              firstTabLink = link;
+            }
+          }
+        });
+
+        // 4. Ativa a primeira aba na ordem gerada (que agora é ESTOQUE)
+        if (firstTabLink) {
+          changeTab(firstTabLink);
+        }
+      });
+    </script>
+  </body>
+
+  <!--    
+  
+  
+  
+  -->
+</html>

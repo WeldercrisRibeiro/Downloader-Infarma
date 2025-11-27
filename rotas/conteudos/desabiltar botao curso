@@ -1,0 +1,24 @@
+🛠️ Instruções para Habilitar um CursoSiga estes três passos principais para habilitar qualquer card de curso que esteja marcado como "Em breve" no seu código.Passo 1: Trocar a Tag <div> por <a> (Link Funcional)Um elemento <div> é apenas um contêiner e não é clicável por padrão. Para que o curso se torne um link funcional, ele precisa ser uma tag <a> (âncora).Antes (Desabilitado)Depois (Habilitado)<div class="curso-card block...<a href="https://www.instagram.com/aprendaaquicursos/" target="\_blank" class="curso-card block...O que fazer:Mude o <div> de abertura do card para <a.Mude o </div> de fechamento do card para </a>.Adicione o atributo href (com o link do curso) e target="\_blank" (para abrir em uma nova aba).Passo 2: Remover as Classes de Desabilitação (Aparência e Interação)Estas classes CSS e utilitárias do Tailwind CSS são as responsáveis por deixar o card cinza, opaco e impedir cliques. Elas devem ser removidas.Classes a RemoverFunção da Classepointer-events-noneImpede que o mouse interaja com o elemento (o clique não funciona).opacity-60Deixa o card com 60% de opacidade (aparência cinza/inativa).cursor-not-allowedMuda o ícone do mouse para o sinal de "proibido".temporarily-disabled(Esta classe só está no curso Financeiro).O que fazer:Localize a longa lista de classes no seu novo <a>.Delete as classes pointer-events-none, opacity-60, cursor-not-allowed (se presentes).Para o Financeiro: Delete a classe temporarily-disabled.Passo 3: Remover os Atributos de Status (Meta-Informação)Esses atributos são usados para indicar que o card está indisponível ou para dar uma dica ao usuário.Atributos a Removeraria-disabled="true"title="Em breve - curso temporariamente indisponível"O que fazer:Remova esses dois atributos completamente do seu novo elemento <a>.📝 Exemplo Prático (Seção VENDAS)Veja como era o curso PDV antes e como deve ficar para ser habilitado:Código Original (Desabilitado)HTML<div
+class="curso-card block bg-white border border-gray-200 rounded-xl overflow-hidden shadow-md transition-all duration-300 pointer-events-none opacity-60 cursor-not-allowed"
+aria-disabled="true"
+title="Em breve - curso temporariamente indisponível"
+
+>
+
+    </div>
+
+Código Modificado (Habilitado)HTML<a
+href="https://link-real-do-seu-curso.com.br/pdv"
+target="\_blank"
+class="curso-card block bg-white border border-gray-200 rounded-xl overflow-hidden shadow-md transition-all duration-300"
+
+>
+
+    <div
+      class="bg-gray-50 p-3 text-center text-sm font-semibold text-primary border-t border-gray-100 hover:bg-primary hover:text-white transition-colors"
+    >
+      iniciar curso <i class="fa-solid fa-arrow-right ml-2"></i>
+    </div>
+
+</a>
+Ao seguir estes três passos, o card voltará a ter sua aparência e funcionalidade normais, ficando pronto para ser clicado e iniciar o curso.

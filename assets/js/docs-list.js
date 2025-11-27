@@ -56,7 +56,8 @@ export const listaDocumentos = [
         categoria: 'Módulo Financeiro',
         titulo: 'Manual Tesouraria - Cadastro Básico',
         tipo: 'pdf',
-        arquivo: 'financeiro/pdfs/tesouraria_cadastro_basico.pdf',
+        //arquivo: 'financeiro/pdfs/tesouraria_cadastro_basico.pdf',
+        arquivo: 'https://mega.nz/file/frZ22aCJ#Z2hcBHfLwA8cS9PtWMFG8vtqJgOJrMQmp3Ke6w9d-PY'
         //descricao: 'Regras de descontos e prazos.'
     },
 ];

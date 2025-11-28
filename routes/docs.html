@@ -1,254 +1,473 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Documentação - Infarma HUB</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="shortcut icon" type="image/png" href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon_white.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: { inter: ['Inter', 'sans-serif'] },
-                    colors: { primary: '#003973', infarmaBlue: '#003973' }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { inter: ["Inter", "sans-serif"] },
+            colors: { primary: "#003973", infarmaBlue: "#003973" },
+          },
+        },
+      };
     </script>
 
     <style>
-        body { background-image: linear-gradient(to bottom right, #0f345c, #0096b1, #0f345c); }
-        .markdown-body h1 { font-size: 1.8rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
-        .markdown-body h2 { font-size: 1.5rem; font-weight: 600; color: #374151; margin-top: 1.5rem; margin-bottom: 0.75rem; }
-        .markdown-body p { margin-bottom: 1rem; line-height: 1.6; color: #4b5563; }
-        .markdown-body a { color: #003973; text-decoration: underline; }
-        .custom-scroll::-webkit-scrollbar { width: 6px; }
-        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
-        .custom-scroll::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+      body {
+        background-image: linear-gradient(
+          to bottom right,
+          #0f345c,
+          #0096b1,
+          #0f345c
+        );
+      }
+      .markdown-body h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+      }
+      .markdown-body h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #374151;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+      .markdown-body p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        color: #4b5563;
+      }
+      .markdown-body a {
+        color: #003973;
+        text-decoration: underline;
+      }
+      .custom-scroll::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scroll::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      .custom-scroll::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+      }
     </style>
-</head>
+  </head>
 
-<body class="min-h-screen flex items-center justify-center font-inter p-4">
+  <body class="min-h-screen flex items-center justify-center font-inter p-4">
+    <div
+      class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col md:flex-row overflow-hidden relative"
+    >
+      <div
+        class="w-full md:w-1/3 bg-gray-50 border-r border-gray-200 flex flex-col"
+      >
+        <div class="p-6 border-b border-gray-200 bg-white">
+          <div class="flex items-center mb-4">
+            <img
+              src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png"
+              alt="Logo"
+              class="w-8 h-8 mr-3"
+            />
+            <h2 class="text-xl font-bold text-gray-800">Infarma Docs</h2>
+          </div>
+          <a
+            href="menu.html"
+            class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-medium"
+          >
+            <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Menu
+          </a>
+        </div>
 
-    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] flex flex-col md:flex-row overflow-hidden relative">
-        
-        <div class="w-full md:w-1/3 bg-gray-50 border-r border-gray-200 flex flex-col">
-            <div class="p-6 border-b border-gray-200 bg-white">
-                <div class="flex items-center mb-4">
-                    <img src="https://www.infarma.com.br/wp-content/themes/infarmasitev2/assets/img/2023/favicon.png" alt="Logo" class="w-8 h-8 mr-3" />
-                    <h2 class="text-xl font-bold text-gray-800">Infarma Docs</h2>
-                </div>
-                <a href="menu.html" class="flex items-center text-gray-500 hover:text-primary transition-colors text-sm font-medium">
-                    <i class="fa-solid fa-arrow-left mr-2"></i> Voltar ao Menu
-                </a>
-            </div>
-            
-            <div class="flex-1 overflow-y-auto custom-scroll p-4" id="docListContainer">
-                <p class="text-gray-400 text-center text-sm mt-4">Carregando índice...</p>
-            </div>
+        <div
+          class="flex-1 overflow-y-auto custom-scroll p-4"
+          id="docListContainer"
+        >
+          <p class="text-gray-400 text-center text-sm mt-4">
+            Carregando índice...
+          </p>
+        </div>
 
-            <div class="p-4 border-t border-gray-200 bg-gray-50">
-                <!-- <button onclick="openContributeModal()" class="w-full bg-white border border-gray-300 text-primary font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-50 transition text-xs flex items-center justify-center gap-2">
+        <div class="p-4 border-t border-gray-200 bg-gray-50">
+          <!-- <button onclick="openContributeModal()" class="w-full bg-white border border-gray-300 text-primary font-bold py-2 px-4 rounded-lg shadow-sm hover:bg-blue-50 transition text-xs flex items-center justify-center gap-2">
                     <i class="fa-solid fa-cloud-arrow-up"></i> Enviar Novo Manual
                 </button> -->
-                <div class="text-center text-[10px] text-gray-400 mt-2">
-                    <span id="versionFooter">v...</span>
-                </div>
-            </div>
+          <div class="text-center text-[10px] text-gray-400 mt-2">
+            <span id="versionFooter">v...</span>
+          </div>
         </div>
+      </div>
 
-        <div class="w-full md:w-2/3 flex flex-col bg-white relative">
-            <div class="flex-1 overflow-y-auto custom-scroll p-8 md:p-12 relative">
-                <div id="loadingIndicator" class="hidden absolute inset-0 bg-white/80 flex items-center justify-center z-10">
-                    <i class="fa-solid fa-circle-notch fa-spin text-3xl text-primary"></i>
-                </div>
+      <div class="w-full md:w-2/3 flex flex-col bg-white relative">
+        <div class="flex-1 overflow-y-auto custom-scroll p-8 md:p-12 relative">
+          <div
+            id="loadingIndicator"
+            class="hidden absolute inset-0 bg-white/80 flex items-center justify-center z-10"
+          >
+            <i
+              class="fa-solid fa-circle-notch fa-spin text-3xl text-primary"
+            ></i>
+          </div>
 
-                <div id="markdownContent" class="markdown-body h-full">
-                    <div class="text-center mt-20 text-gray-400">
-                        <i class="fa-solid fa-book-open text-6xl mb-4 opacity-20"></i>
-                        <h2 class="text-xl font-semibold">Selecione um documento</h2>
-                    </div>
-                </div>
-                
-                <div id="errorMessage" class="hidden text-center mt-10 p-6 bg-red-50 rounded-xl border border-red-100 text-red-600">
-                    <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
-                    <p>Não foi possível carregar.</p>
-                    <p class="text-xs mt-2 text-red-400" id="errorDetail">Verifique o arquivo.</p>
-                </div>
+          <div id="markdownContent" class="markdown-body h-full">
+            <div class="text-center mt-20 text-gray-400">
+              <i class="fa-solid fa-book-open text-6xl mb-4 opacity-20"></i>
+              <h2 class="text-xl font-semibold">Selecione um documento</h2>
             </div>
+          </div>
+
+          <div
+            id="errorMessage"
+            class="hidden text-center mt-10 p-6 bg-red-50 rounded-xl border border-red-100 text-red-600"
+          >
+            <i class="fa-solid fa-triangle-exclamation text-2xl mb-2"></i>
+            <p>Não foi possível carregar.</p>
+            <p class="text-xs mt-2 text-red-400" id="errorDetail">
+              Verifique o arquivo.
+            </p>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div id="contributeModal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-[fadeIn_0.3s_ease-out]">
-            <div class="bg-primary p-4 flex justify-between items-center border-b border-blue-900">
-                <h3 class="text-white font-bold flex items-center gap-2">
-                    <i class="fa-solid fa-file-import"></i> Enviar Arquivo
-                </h3>
-                <button onclick="closeContributeModal()" class="text-white/70 hover:text-white transition-colors">
-                    <i class="fa-solid fa-xmark text-xl"></i>
-                </button>
-            </div>
-            
-            <form action="https://formsubmit.co/suporte.infarmahub@gmail.com" target="_blank" method="POST" enctype="multipart/form-data" class="p-6 space-y-4">
-                
-                <input type="hidden" name="_subject" value="Novo Manual Enviado via Portal">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_autoresponse" value="Recebemos seu arquivo. Obrigado!">
-                
-                <div class="bg-blue-50 border border-blue-100 p-3 rounded text-xs text-blue-800">
-                    <i class="fa-solid fa-circle-info mr-1"></i>
-                    O arquivo será enviado para analise e se aprovado, publicado em produção!.
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1 uppercase">Título do Manual</label>
-                    <input type="text" name="titulo" required placeholder="Ex: Procedimento de Venda" class="w-full border border-gray-300 rounded p-2 text-sm focus:border-primary focus:outline-none">
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1 uppercase">Categoria</label>
-                    <select name="categoria" class="w-full border border-gray-300 rounded p-2 text-sm focus:border-primary focus:outline-none bg-white">
-                        <option value="Documentos de Versões">Documentos de Versões</option>
-                        <option value="Módulo Estoque">Módulo Estoque</option>
-                        <option value="Módulo Vendas">Módulo Vendas</option>
-                        <option value="Módulo Financeiro">Módulo Financeiro</option>
-                        <option value="Geral">Geral</option>
-                    </select>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-bold text-gray-700 mb-1 uppercase">Arquivo PDF</label>
-                    <input type="file" name="attachment" accept="application/pdf" required class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-primary hover:file:bg-blue-100 cursor-pointer border border-gray-200 rounded p-1">
-                </div>
-
-                <div class="pt-2">
-                    <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2 shadow-lg">
-                        <i class="fa-solid fa-paper-plane"></i> Enviar Arquivo
-                    </button>
-                </div>
-            </form>
+    <div
+      id="contributeModal"
+      class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
+    >
+      <div
+        class="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden animate-[fadeIn_0.3s_ease-out]"
+      >
+        <div
+          class="bg-primary p-4 flex justify-between items-center border-b border-blue-900"
+        >
+          <h3 class="text-white font-bold flex items-center gap-2">
+            <i class="fa-solid fa-file-import"></i> Enviar Arquivo
+          </h3>
+          <button
+            onclick="closeContributeModal()"
+            class="text-white/70 hover:text-white transition-colors"
+          >
+            <i class="fa-solid fa-xmark text-xl"></i>
+          </button>
         </div>
+
+        <form
+          action="https://formsubmit.co/suporte.infarmahub@gmail.com"
+          target="_blank"
+          method="POST"
+          enctype="multipart/form-data"
+          class="p-6 space-y-4"
+        >
+          <input
+            type="hidden"
+            name="_subject"
+            value="Novo Manual Enviado via Portal"
+          />
+          <input type="hidden" name="_captcha" value="false" />
+          <input
+            type="hidden"
+            name="_autoresponse"
+            value="Recebemos seu arquivo. Obrigado!"
+          />
+
+          <div
+            class="bg-blue-50 border border-blue-100 p-3 rounded text-xs text-blue-800"
+          >
+            <i class="fa-solid fa-circle-info mr-1"></i>
+            O arquivo será enviado para analise e se aprovado, publicado em
+            produção!.
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1 uppercase"
+              >Título do Manual</label
+            >
+            <input
+              type="text"
+              name="titulo"
+              required
+              placeholder="Ex: Procedimento de Venda"
+              class="w-full border border-gray-300 rounded p-2 text-sm focus:border-primary focus:outline-none"
+            />
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1 uppercase"
+              >Categoria</label
+            >
+            <select
+              name="categoria"
+              class="w-full border border-gray-300 rounded p-2 text-sm focus:border-primary focus:outline-none bg-white"
+            >
+              <option value="Documentos de Versões">
+                Documentos de Versões
+              </option>
+              <option value="Módulo Estoque">Módulo Estoque</option>
+              <option value="Módulo Vendas">Módulo Vendas</option>
+              <option value="Módulo Financeiro">Módulo Financeiro</option>
+              <option value="Geral">Geral</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-gray-700 mb-1 uppercase"
+              >Arquivo PDF</label
+            >
+            <input
+              type="file"
+              name="attachment"
+              accept="application/pdf"
+              required
+              class="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-primary hover:file:bg-blue-100 cursor-pointer border border-gray-200 rounded p-1"
+            />
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="submit"
+              class="w-full bg-green-600 text-white font-bold py-3 rounded-lg hover:bg-green-700 transition flex items-center justify-center gap-2 shadow-lg"
+            >
+              <i class="fa-solid fa-paper-plane"></i> Enviar Arquivo
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
     <script type="module">
-        import { APP_VERSION } from "../assets/js/config.js";
-        
-        // --- Importação da lista ---
-        import { listaDocumentos as docsImportados } from "../assets/js/docs-list.js";
+      import { APP_VERSION } from "../assets/js/config.js";
 
-        const docListContainer = document.getElementById('docListContainer');
-        const markdownContent = document.getElementById('markdownContent');
-        const loadingIndicator = document.getElementById('loadingIndicator');
-        const errorMessage = document.getElementById('errorMessage');
-        const contributeModal = document.getElementById('contributeModal');
+      // --- Importação da lista ---
+      import { listaDocumentos as docsImportados } from "../assets/js/docs-list.js";
 
-        let listaDocumentos = docsImportados || [];
+      const docListContainer = document.getElementById("docListContainer");
+      const markdownContent = document.getElementById("markdownContent");
+      const loadingIndicator = document.getElementById("loadingIndicator");
+      const errorMessage = document.getElementById("errorMessage");
+      const contributeModal = document.getElementById("contributeModal");
 
-        // --- FUNÇÕES DO MODAL ---
-        window.openContributeModal = () => contributeModal.classList.remove('hidden');
-        window.closeContributeModal = () => contributeModal.classList.add('hidden');
+      let listaDocumentos = docsImportados || [];
 
-        // --- RENDERIZAÇÃO ---
-        function renderMenu() {
-            docListContainer.innerHTML = '';
-            if (!listaDocumentos.length) {
-                docListContainer.innerHTML = '<p class="text-gray-400 text-center text-sm p-4">Nada encontrado.</p>';
-                return;
-            }
+      // --- FUNÇÕES DO MODAL ---
+      window.openContributeModal = () =>
+        contributeModal.classList.remove("hidden");
+      window.closeContributeModal = () =>
+        contributeModal.classList.add("hidden");
 
-            const grupos = {};
-            listaDocumentos.forEach(doc => {
-                const cat = doc.categoria || 'Geral';
-                if (!grupos[cat]) grupos[cat] = [];
-                grupos[cat].push(doc);
-            });
-
-            for (const [nomeCategoria, docs] of Object.entries(grupos)) {
-                const groupDiv = document.createElement('div');
-                groupDiv.className = "mb-2 border-b border-gray-50 pb-2";
-                
-                const headerBtn = document.createElement('button');
-                headerBtn.className = "flex items-center justify-between w-full text-left text-xs font-bold text-gray-500 uppercase tracking-wider py-3 px-2 hover:bg-gray-50 rounded transition-colors select-none";
-                headerBtn.innerHTML = `<span class="text-primary">${nomeCategoria}</span><i class="fa-solid fa-chevron-down text-gray-300 transition-transform duration-300" style="transform: rotate(-90deg)"></i>`;
-
-                const itemsContainer = document.createElement('div');
-                itemsContainer.className = "space-y-1 pl-1 transition-all duration-300 hidden"; 
-
-                docs.forEach(doc => {
-                    const btn = document.createElement('button');
-                    btn.className = `w-full text-left p-2 rounded-lg hover:bg-blue-50 text-sm text-gray-600 hover:text-primary transition-colors flex flex-col group border border-transparent hover:border-blue-100`;
-                    const icone = (doc.tipo === 'pdf') ? 'fa-file-pdf' : 'fa-file-lines';
-                    btn.innerHTML = `<span class="font-medium flex items-center"><i class="fa-regular ${icone} mr-3 text-xs text-gray-400 group-hover:text-primary"></i>${doc.titulo}</span>`;
-                    btn.onclick = () => loadDocument(doc, btn);
-                    itemsContainer.appendChild(btn);
-                });
-
-                headerBtn.onclick = () => {
-                    const icon = headerBtn.querySelector('i');
-                    if (itemsContainer.classList.contains('hidden')) {
-                        itemsContainer.classList.remove('hidden');
-                        icon.style.transform = "rotate(0deg)";
-                    } else {
-                        itemsContainer.classList.add('hidden');
-                        icon.style.transform = "rotate(-90deg)";
-                    }
-                };
-
-                groupDiv.appendChild(headerBtn);
-                groupDiv.appendChild(itemsContainer);
-                docListContainer.appendChild(groupDiv);
-            }
+      // --- RENDERIZAÇÃO ---
+      function renderMenu() {
+        docListContainer.innerHTML = "";
+        if (!listaDocumentos.length) {
+          docListContainer.innerHTML =
+            '<p class="text-gray-400 text-center text-sm p-4">Nada encontrado.</p>';
+          return;
         }
 
-        async function loadDocument(doc, activeBtn) {
-            const botoes = docListContainer.querySelectorAll('button');
-            botoes.forEach(b => { if(!b.querySelector('i.fa-chevron-down')) b.classList.remove('bg-blue-50', 'border-blue-100'); });
-            if(activeBtn) activeBtn.classList.add('bg-blue-50', 'border-blue-100');
+        const grupos = {};
+        listaDocumentos.forEach((doc) => {
+          const cat = doc.categoria || "Geral";
+          if (!grupos[cat]) grupos[cat] = [];
+          // Não fazer inferência da pasta a partir do arquivo: usamos apenas `doc.pasta` quando existir.
+          grupos[cat].push(doc);
+        });
 
-            loadingIndicator.classList.remove('hidden');
-            errorMessage.classList.add('hidden');
-            markdownContent.innerHTML = '';
+        // Helper: constrói uma árvore de pastas para uma lista de documentos
+        function buildFolderTree(docs) {
+          const root = { name: "", folders: {}, docs: [] };
+          const canonicalKey = (part) => {
+            const m = part.match(/^(\d+\.\d+)([A-Za-z])?$/i);
+            if (m) return `${m[1]}${m[2] ? m[2].toLowerCase() : ""}`;
+            return part;
+          };
 
-            let sourceUrl = doc.arquivo;
-            if (!sourceUrl.startsWith('http')) sourceUrl = `../docs/${doc.arquivo}`;
+          docs.forEach((doc) => {
+            if (doc.pasta) {
+              const parts = doc.pasta.split("/").filter(Boolean);
+              let node = root;
+              parts.forEach((part) => {
+                const key = canonicalKey(part);
+                if (!node.folders[key])
+                  node.folders[key] = { name: key, folders: {}, docs: [] };
+                node = node.folders[key];
+              });
+              node.docs.push(doc);
+            } else {
+              root.docs.push(doc);
+            }
+          });
+          return root;
+        }
 
-            if (doc.tipo === 'pdf') {
-                loadingIndicator.classList.add('hidden');
-                markdownContent.innerHTML = `
+        // Helper: renderiza recursivamente uma árvore de pastas
+        function renderTree(node, container, level = 0) {
+          const padding = level * 10; // px
+
+          // Rendera documentos do nó atual
+          node.docs.forEach((doc) => {
+            const btn = document.createElement("button");
+            btn.className = `w-full text-left p-2 rounded-lg hover:bg-blue-50 text-sm text-gray-600 hover:text-primary transition-colors flex flex-col group border border-transparent hover:border-blue-100`;
+            btn.style.paddingLeft = `${padding}px`;
+            const icone = doc.tipo === "pdf" ? "fa-file-pdf" : "fa-file-lines";
+            btn.innerHTML = `<span class="font-medium flex items-center"><i class="fa-regular ${icone} mr-3 text-xs text-gray-400 group-hover:text-primary"></i>${doc.titulo}</span>`;
+            btn.onclick = () => loadDocument(doc, btn);
+            container.appendChild(btn);
+          });
+
+          // Rendera subpastas
+          for (const [folderName, childNode] of Object.entries(node.folders)) {
+            // Normalize display for version-like folder names (e.g., '25.03A' -> '25.03a')
+            const versionMatch = folderName.match(/^(\d+\.\d+)([A-Za-z])?$/i);
+            const displayName = versionMatch
+              ? `${versionMatch[1]}${
+                  versionMatch[2] ? versionMatch[2].toLowerCase() : ""
+                }`
+              : folderName;
+            const groupDiv = document.createElement("div");
+            groupDiv.className = "mb-1";
+
+            const headerBtn = document.createElement("button");
+            headerBtn.className =
+              "flex items-center justify-between w-full text-left text-xs font-bold text-gray-500 normal-case tracking-wider py-2 px-2 hover:bg-gray-50 rounded transition-colors select-none";
+            headerBtn.style.paddingLeft = `${padding}px`;
+            headerBtn.innerHTML = `<span class="text-primary normal-case"><i class="fa-regular fa-folder mr-2 text-gray-300"></i>${displayName}</span><i class="fa-solid fa-chevron-down text-gray-300 transition-transform duration-300" style="transform: rotate(-90deg)"></i>`;
+
+            const itemsContainer = document.createElement("div");
+            itemsContainer.className =
+              "space-y-1 transition-all duration-300 hidden";
+            // Render recursively into itemsContainer
+            renderTree(childNode, itemsContainer, level + 1);
+
+            headerBtn.onclick = () => {
+              const icon = headerBtn.querySelector("i");
+              if (itemsContainer.classList.contains("hidden")) {
+                itemsContainer.classList.remove("hidden");
+                icon.style.transform = "rotate(0deg)";
+              } else {
+                itemsContainer.classList.add("hidden");
+                icon.style.transform = "rotate(-90deg)";
+              }
+            };
+
+            groupDiv.appendChild(headerBtn);
+            groupDiv.appendChild(itemsContainer);
+            container.appendChild(groupDiv);
+          }
+
+          // Se não houver documentos nem subpastas neste nó, exibir "Nada encontrado"
+          if (
+            node.docs.length === 0 &&
+            Object.keys(node.folders).length === 0
+          ) {
+            const emptyDiv = document.createElement("div");
+            emptyDiv.className = "text-gray-400 text-xs p-2";
+            emptyDiv.style.paddingLeft = `${padding}px`;
+            emptyDiv.textContent = "Nada encontrado.";
+            container.appendChild(emptyDiv);
+          }
+        }
+
+        for (const [nomeCategoria, docs] of Object.entries(grupos)) {
+          const groupDiv = document.createElement("div");
+          groupDiv.className = "mb-2 border-b border-gray-50 pb-2";
+
+          const headerBtn = document.createElement("button");
+          headerBtn.className =
+            "flex items-center justify-between w-full text-left text-xs font-bold text-gray-500 uppercase tracking-wider py-3 px-2 hover:bg-gray-50 rounded transition-colors select-none";
+          headerBtn.innerHTML = `<span class="text-primary">${nomeCategoria}</span><i class="fa-solid fa-chevron-down text-gray-300 transition-transform duration-300" style="transform: rotate(-90deg)"></i>`;
+
+          const itemsContainer = document.createElement("div");
+          itemsContainer.className =
+            "space-y-1 pl-1 transition-all duration-300 hidden";
+
+          // Constrói árvore e renderiza nela
+          const tree = buildFolderTree(docs);
+          renderTree(tree, itemsContainer, 0);
+
+          headerBtn.onclick = () => {
+            const icon = headerBtn.querySelector("i");
+            if (itemsContainer.classList.contains("hidden")) {
+              itemsContainer.classList.remove("hidden");
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              itemsContainer.classList.add("hidden");
+              icon.style.transform = "rotate(-90deg)";
+            }
+          };
+
+          groupDiv.appendChild(headerBtn);
+          groupDiv.appendChild(itemsContainer);
+          docListContainer.appendChild(groupDiv);
+        }
+      }
+
+      async function loadDocument(doc, activeBtn) {
+        const botoes = docListContainer.querySelectorAll("button");
+        botoes.forEach((b) => {
+          if (!b.querySelector("i.fa-chevron-down"))
+            b.classList.remove("bg-blue-50", "border-blue-100");
+        });
+        if (activeBtn) activeBtn.classList.add("bg-blue-50", "border-blue-100");
+
+        loadingIndicator.classList.remove("hidden");
+        errorMessage.classList.add("hidden");
+        markdownContent.innerHTML = "";
+
+        let sourceUrl = doc.arquivo;
+        if (!sourceUrl.startsWith("http")) sourceUrl = `../docs/${doc.arquivo}`;
+
+        if (doc.tipo === "pdf") {
+          loadingIndicator.classList.add("hidden");
+          markdownContent.innerHTML = `
                     <div class="flex flex-col h-full w-full min-h-[600px]">
                         <div class="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-100 flex items-center justify-between">
-                            <div class="text-sm text-blue-800 font-medium"><i class="fa-solid fa-circle-info mr-2"></i>Visualizando PDF</div>
+                            <div class="text-sm text-blue-800 font-medium"><i class="fa-solid fa-circle-info mr-2"></i>Visualizar PDF</div>
                             <a href="${sourceUrl}" target="_blank" class="text-xs bg-primary !text-white px-3 py-1.5 rounded">Abrir em Nova Aba</a>
                         </div>
                         <iframe src="${sourceUrl}" class="w-full flex-1 rounded-lg border border-gray-200 bg-gray-50" style="min-height: 600px;"></iframe>
                     </div>`;
-            } else {
-                try {
-                    const res = await fetch(sourceUrl);
-                    if(!res.ok) throw new Error("404");
-                    const text = await res.text();
-                    markdownContent.innerHTML = marked.parse(text);
-                } catch(e) {
-                    errorMessage.classList.remove('hidden');
-                } finally {
-                    loadingIndicator.classList.add('hidden');
-                }
-            }
+        } else {
+          try {
+            const res = await fetch(sourceUrl);
+            if (!res.ok) throw new Error("404");
+            const text = await res.text();
+            markdownContent.innerHTML = marked.parse(text);
+          } catch (e) {
+            errorMessage.classList.remove("hidden");
+          } finally {
+            loadingIndicator.classList.add("hidden");
+          }
         }
+      }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const footerEl = document.getElementById("versionFooter");
-            if (footerEl) footerEl.textContent = `v${APP_VERSION || "..."}`;
-            renderMenu();
-        });
+      document.addEventListener("DOMContentLoaded", () => {
+        const footerEl = document.getElementById("versionFooter");
+        if (footerEl) footerEl.textContent = `v${APP_VERSION || "..."}`;
+        renderMenu();
+      });
     </script>
-</body>
+  </body>
 </html>
